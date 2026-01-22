@@ -107,6 +107,7 @@ export default function ContactForm() {
         name: '',
         email: '',
         phone: '',
+        password: '',
         fromLocation: '',
         toLocation: '',
         cargoDescription: '',
