@@ -57,6 +57,7 @@ export async function PATCH(
       weight,
       volume,
       status,
+      statusComment,
     } = body
 
     const updateData: any = {}
@@ -69,11 +70,12 @@ export async function PATCH(
     if (status !== undefined) {
       updateData.status = status
       
-      // Добавляем запись в историю статусов
+      // Добавляем запись в историю статусов с комментарием
       await prisma.orderStatusHistory.create({
         data: {
           orderId: params.id,
           status,
+          comment: statusComment || null,
         },
       })
     }

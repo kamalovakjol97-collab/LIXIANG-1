@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Send, Mail, Phone, User, Package } from 'lucide-react'
+import { Send, Mail, Phone, User, Package, Upload, X } from 'lucide-react'
 import { useState } from 'react'
 
 export default function ContactForm() {
@@ -16,6 +16,7 @@ export default function ContactForm() {
     weight: '',
     volume: '',
   })
+  const [files, setFiles] = useState<File[]>([])
   const [isNewUser, setIsNewUser] = useState(false)
 
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -102,6 +103,22 @@ export default function ContactForm() {
         throw new Error(errorData.error || 'Ошибка при создании заказа')
       }
 
+      const orderData = await orderResponse.json()
+      const orderId = orderData.order.id
+
+      // Загружаем файлы, если они есть
+      if (files.length > 0) {
+        for (const file of files) {
+          const formDataFiles = new FormData()
+          formDataFiles.append('file', file)
+
+          await fetch(`/api/orders/${orderId}/documents`, {
+            method: 'POST',
+            body: formDataFiles,
+          })
+        }
+      }
+
       setSuccess(true)
       setFormData({
         name: '',
@@ -114,6 +131,7 @@ export default function ContactForm() {
         weight: '',
         volume: '',
       })
+      setFiles([])
 
       // Перенаправление в ЛК через 2 секунды
       setTimeout(() => {
@@ -133,6 +151,17 @@ export default function ContactForm() {
       ...formData,
       [e.target.name]: e.target.value,
     })
+  }
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newFiles = Array.from(e.target.files)
+      setFiles([...files, ...newFiles])
+    }
+  }
+
+  const removeFile = (index: number) => {
+    setFiles(files.filter((_, i) => i !== index))
   }
 
   return (
@@ -346,6 +375,42 @@ export default function ContactForm() {
                     placeholder="м³"
                   />
                 </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="files"
+                  className="flex items-center gap-2 text-sm font-semibold mb-2"
+                >
+                  <Upload className="w-4 h-4" />
+                  Файлы (инвойс, упаковочный лист и т.д.)
+                </label>
+                <input
+                  type="file"
+                  id="files"
+                  multiple
+                  onChange={handleFileChange}
+                  className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-accent-orange file:text-white hover:file:bg-accent-orange/90 file:cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-transparent transition-all"
+                />
+                {files.length > 0 && (
+                  <div className="mt-3 space-y-2">
+                    {files.map((file, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-between bg-white/10 rounded-lg px-3 py-2 text-sm"
+                      >
+                        <span className="text-white truncate flex-1">{file.name}</span>
+                        <button
+                          type="button"
+                          onClick={() => removeFile(index)}
+                          className="ml-2 text-white/80 hover:text-white transition-colors"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {error && (

@@ -19,18 +19,18 @@ interface Order {
   statusHistory: Array<{
     id: string
     status: string
+    comment?: string
     changedAt: string
   }>
 }
 
 const statusColors: Record<string, string> = {
-  'Заявка принята': 'bg-blue-100 text-blue-800',
-  'Расчёт отправлен': 'bg-yellow-100 text-yellow-800',
-  'Заказ подтверждён': 'bg-purple-100 text-purple-800',
+  'Заявка создана': 'bg-blue-100 text-blue-800',
+  'В работе': 'bg-yellow-100 text-yellow-800',
+  'Документы получены': 'bg-purple-100 text-purple-800',
   'Груз отправлен': 'bg-indigo-100 text-indigo-800',
   'Груз прибыл': 'bg-green-100 text-green-800',
-  'Документы готовы': 'bg-teal-100 text-teal-800',
-  'Заказ закрыт': 'bg-gray-100 text-gray-800',
+  'Завершено': 'bg-gray-100 text-gray-800',
 }
 
 export default function OrderDetailPage() {
@@ -251,7 +251,12 @@ export default function OrderDetailPage() {
                       <p className="font-semibold text-gray-900">
                         {history.status}
                       </p>
-                      <p className="text-sm text-gray-500">
+                      {history.comment && (
+                        <p className="text-sm text-gray-600 mt-1 italic">
+                          {history.comment}
+                        </p>
+                      )}
+                      <p className="text-sm text-gray-500 mt-1">
                         {formatDate(history.changedAt)}
                       </p>
                     </div>

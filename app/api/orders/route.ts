@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
         cargoDescription,
         weight,
         volume,
-        status: 'Заявка принята',
+        status: 'Заявка создана',
       },
       include: {
         client: {
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     await prisma.orderStatusHistory.create({
       data: {
         orderId: order.id,
-        status: 'Заявка принята',
+        status: 'Заявка создана',
       },
     })
 

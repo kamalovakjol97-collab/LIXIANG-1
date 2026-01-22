@@ -32,7 +32,7 @@ model Order {
   cargoDescription String  @map("cargo_description")
   weight          String?
   volume          String?
-  status          String    @default("Заявка принята")
+  status          String    @default("Заявка создана")
   createdAt       DateTime  @default(now()) @map("created_at")
   updatedAt       DateTime  @updatedAt @map("updated_at")
   
@@ -48,6 +48,7 @@ model OrderStatusHistory {
   id        String   @id @default(cuid())
   orderId   String   @map("order_id")
   status    String
+  comment   String?  // Комментарий менеджера к изменению статуса
   changedAt DateTime @default(now()) @map("changed_at")
   
   order     Order    @relation(fields: [orderId], references: [id])

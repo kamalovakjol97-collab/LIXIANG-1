@@ -19,6 +19,7 @@ interface Order {
   statusHistory: Array<{
     id: string
     status: string
+    comment?: string
     changedAt: string
   }>
   client: {
@@ -30,23 +31,21 @@ interface Order {
 }
 
 const statuses = [
-  'Заявка принята',
-  'Расчёт отправлен',
-  'Заказ подтверждён',
+  'Заявка создана',
+  'В работе',
+  'Документы получены',
   'Груз отправлен',
   'Груз прибыл',
-  'Документы готовы',
-  'Заказ закрыт',
+  'Завершено',
 ]
 
 const statusColors: Record<string, string> = {
-  'Заявка принята': 'bg-blue-100 text-blue-800',
-  'Расчёт отправлен': 'bg-yellow-100 text-yellow-800',
-  'Заказ подтверждён': 'bg-purple-100 text-purple-800',
+  'Заявка создана': 'bg-blue-100 text-blue-800',
+  'В работе': 'bg-yellow-100 text-yellow-800',
+  'Документы получены': 'bg-purple-100 text-purple-800',
   'Груз отправлен': 'bg-indigo-100 text-indigo-800',
   'Груз прибыл': 'bg-green-100 text-green-800',
-  'Документы готовы': 'bg-teal-100 text-teal-800',
-  'Заказ закрыт': 'bg-gray-100 text-gray-800',
+  'Завершено': 'bg-gray-100 text-gray-800',
 }
 
 export default function ManagerOrderDetailPage() {
@@ -64,6 +63,7 @@ export default function ManagerOrderDetailPage() {
     weight: '',
     volume: '',
     status: '',
+    statusComment: '',
   })
 
   useEffect(() => {
@@ -93,6 +93,7 @@ export default function ManagerOrderDetailPage() {
         weight: order.weight || '',
         volume: order.volume || '',
         status: order.status,
+        statusComment: '',
       })
     }
   }, [order])
@@ -115,11 +116,20 @@ export default function ManagerOrderDetailPage() {
       const response = await fetch(`/api/orders/${params.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          fromLocation: formData.fromLocation,
+          toLocation: formData.toLocation,
+          cargoDescription: formData.cargoDescription,
+          weight: formData.weight,
+          volume: formData.volume,
+          status: formData.status,
+          statusComment: formData.statusComment,
+        }),
       })
 
       if (response.ok) {
         await fetchOrder()
+        setFormData({ ...formData, statusComment: '' })
         alert('Заказ обновлён')
       } else {
         const data = await response.json()
@@ -361,6 +371,20 @@ export default function ManagerOrderDetailPage() {
                     ))}
                   </select>
                 </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Комментарий к изменению статуса (опционально)
+                  </label>
+                  <textarea
+                    value={formData.statusComment}
+                    onChange={(e) =>
+                      setFormData({ ...formData, statusComment: e.target.value })
+                    }
+                    rows={3}
+                    placeholder="Добавьте комментарий к изменению статуса..."
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-orange focus:border-transparent"
+                  />
+                </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Дата создания
@@ -407,7 +431,12 @@ export default function ManagerOrderDetailPage() {
                       <p className="font-semibold text-gray-900">
                         {history.status}
                       </p>
-                      <p className="text-sm text-gray-500">
+                      {history.comment && (
+                        <p className="text-sm text-gray-600 mt-1 italic">
+                          {history.comment}
+                        </p>
+                      )}
+                      <p className="text-sm text-gray-500 mt-1">
                         {formatDate(history.changedAt)}
                       </p>
                     </div>
