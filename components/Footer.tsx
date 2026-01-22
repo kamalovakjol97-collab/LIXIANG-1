@@ -6,10 +6,10 @@ import Link from 'next/link'
 
 const footerLinks = {
   company: [
-    { name: 'О компании', href: '#about' },
-    { name: 'Услуги', href: '#services' },
-    { name: 'Группа компаний', href: '#companies' },
-    { name: 'География', href: '#geography' },
+    { name: 'О компании', href: '/about' },
+    { name: 'Услуги', href: '/services' },
+    { name: 'Новости', href: '/news' },
+    { name: 'Контакты', href: '/contacts' },
   ],
   services: [
     { name: 'Импорт из Китая', href: '#services' },

@@ -98,6 +98,12 @@ export default function ManagerClientsPage() {
               >
                 Заказы
               </Link>
+              <Link
+                href="/lk/manager/statistics"
+                className="text-gray-600 hover:text-primary transition-colors"
+              >
+                Статистика
+              </Link>
               <span className="text-gray-700">{user?.name}</span>
               <button
                 onClick={handleLogout}

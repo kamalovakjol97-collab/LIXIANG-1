@@ -54,6 +54,12 @@ export default function Header() {
               Услуги
             </Link>
             <Link
+              href="/news"
+              className="text-gray-700 hover:text-accent-orange transition-colors font-medium"
+            >
+              Новости
+            </Link>
+            <Link
               href="/contacts"
               className="text-gray-700 hover:text-accent-orange transition-colors font-medium"
             >
@@ -121,6 +127,13 @@ export default function Header() {
                 className="block text-gray-700 hover:text-accent-orange transition-colors font-medium"
               >
                 Услуги
+              </Link>
+              <Link
+                href="/news"
+                onClick={() => setIsMenuOpen(false)}
+                className="block text-gray-700 hover:text-accent-orange transition-colors font-medium"
+              >
+                Новости
               </Link>
               <Link
                 href="/contacts"

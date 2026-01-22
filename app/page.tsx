@@ -5,6 +5,7 @@ import GroupCompanies from '@/components/GroupCompanies'
 import Workflow from '@/components/Workflow'
 import Advantages from '@/components/Advantages'
 import Geography from '@/components/Geography'
+import NewsSection from '@/components/NewsSection'
 import ContactForm from '@/components/ContactForm'
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Workflow />
       <Advantages />
       <Geography />
+      <NewsSection />
       <ContactForm />
     </main>
   )
