@@ -1,8 +1,11 @@
+import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import './WhyXGLOG.css'
 
 const WhyXGLOG = () => {
   const { t, language } = useLanguage()
+  const [visibleItems, setVisibleItems] = useState([])
+  const itemRefs = useRef([])
   
   const advantages = language === 'ru' ? [
     {
@@ -56,6 +59,33 @@ const WhyXGLOG = () => {
     }
   ]
 
+  useEffect(() => {
+    const observers = itemRefs.current.map((ref, index) => {
+      if (!ref) return null
+      
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setVisibleItems(prev => [...prev, index])
+            observer.unobserve(ref)
+          }
+        },
+        { threshold: 0.1 }
+      )
+      
+      observer.observe(ref)
+      return observer
+    })
+
+    return () => {
+      observers.forEach((obs, index) => {
+        if (obs && itemRefs.current[index]) {
+          obs.unobserve(itemRefs.current[index])
+        }
+      })
+    }
+  }, [])
+
   return (
     <section className="why-xglog">
       <div className="container">
@@ -69,7 +99,12 @@ const WhyXGLOG = () => {
         </p>
         <div className="advantages-list">
           {advantages.map((advantage, index) => (
-            <div key={index} className="advantage-item">
+            <div 
+              key={index} 
+              ref={el => itemRefs.current[index] = el}
+              className={`advantage-item ${visibleItems.includes(index) ? 'fade-in' : ''}`}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <div className={`advantage-icon advantage-icon-${advantage.icon}`}>
                 {advantage.icon === 'partnership' && (
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

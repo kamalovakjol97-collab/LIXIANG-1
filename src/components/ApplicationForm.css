@@ -1,5 +1,5 @@
 .application-form {
-  padding: 100px 0;
+  padding: var(--spacing-2xl) 0;
   background-color: var(--color-white);
 }
 
@@ -43,7 +43,8 @@
 
 .form-group input:focus {
   outline: none;
-  border-color: var(--color-gold);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .form-message {
@@ -66,18 +67,21 @@
 
 .form-submit {
   width: 100%;
-  background-color: var(--color-black);
+  background: var(--accent);
   color: var(--color-white);
-  padding: 16px;
-  border-radius: 4px;
-  font-size: 18px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: var(--font-size-base);
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
 }
 
 .form-submit:hover:not(:disabled) {
-  background-color: var(--color-gold);
-  color: var(--color-black);
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .form-submit:disabled {
@@ -97,5 +101,16 @@
 
   .form-group-full {
     grid-column: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

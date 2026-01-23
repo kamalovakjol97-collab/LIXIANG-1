@@ -22,6 +22,14 @@
   border: 2px solid var(--color-light-gray);
   background: linear-gradient(135deg, #f7fafc 0%, #e2e8f0 100%);
   position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.interactive-map-container.fade-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .map-svg {

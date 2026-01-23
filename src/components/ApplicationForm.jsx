@@ -1,10 +1,34 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { supabase } from '../config/supabase'
 import './ApplicationForm.css'
 
 const ApplicationForm = () => {
   const { t, language } = useLanguage()
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
+  }, [])
   const [formData, setFormData] = useState({
     cargoType: '',
     from: '',
@@ -78,10 +102,15 @@ const ApplicationForm = () => {
   }
 
   return (
-    <section id="application-form" className="application-form">
-      <div className="container">
-        <h2 className="section-title">{t('applicationForm')}</h2>
-        <form className="form" onSubmit={handleSubmit}>
+      <section id="application-form" className="application-form" ref={sectionRef}>
+        <div className="container">
+          <h2 className="section-title">{t('applicationForm')}</h2>
+          <p className="text-center" style={{ maxWidth: '65ch', margin: '0 auto 2rem', color: 'var(--color-gray)' }}>
+            {language === 'ru' 
+              ? 'Заполните форму, и мы подготовим для вас персональное коммерческое предложение'
+              : '填写表格，我们将为您准备个性化的商业提案'}
+          </p>
+          <form className={`form ${isVisible ? 'fade-in' : ''}`} onSubmit={handleSubmit} style={{ animationDelay: '0.1s' }}>
           <div className="form-grid">
             <div className="form-group">
               <label htmlFor="cargoType">Тип груза</label>

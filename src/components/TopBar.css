@@ -1,8 +1,19 @@
 .top-bar {
   background-color: var(--color-black);
   color: var(--color-white);
-  padding: 8px 0;
-  font-size: 14px;
+  padding: 4px 0;
+  font-size: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar.footer-top-bar {
+  position: static;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
 }
 
 .top-bar-content {
@@ -23,10 +34,10 @@
 }
 
 .rate-date {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 13px;
-  margin-right: 12px;
-  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  margin-right: 8px;
+  font-weight: 400;
 }
 
 .rate-item {

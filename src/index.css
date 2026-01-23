@@ -14,9 +14,27 @@
   --color-gold: #d4af37;
   --color-gold-light: #f4e4bc;
   --color-gold-dark: #b8941f;
-  --color-accent: #d4af37;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --color-accent: #2563eb;
   --color-yellow: #d4af37;
   --color-yellow-dark: #b8941f;
+  
+  /* Typography */
+  --font-size-base: 16px;
+  --font-size-h1: 3rem;
+  --font-size-h2: 2.25rem;
+  --font-size-h3: 1.75rem;
+  --line-height-base: 1.6;
+  --line-height-heading: 1.2;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 5rem;
 }
 
 body {
@@ -26,8 +44,112 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--color-graphite);
-  line-height: 1.6;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
   background-color: var(--color-white);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  margin-bottom: var(--spacing-md);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  margin-bottom: var(--spacing-lg);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  margin-bottom: 2rem;
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  margin-bottom: var(--spacing-md);
+}
+
+p {
+  max-width: 65ch;
+  margin: 0 auto var(--spacing-md);
+  line-height: var(--line-height-base);
+}
+
+ul, ol {
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+li {
+  margin-bottom: 0.75rem;
+  line-height: var(--line-height-base);
+}
+
+strong, .highlight {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Section dividers */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  border: none;
+  margin: var(--spacing-2xl) 0;
+  opacity: 0.3;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Card design */
+.card {
+  padding: 2rem;
+  border-radius: 0.5rem;
+  background: var(--color-white);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-top: 3px solid var(--accent);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+}
+
+/* CTA Button */
+.cta-button {
+  background: var(--accent);
+  color: var(--color-white);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Section spacing */
+section {
+  padding: var(--spacing-2xl) 0;
+}
+
+section + section {
+  margin-top: var(--spacing-xl);
 }
 
 code {
@@ -52,8 +174,91 @@ button {
   padding: 0 20px;
 }
 
+.section-title {
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  font-size: 0.875rem;
+  color: var(--color-gray);
+  margin-bottom: var(--spacing-sm);
+}
+
+.breadcrumbs a {
+  color: var(--color-gray);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbs a:hover {
+  color: var(--accent);
+}
+
+.breadcrumbs span {
+  margin: 0 0.5rem;
+  color: var(--color-light-gray);
+}
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.fade-in.visible {
+  opacity: 1;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 0 16px;
+  }
+  
+  :root {
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.75rem;
+    --font-size-h3: 1.5rem;
+    --font-size-base: 16px;
+  }
+  
+  section {
+    padding: var(--spacing-xl) 0;
+  }
+  
+  section + section {
+    margin-top: var(--spacing-xl);
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+
+  li {
+    gap: 0.75rem;
+  }
+
+  .section-title {
+    margin-bottom: 1.5rem;
   }
 }

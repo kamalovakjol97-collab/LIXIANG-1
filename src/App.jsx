@@ -15,6 +15,9 @@ import PrivacyPolicy from './components/PrivacyPolicy'
 import ServicesPage from './pages/ServicesPage'
 import NewsPage from './pages/NewsPage'
 import ContactsPage from './pages/ContactsPage'
+import ProjectsPage from './pages/ProjectsPage'
+import HistoryPage from './pages/HistoryPage'
+import NewsSection from './components/NewsSection'
 import './App.css'
 
 function HomePage() {
@@ -25,10 +28,17 @@ function HomePage() {
       <main>
         <Hero />
         <Statistics />
+        <hr className="section-divider" />
         <ServicesCarousel />
+        <hr className="section-divider" />
         <HowWeWork />
+        <hr className="section-divider" />
         <WhyXGLOG />
+        <hr className="section-divider" />
         <Geography />
+        <hr className="section-divider" />
+        <NewsSection />
+        <hr className="section-divider" />
         <ApplicationForm />
       </main>
       <Footer />
@@ -56,6 +66,22 @@ function App() {
                 <TopBar />
                 <Header />
                 <NewsPage />
+                <Footer />
+              </>
+            } />
+            <Route path="/projects" element={
+              <>
+                <TopBar />
+                <Header />
+                <ProjectsPage />
+                <Footer />
+              </>
+            } />
+            <Route path="/history" element={
+              <>
+                <TopBar />
+                <Header />
+                <HistoryPage />
                 <Footer />
               </>
             } />

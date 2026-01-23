@@ -1,8 +1,45 @@
 import { useLanguage } from '../context/LanguageContext'
+import { Link } from 'react-router-dom'
 import './ServicesPage.css'
 
 const ServicesPage = () => {
   const { language } = useLanguage()
+  
+  const scrollToForm = () => {
+    const formElement = document.getElementById('application-form')
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+  
+  const serviceIcons = {
+    auto: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 8H17V4H3C1.89 4 1 4.89 1 6V18H3C3 19.66 4.34 21 6 21S9 19.66 9 18H15C15 19.66 16.34 21 18 21S21 19.66 21 18H23V12L20 8M15 10V6H17L19 8H15M6 18.5C6.83 18.5 7.5 17.83 7.5 17S6.83 15.5 6 15.5 4.5 16.17 4.5 17 5.17 18.5 6 18.5M18 18.5C18.83 18.5 19.5 17.83 19.5 17S18.83 15.5 18 15.5 16.5 16.17 16.5 17 17.17 18.5 18 18.5Z" fill="currentColor"/>
+      </svg>
+    ),
+    expediting: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8L14 2M18 20H6V4H13V9H18V20Z" fill="currentColor"/>
+      </svg>
+    ),
+    import: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 12C2 16.97 6.03 21 11 21C13.39 21 15.68 20.06 17.4 18.4L15.9 16.9C14.63 18.25 12.86 19 11 19C7.13 19 4 15.87 4 12C4 8.13 7.13 5 11 5C12.86 5 14.63 5.75 15.9 7.1L17.4 5.6C15.68 3.94 13.39 3 11 3C6.03 3 2 7.03 2 12ZM22 12L18 8V11H13V13H18V16L22 12ZM11 9L7 13H10V17H12V13H15L11 9Z" fill="currentColor"/>
+      </svg>
+    ),
+    export: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 3L5 7H8V13H10V7H13M16 17V11H14V17H11L15 21L19 17H16Z" fill="currentColor"/>
+      </svg>
+    ),
+    customs: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2M13 17H11V15H13V17M13 13H11V7H13V13Z" fill="currentColor"/>
+        <path d="M11 7H13V13H11V7Z" fill="currentColor"/>
+      </svg>
+    )
+  }
 
   const services = {
     ru: {
@@ -119,6 +156,11 @@ const ServicesPage = () => {
     <div className="services-page">
       <div className="services-hero">
         <div className="container">
+          <div className="breadcrumbs">
+            <Link to="/">{language === 'ru' ? 'Главная' : '首页'}</Link>
+            <span>/</span>
+            <span>{language === 'ru' ? 'Наши услуги' : '我们的服务'}</span>
+          </div>
           <h1 className="services-page-title">
             {language === 'ru' ? 'Наши услуги' : '我们的服务'}
           </h1>
@@ -126,22 +168,45 @@ const ServicesPage = () => {
       </div>
       <div className="container">
         <div className="services-list">
-          {Object.entries(currentServices).map(([key, service]) => (
-            <section key={key} id={key} className="service-section">
-              <div className={`service-bg service-bg-${key}`}>
-                <div className="service-brand">XGL</div>
+          {Object.entries(currentServices).map(([key, service], index) => (
+            <article key={key} id={key} className="service-card card fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+              <div className="service-header">
+                <div className="service-icon">{serviceIcons[key]}</div>
+                <div>
+                  <h2 className="service-title">{service.title}</h2>
+                  <p className="service-subtitle">{service.subtitle}</p>
+                </div>
               </div>
-              <div className="service-content">
-                <h2 className="service-title">{service.title}</h2>
-                <p className="service-subtitle">{service.subtitle}</p>
-                <ul className="service-items">
-                  {service.services.map((item, index) => (
-                    <li key={index} className="service-item">{item}</li>
-                  ))}
-                </ul>
+              <ul className="service-items">
+                {service.services.map((item, itemIndex) => (
+                  <li key={itemIndex} className="service-item">
+                    <span className="service-item-icon">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="service-cta">
+                <button className="cta-button" onClick={scrollToForm}>
+                  {language === 'ru' ? 'Рассчитать стоимость' : '计算费用'}
+                </button>
               </div>
-            </section>
+            </article>
           ))}
+        </div>
+        <div className="services-cta-section">
+          <h2 className="section-title">
+            {language === 'ru' ? 'Готовы начать?' : '准备开始了吗？'}
+          </h2>
+          <p className="text-center" style={{ maxWidth: '65ch', margin: '0 auto 2rem' }}>
+            {language === 'ru' 
+              ? 'Свяжитесь с нами для получения персонального коммерческого предложения'
+              : '联系我们获取个性化商业提案'}
+          </p>
+          <div className="text-center">
+            <button className="cta-button" onClick={scrollToForm}>
+              {language === 'ru' ? 'Заказать консультацию' : '预约咨询'}
+            </button>
+          </div>
         </div>
       </div>
     </div>

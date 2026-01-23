@@ -13,6 +13,9 @@ const Footer = () => {
             <p className="footer-email">
               <a href="mailto:i@x-genity.ru">i@x-genity.ru</a>
             </p>
+            <p className="footer-address">
+              {t('workingHours')}
+            </p>
           </div>
           <div className="footer-links">
             <a href="/privacy" className="footer-link">{t('privacy')}</a>

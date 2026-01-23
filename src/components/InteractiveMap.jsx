@@ -1,10 +1,34 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import './InteractiveMap.css'
 
 const InteractiveMap = () => {
   const { language } = useLanguage()
   const [tooltip, setTooltip] = useState({ show: false, text: '', x: 0, y: 0 })
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
+  }, [])
 
   const showTooltip = (text, event) => {
     setTooltip({
@@ -20,7 +44,7 @@ const InteractiveMap = () => {
   }
 
   return (
-    <section className="interactive-map-section">
+    <section className="interactive-map-section" ref={sectionRef}>
       <div className="container">
         <h2 className="section-title">
           {language === 'ru' ? 'География нашей экспертизы' : '我们的专业地理范围'}
@@ -30,7 +54,7 @@ const InteractiveMap = () => {
             ? 'Отработанные логистические коридоры из Китая в Россию и обратно под ключ'
             : '从中国到俄罗斯及反向的成熟物流通道，一站式服务'}
         </p>
-        <div className="interactive-map-container">
+        <div className={`interactive-map-container ${isVisible ? 'fade-in' : ''}`}>
           <svg 
             className="map-svg" 
             viewBox="0 0 1000 600" 

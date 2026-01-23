@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext'
 import './ServicesCarousel.css'
@@ -7,6 +7,30 @@ const ServicesCarousel = () => {
   const { t, language } = useLanguage()
   const navigate = useNavigate()
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
+  }, [])
 
   const services = [
     {
@@ -60,10 +84,10 @@ const ServicesCarousel = () => {
   }
 
   return (
-    <section className="services-carousel">
+    <section className="services-carousel" ref={sectionRef}>
       <div className="container">
         <h2 className="section-title">{t('services')}</h2>
-        <div className="carousel-wrapper">
+        <div className={`carousel-wrapper ${isVisible ? 'fade-in' : ''}`}>
           <button className="carousel-btn carousel-btn-prev" onClick={prevSlide}>
             ←
           </button>
@@ -79,7 +103,6 @@ const ServicesCarousel = () => {
                 >
                   <div className="slide-overlay">
                     <div className="slide-content">
-                      <div className="slide-brand">XGL</div>
                       <h3 className="slide-title">{service.title}</h3>
                       <p className="slide-description">{service.description}</p>
                       <div className="slide-actions">

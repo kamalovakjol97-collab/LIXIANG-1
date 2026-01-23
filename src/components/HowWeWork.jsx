@@ -1,8 +1,11 @@
+import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import './HowWeWork.css'
 
 const HowWeWork = () => {
   const { t, language } = useLanguage()
+  const [visibleSteps, setVisibleSteps] = useState([])
+  const stepRefs = useRef([])
   const steps = language === 'ru' ? [
     {
       number: '01',
@@ -49,6 +52,33 @@ const HowWeWork = () => {
     }
   ]
 
+  useEffect(() => {
+    const observers = stepRefs.current.map((ref, index) => {
+      if (!ref) return null
+      
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setVisibleSteps(prev => [...prev, index])
+            observer.unobserve(ref)
+          }
+        },
+        { threshold: 0.1 }
+      )
+      
+      observer.observe(ref)
+      return observer
+    })
+
+    return () => {
+      observers.forEach((obs, index) => {
+        if (obs && stepRefs.current[index]) {
+          obs.unobserve(stepRefs.current[index])
+        }
+      })
+    }
+  }, [])
+
   return (
     <section className="how-we-work">
       <div className="container">
@@ -59,7 +89,12 @@ const HowWeWork = () => {
         </h2>
         <div className="steps-grid">
           {steps.map((step, index) => (
-            <div key={index} className="step-card">
+            <div 
+              key={index} 
+              ref={el => stepRefs.current[index] = el}
+              className={`step-card ${visibleSteps.includes(index) ? 'visible' : ''}`}
+              style={{ transitionDelay: `${index * 0.1}s` }}
+            >
               <div className="step-number">{step.number}</div>
               <h3 className="step-title">{step.title}</h3>
               <p className="step-description">{step.description}</p>
