@@ -1,0 +1,19 @@
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-dark-blue);
+  font-family: 'Arial', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .logo-text {
+    font-size: 24px;
+    letter-spacing: 1.5px;
+  }
+}
