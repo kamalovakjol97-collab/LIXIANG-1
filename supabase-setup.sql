@@ -19,6 +19,9 @@ CREATE INDEX IF NOT EXISTS idx_applications_created_at ON applications(created_a
 -- Включение Row Level Security (опционально, для безопасности)
 ALTER TABLE applications ENABLE ROW LEVEL SECURITY;
 
+-- Удаление политики, если она существует, перед созданием новой
+DROP POLICY IF EXISTS "Allow public insert" ON applications;
+
 -- Политика: разрешить вставку данных всем (для формы)
 CREATE POLICY "Allow public insert" ON applications
   FOR INSERT
@@ -26,6 +29,8 @@ CREATE POLICY "Allow public insert" ON applications
   WITH CHECK (true);
 
 -- Политика: разрешить чтение только аутентифицированным пользователям (если нужно)
+-- Раскомментируйте, если нужен доступ к чтению для аутентифицированных пользователей
+-- DROP POLICY IF EXISTS "Allow authenticated read" ON applications;
 -- CREATE POLICY "Allow authenticated read" ON applications
 --   FOR SELECT
 --   TO authenticated

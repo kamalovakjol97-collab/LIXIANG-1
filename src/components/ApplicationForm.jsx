@@ -33,6 +33,10 @@ const ApplicationForm = () => {
     setSubmitStatus(null)
 
     try {
+      if (!supabase) {
+        throw new Error('Supabase is not configured. Please check your environment variables.')
+      }
+
       const { error } = await supabase
         .from('applications')
         .insert([{
