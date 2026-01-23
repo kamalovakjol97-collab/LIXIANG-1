@@ -35,6 +35,35 @@
   line-height: 1.6;
 }
 
+.how-we-work-footer {
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--color-light-gray);
+}
+
+.faq-link-text {
+  font-size: 18px;
+  color: var(--color-graphite);
+  margin-bottom: 16px;
+}
+
+.faq-link-btn {
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
+  padding: 12px 32px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.faq-link-btn:hover {
+  background-color: var(--color-accent);
+}
+
 @media (max-width: 768px) {
   .how-we-work {
     padding: 60px 0;
@@ -47,5 +76,10 @@
 
   .step-number {
     font-size: 48px;
+  }
+
+  .how-we-work-footer {
+    margin-top: 40px;
+    padding-top: 30px;
   }
 }

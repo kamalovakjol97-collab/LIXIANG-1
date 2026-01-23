@@ -3,6 +3,14 @@
   background-color: #f7fafc;
 }
 
+.statistics-note {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--color-gray);
+  font-style: italic;
+}
+
 .statistics-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

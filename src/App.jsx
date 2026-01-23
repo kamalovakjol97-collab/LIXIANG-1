@@ -9,6 +9,7 @@ import HowWeWork from './components/HowWeWork'
 import WhyXGLOG from './components/WhyXGLOG'
 import Geography from './components/Geography'
 import ApplicationForm from './components/ApplicationForm'
+import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import ServicesPage from './pages/ServicesPage'
@@ -26,6 +27,7 @@ function HomePage() {
         <Statistics />
         <ServicesCarousel />
         <HowWeWork />
+        <FAQ />
         <WhyXGLOG />
         <Geography />
         <ApplicationForm />

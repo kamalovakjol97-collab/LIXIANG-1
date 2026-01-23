@@ -11,8 +11,10 @@ const HowWeWork = () => {
     },
     {
       number: '02',
-      title: 'Автоматический расчёт',
-      description: 'Получите предварительную стоимость доставки'
+      title: language === 'ru' ? 'Подбор оптимального решения' : '选择最佳解决方案',
+      description: language === 'ru' 
+        ? 'Ваш запрос мгновенно попадает к нашему логисту. В течение 15 минут (или 1 часа) мы подготовим для вас персональное коммерческое предложение с точной стоимостью.'
+        : '您的请求立即传达给我们的物流专家。在15分钟（或1小时）内，我们将为您准备个性化的商业提案和准确的价格。'
     },
     {
       number: '03',
@@ -50,7 +52,11 @@ const HowWeWork = () => {
   return (
     <section className="how-we-work">
       <div className="container">
-        <h2 className="section-title">{t('howWeWork')}</h2>
+        <h2 className="section-title">
+          {language === 'ru' 
+            ? 'Как мы работаем: максимум простоты для вас'
+            : '我们的工作方式：为您提供最大的便利'}
+        </h2>
         <div className="steps-grid">
           {steps.map((step, index) => (
             <div key={index} className="step-card">
@@ -59,6 +65,24 @@ const HowWeWork = () => {
               <p className="step-description">{step.description}</p>
             </div>
           ))}
+        </div>
+        <div className="how-we-work-footer">
+          <p className="faq-link-text">
+            {language === 'ru' 
+              ? 'Не нашли нужную информацию?'
+              : '找不到需要的信息？'}
+          </p>
+          <button 
+            className="faq-link-btn"
+            onClick={() => {
+              const faqElement = document.getElementById('faq-section')
+              if (faqElement) {
+                faqElement.scrollIntoView({ behavior: 'smooth' })
+              }
+            }}
+          >
+            {language === 'ru' ? 'Часто задаваемые вопросы' : '常见问题'}
+          </button>
         </div>
       </div>
     </section>

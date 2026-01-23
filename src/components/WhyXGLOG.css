@@ -3,12 +3,20 @@
   background-color: var(--color-white);
 }
 
+.why-xglog-subtitle {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-dark-blue);
+  margin-bottom: 40px;
+}
+
 .advantages-list {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .advantage-item {
@@ -27,16 +35,12 @@
 
 .advantage-icon {
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
-  background-color: var(--color-dark-blue);
-  color: var(--color-white);
-  border-radius: 50%;
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  font-weight: 600;
 }
 
 .advantage-text {

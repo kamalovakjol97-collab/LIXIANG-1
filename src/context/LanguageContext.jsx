@@ -1,9 +1,17 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 
 const LanguageContext = createContext()
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('ru')
+  const [language, setLanguage] = useState(() => {
+    // Загружаем сохраненный язык из localStorage или используем 'ru' по умолчанию
+    return localStorage.getItem('xgl-language') || 'ru'
+  })
+
+  useEffect(() => {
+    // Сохраняем язык в localStorage при изменении
+    localStorage.setItem('xgl-language', language)
+  }, [language])
 
   const translations = {
     ru: {

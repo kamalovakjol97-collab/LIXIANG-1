@@ -7,16 +7,15 @@
   overflow: hidden;
 }
 
-.hero::before {
-  content: '';
+.hero-background-image {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-image: 
-    linear-gradient(135deg, rgba(26, 35, 50, 0.85) 0%, rgba(45, 55, 72, 0.85) 100%),
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%231a2332;stop-opacity:1" /><stop offset="100%" style="stop-color:%232d3748;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="600" fill="url(%23grad)"/><path d="M0,400 Q300,350 600,400 T1200,400 L1200,600 L0,600 Z" fill="rgba(255,255,255,0.03)"/><path d="M0,450 Q400,400 800,450 T1200,450 L1200,600 L0,600 Z" fill="rgba(255,255,255,0.02)"/></svg>');
+    linear-gradient(135deg, rgba(26, 35, 50, 0.75) 0%, rgba(45, 55, 72, 0.75) 100%),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%231a2332;stop-opacity:1" /><stop offset="100%" style="stop-color:%232d3748;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="600" fill="url(%23grad)"/><path d="M100,200 L300,150 L500,200 L700,180 L900,200 L1100,190" stroke="%23fbbf24" stroke-width="3" fill="none" opacity="0.3"/><path d="M150,350 L350,320 L550,350 L750,330 L950,350 L1150,340" stroke="%23dc2626" stroke-width="2" fill="none" opacity="0.2"/><circle cx="200" cy="100" r="40" fill="%23fbbf24" opacity="0.1"/><circle cx="800" cy="120" r="50" fill="%23dc2626" opacity="0.1"/><rect x="400" y="300" width="200" height="100" fill="%23fbbf24" opacity="0.05" rx="10"/></svg>');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

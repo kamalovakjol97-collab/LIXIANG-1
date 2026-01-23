@@ -6,13 +6,54 @@ const TopBar = () => {
   const { t, language } = useLanguage()
   const [exchangeRates, setExchangeRates] = useState({
     cny: '12.50',
-    usd: '92.30'
+    usd: '92.30',
+    date: new Date().toLocaleDateString('ru-RU')
   })
 
-  // В реальном проекте здесь будет API запрос к курсу валют
   useEffect(() => {
-    // Можно добавить реальный API для получения курса валют
-    // Например: fetch('https://api.exchangerate-api.com/v4/latest/CNY')
+    const fetchExchangeRates = async () => {
+      try {
+        // Получаем курс ЦБ РФ
+        const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+        const data = await response.json()
+        
+        // USD к RUB (ЦБ + 3%)
+        const usdRate = (data.Valute.USD.Value * 1.03).toFixed(2)
+        
+        // CNY к RUB через USD (ЦБ + 3%)
+        // 1 CNY = USD/CNY * USD/RUB
+        const cnyToUsd = data.Valute.CNY?.Value || 7.2 // Если нет CNY, используем примерное значение
+        const cnyRate = ((1 / cnyToUsd) * data.Valute.USD.Value * 1.03).toFixed(2)
+        
+        setExchangeRates({
+          cny: cnyRate,
+          usd: usdRate,
+          date: new Date().toLocaleDateString('ru-RU', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          })
+        })
+      } catch (error) {
+        console.error('Error fetching exchange rates:', error)
+        // Используем значения по умолчанию при ошибке
+        setExchangeRates({
+          cny: '12.50',
+          usd: '92.30',
+          date: new Date().toLocaleDateString('ru-RU', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          })
+        })
+      }
+    }
+
+    fetchExchangeRates()
+    // Обновляем каждые 4 часа
+    const interval = setInterval(fetchExchangeRates, 4 * 60 * 60 * 1000)
+    
+    return () => clearInterval(interval)
   }, [])
 
   return (
@@ -24,6 +65,7 @@ const TopBar = () => {
           </div>
           <div className="top-bar-right">
             <div className="exchange-rates">
+              <span className="rate-date">{exchangeRates.date}</span>
               <span className="rate-item">
                 <span className="rate-label">CNY/RUB:</span>
                 <span className="rate-value">{exchangeRates.cny}</span>

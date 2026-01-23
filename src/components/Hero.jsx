@@ -13,10 +13,13 @@ const Hero = () => {
 
   return (
     <section className="hero">
+      <div className="hero-background-image"></div>
       <div className="container">
         <div className="hero-content">
           <h1 className="hero-title">
-            {t('heroTitle')}
+            {language === 'ru' 
+              ? 'От двери до двери: Китай — Россия. Чётко и по делу.'
+              : '门到门：中国 — 俄罗斯。清晰务实。'}
           </h1>
           <p className="hero-subtitle">
             {t('heroSubtitle')}

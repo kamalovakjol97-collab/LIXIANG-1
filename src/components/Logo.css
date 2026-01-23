@@ -1,19 +1,62 @@
 .logo {
   display: flex;
   align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .logo-text {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-size: 42px;
+  font-weight: 900;
+  letter-spacing: 4px;
   color: var(--color-dark-blue);
-  font-family: 'Arial', sans-serif;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  display: flex;
+  align-items: baseline;
+  position: relative;
+}
+
+.logo-x {
+  color: #dc2626;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-g {
+  color: #fbbf24;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-l {
+  color: #059669;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-decoration {
+  font-size: 24px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 @media (max-width: 768px) {
   .logo-text {
-    font-size: 24px;
-    letter-spacing: 1.5px;
+    font-size: 32px;
+    letter-spacing: 3px;
+  }
+
+  .logo-decoration {
+    font-size: 20px;
   }
 }
