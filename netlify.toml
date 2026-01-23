@@ -1,16 +1,13 @@
+# Конфигурация для Vite + React проекта (НЕ Next.js)
 [build]
-  command = "npm run build"
+  command = "npm install && npm run build"
   publish = "dist"
 
 [build.environment]
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
   NODE_VERSION = "18"
 
-# Явно отключаем Next.js плагин
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-  enabled = false
-
+# SPA редиректы для React Router
 [[redirects]]
   from = "/*"
   to = "/index.html"
