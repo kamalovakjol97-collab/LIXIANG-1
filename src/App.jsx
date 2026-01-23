@@ -30,7 +30,6 @@ function HomePage() {
         <WhyXGLOG />
         <Geography />
         <ApplicationForm />
-        <FAQ />
       </main>
       <Footer />
     </>

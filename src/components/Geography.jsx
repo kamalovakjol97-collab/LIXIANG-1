@@ -1,54 +1,7 @@
-import { useLanguage } from '../context/LanguageContext'
-import './Geography.css'
+import InteractiveMap from './InteractiveMap'
 
 const Geography = () => {
-  const { language } = useLanguage()
-
-  const routes = language === 'ru' ? {
-    sea: [
-      'Китай (Шанхай, Нинбо) → Владивосток',
-      'Китай (Циндао) → Новороссийск'
-    ],
-    rail: [
-      'Китай (Чэнду, Чунцин) → Москва',
-      'Китай (Чжэнчжоу) → Екатеринбург',
-      'Китай (Суйфэньхэ) → Новосибирск / Казань'
-    ],
-    road: [
-      'Через КПП Хоргос (Китай-Казахстан)',
-      'Через КПП Алтынколь (Казахстан-Россия)',
-      'Прямой переход Забайкальск-Маньчжурия',
-      'Прямой переход Краскино-Суйфэньхэ'
-    ]
-  } : {
-    sea: [
-      '中国（上海、宁波）→ 符拉迪沃斯托克',
-      '中国（青岛）→ 新罗西斯克'
-    ],
-    rail: [
-      '中国（成都、重庆）→ 莫斯科',
-      '中国（郑州）→ 叶卡捷琳堡',
-      '中国（绥芬河）→ 新西伯利亚 / 喀山'
-    ],
-    road: [
-      '通过霍尔果斯口岸（中国-哈萨克斯坦）',
-      '通过阿尔滕科尔口岸（哈萨克斯坦-俄罗斯）',
-      '直接通过后贝加尔斯克-满洲里',
-      '直接通过克拉斯基诺-绥芬河'
-    ]
-  }
-
-  return (
-    <section className="geography">
-      <div className="container">
-        <h2 className="section-title">
-          {language === 'ru' ? 'География нашей экспертизы' : '我们的专业地理范围'}
-        </h2>
-        <p className="geography-subtitle">
-          {language === 'ru' 
-            ? 'Отработанные логистические коридоры из Китая в Россию и обратно под ключ'
-            : '从中国到俄罗斯及反向的成熟物流通道，一站式服务'}
-        </p>
+  return <InteractiveMap />
         
         <div className="geography-map-container">
           <div className="geography-map">

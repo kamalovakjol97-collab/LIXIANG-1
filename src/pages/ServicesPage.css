@@ -42,28 +42,43 @@
 }
 
 .service-bg-auto {
-  background: linear-gradient(135deg, rgba(26, 35, 50, 0.95) 0%, rgba(45, 55, 72, 0.95) 100%),
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><rect width="1200" height="200" fill="%231a2332"/></svg>');
+  background: 
+    linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(10, 10, 10, 0.3) 100%),
+    url('/assets/service-auto.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .service-bg-expediting {
-  background: linear-gradient(135deg, rgba(26, 35, 50, 0.95) 0%, rgba(45, 55, 72, 0.95) 100%),
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><rect width="1200" height="200" fill="%231a2332"/></svg>');
+  background: 
+    linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(10, 10, 10, 0.3) 100%),
+    url('/assets/service-export.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .service-bg-import {
-  background: linear-gradient(135deg, rgba(26, 35, 50, 0.95) 0%, rgba(45, 55, 72, 0.95) 100%),
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><rect width="1200" height="200" fill="%231a2332"/></svg>');
+  background: 
+    linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(10, 10, 10, 0.3) 100%),
+    url('/assets/service-import.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .service-bg-export {
-  background: linear-gradient(135deg, rgba(26, 35, 50, 0.95) 0%, rgba(45, 55, 72, 0.95) 100%),
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><rect width="1200" height="200" fill="%231a2332"/></svg>');
+  background: 
+    linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(10, 10, 10, 0.3) 100%),
+    url('/assets/service-export.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .service-bg-customs {
-  background: linear-gradient(135deg, rgba(26, 35, 50, 0.95) 0%, rgba(45, 55, 72, 0.95) 100%),
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><rect width="1200" height="200" fill="%231a2332"/></svg>');
+  background: 
+    linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(10, 10, 10, 0.3) 100%),
+    url('/assets/service-customs.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .service-brand {
@@ -107,10 +122,11 @@
 .service-item {
   font-size: 16px;
   color: var(--color-graphite);
-  padding: 12px 0;
-  padding-left: 24px;
+  padding: 16px 0;
+  padding-left: 28px;
   position: relative;
-  line-height: 1.6;
+  line-height: 1.8;
+  margin-bottom: 8px;
 }
 
 .service-item::before {
