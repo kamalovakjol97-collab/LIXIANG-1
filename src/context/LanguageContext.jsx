@@ -5,12 +5,25 @@ const LanguageContext = createContext()
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
     // Загружаем сохраненный язык из localStorage или используем 'ru' по умолчанию
-    return localStorage.getItem('xgl-language') || 'ru'
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        return localStorage.getItem('xgl-language') || 'ru'
+      }
+    } catch (error) {
+      console.warn('Error accessing localStorage:', error)
+    }
+    return 'ru'
   })
 
   useEffect(() => {
     // Сохраняем язык в localStorage при изменении
-    localStorage.setItem('xgl-language', language)
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        localStorage.setItem('xgl-language', language)
+      }
+    } catch (error) {
+      console.warn('Error saving to localStorage:', error)
+    }
   }, [language])
 
   const translations = {
@@ -83,7 +96,12 @@ export const LanguageProvider = ({ children }) => {
   }
 
   const t = (key) => {
-    return translations[language][key] || key
+    try {
+      return translations[language]?.[key] || translations['ru']?.[key] || key
+    } catch (error) {
+      console.warn('Translation error:', error, 'key:', key)
+      return key
+    }
   }
 
   return (

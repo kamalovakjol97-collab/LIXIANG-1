@@ -14,16 +14,30 @@ const TopBar = () => {
     const fetchExchangeRates = async () => {
       try {
         // Получаем курс ЦБ РФ
-        const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+        const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js', {
+          mode: 'cors',
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch exchange rates')
+        }
+        
         const data = await response.json()
         
         // USD к RUB (ЦБ + 3%)
-        const usdRate = (data.Valute.USD.Value * 1.03).toFixed(2)
+        const usdRate = data.Valute?.USD?.Value 
+          ? (data.Valute.USD.Value * 1.03).toFixed(2)
+          : '92.30'
         
         // CNY к RUB через USD (ЦБ + 3%)
         // 1 CNY = USD/CNY * USD/RUB
-        const cnyToUsd = data.Valute.CNY?.Value || 7.2 // Если нет CNY, используем примерное значение
-        const cnyRate = ((1 / cnyToUsd) * data.Valute.USD.Value * 1.03).toFixed(2)
+        const cnyToUsd = data.Valute?.CNY?.Value || 7.2
+        const cnyRate = data.Valute?.USD?.Value
+          ? ((1 / cnyToUsd) * data.Valute.USD.Value * 1.03).toFixed(2)
+          : '12.50'
         
         setExchangeRates({
           cny: cnyRate,
@@ -37,15 +51,14 @@ const TopBar = () => {
       } catch (error) {
         console.error('Error fetching exchange rates:', error)
         // Используем значения по умолчанию при ошибке
-        setExchangeRates({
-          cny: '12.50',
-          usd: '92.30',
+        setExchangeRates(prev => ({
+          ...prev,
           date: new Date().toLocaleDateString('ru-RU', {
             day: '2-digit',
             month: '2-digit',
             year: 'numeric'
           })
-        })
+        }))
       }
     }
 

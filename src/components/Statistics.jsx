@@ -8,17 +8,24 @@ const Statistics = () => {
   const sectionRef = useRef(null)
 
   // Дата начала работы: 25 марта 2016
-  const startDate = new Date('2016-03-25')
-  const now = new Date()
-  
-  // Вычисляем количество лет, месяцев, дней
-  const yearsDiff = now.getFullYear() - startDate.getFullYear()
-  const monthsDiff = now.getMonth() - startDate.getMonth()
-  const daysDiff = now.getDate() - startDate.getDate()
-  
-  let yearsOnMarket = yearsDiff
-  if (monthsDiff < 0 || (monthsDiff === 0 && daysDiff < 0)) {
-    yearsOnMarket--
+  let yearsOnMarket = 8
+  try {
+    const startDate = new Date('2016-03-25')
+    const now = new Date()
+    
+    // Вычисляем количество лет, месяцев, дней
+    const yearsDiff = now.getFullYear() - startDate.getFullYear()
+    const monthsDiff = now.getMonth() - startDate.getMonth()
+    const daysDiff = now.getDate() - startDate.getDate()
+    
+    yearsOnMarket = yearsDiff
+    if (monthsDiff < 0 || (monthsDiff === 0 && daysDiff < 0)) {
+      yearsOnMarket--
+    }
+    // Минимум 8 лет
+    if (yearsOnMarket < 8) yearsOnMarket = 8
+  } catch (error) {
+    console.warn('Error calculating years on market:', error)
   }
 
   const stats = [
