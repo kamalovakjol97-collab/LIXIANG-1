@@ -1,13 +1,47 @@
 .hero {
+  position: relative;
   background: linear-gradient(135deg, var(--color-dark-blue) 0%, var(--color-graphite) 100%);
   color: var(--color-white);
   padding: 120px 0;
   text-align: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(135deg, rgba(26, 35, 50, 0.85) 0%, rgba(45, 55, 72, 0.85) 100%),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%231a2332;stop-opacity:1" /><stop offset="100%" style="stop-color:%232d3748;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="600" fill="url(%23grad)"/><path d="M0,400 Q300,350 600,400 T1200,400 L1200,600 L0,600 Z" fill="rgba(255,255,255,0.03)"/><path d="M0,450 Q400,400 800,450 T1200,450 L1200,600 L0,600 Z" fill="rgba(255,255,255,0.02)"/></svg>');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.hero::after {
+  content: 'XGL';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 200px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  letter-spacing: 20px;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .hero-content {
   max-width: 900px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-title {
@@ -65,11 +99,20 @@
 }
 
 @media (max-width: 480px) {
+  .hero {
+    padding: 60px 0;
+  }
+
   .hero-title {
     font-size: 28px;
   }
 
   .hero-subtitle {
     font-size: 16px;
+  }
+
+  .hero::after {
+    font-size: 120px;
+    letter-spacing: 10px;
   }
 }

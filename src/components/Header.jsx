@@ -1,7 +1,12 @@
+import { Link } from 'react-router-dom'
 import Logo from './Logo'
+import LanguageSwitcher from './LanguageSwitcher'
+import { useLanguage } from '../context/LanguageContext'
 import './Header.css'
 
 const Header = () => {
+  const { t } = useLanguage()
+  
   const scrollToForm = () => {
     const formElement = document.getElementById('application-form')
     if (formElement) {
@@ -14,9 +19,17 @@ const Header = () => {
       <div className="container">
         <div className="header-content">
           <Logo />
-          <button className="header-cta" onClick={scrollToForm}>
-            Рассчитать доставку
-          </button>
+          <nav className="header-nav">
+            <Link to="/services" className="nav-link">{t('services')}</Link>
+            <Link to="/news" className="nav-link">{t('news')}</Link>
+            <Link to="/contacts" className="nav-link">{t('contacts')}</Link>
+          </nav>
+          <div className="header-right">
+            <LanguageSwitcher />
+            <button className="header-cta" onClick={scrollToForm}>
+              {t('calculate')}
+            </button>
+          </div>
         </div>
       </div>
     </header>

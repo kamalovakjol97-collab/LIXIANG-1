@@ -1,6 +1,9 @@
+import { useLanguage } from '../context/LanguageContext'
 import './Footer.css'
 
 const Footer = () => {
+  const { t } = useLanguage()
+
   return (
     <footer className="footer">
       <div className="container">
@@ -12,7 +15,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="footer-links">
-            <a href="/privacy" className="footer-link">Политика конфиденциальности</a>
+            <a href="/privacy" className="footer-link">{t('privacy')}</a>
             <p className="footer-year">© 2024</p>
           </div>
         </div>

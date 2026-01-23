@@ -1,7 +1,9 @@
+import { useLanguage } from '../context/LanguageContext'
 import './HowWeWork.css'
 
 const HowWeWork = () => {
-  const steps = [
+  const { t, language } = useLanguage()
+  const steps = language === 'ru' ? [
     {
       number: '01',
       title: 'Онлайн-заявка',
@@ -22,12 +24,33 @@ const HowWeWork = () => {
       title: 'Доставка до клиента',
       description: 'Груз прибывает в указанный пункт назначения'
     }
+  ] : [
+    {
+      number: '01',
+      title: '在线申请',
+      description: '在网站上填写货物参数表格'
+    },
+    {
+      number: '02',
+      title: '自动计算',
+      description: '获得初步的配送费用'
+    },
+    {
+      number: '03',
+      title: '组织运输',
+      description: '我们协调所有物流阶段'
+    },
+    {
+      number: '04',
+      title: '交付给客户',
+      description: '货物到达指定目的地'
+    }
   ]
 
   return (
     <section className="how-we-work">
       <div className="container">
-        <h2 className="section-title">Как мы работаем</h2>
+        <h2 className="section-title">{t('howWeWork')}</h2>
         <div className="steps-grid">
           {steps.map((step, index) => (
             <div key={index} className="step-card">

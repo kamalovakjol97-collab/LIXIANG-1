@@ -1,6 +1,9 @@
+import { useLanguage } from '../context/LanguageContext'
 import './Hero.css'
 
 const Hero = () => {
+  const { t } = useLanguage()
+  
   const scrollToForm = () => {
     const formElement = document.getElementById('application-form')
     if (formElement) {
@@ -13,13 +16,13 @@ const Hero = () => {
       <div className="container">
         <div className="hero-content">
           <h1 className="hero-title">
-            Международная логистика из Китая в Россию под ключ
+            {t('heroTitle')}
           </h1>
           <p className="hero-subtitle">
-            Экспедирование, таможенное оформление и доставка — без лишних посредников
+            {t('heroSubtitle')}
           </p>
           <button className="hero-cta" onClick={scrollToForm}>
-            Рассчитать доставку
+            {t('calculate')}
           </button>
         </div>
       </div>

@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useLanguage } from '../context/LanguageContext'
 import { supabase } from '../config/supabase'
 import './ApplicationForm.css'
 
 const ApplicationForm = () => {
+  const { t, language } = useLanguage()
   const [formData, setFormData] = useState({
     cargoType: '',
     from: '',
@@ -71,7 +73,7 @@ const ApplicationForm = () => {
   return (
     <section id="application-form" className="application-form">
       <div className="container">
-        <h2 className="section-title">Оставить заявку</h2>
+        <h2 className="section-title">{t('applicationForm')}</h2>
         <form className="form" onSubmit={handleSubmit}>
           <div className="form-grid">
             <div className="form-group">

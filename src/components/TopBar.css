@@ -1,0 +1,62 @@
+.top-bar {
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.top-bar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.working-hours {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.exchange-rates {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rate-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rate-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+}
+
+.rate-value {
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.rate-divider {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    font-size: 12px;
+    padding: 6px 0;
+  }
+
+  .top-bar-content {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .exchange-rates {
+    gap: 8px;
+  }
+
+  .rate-label {
+    font-size: 11px;
+  }
+}
