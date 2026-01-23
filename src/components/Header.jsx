@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext'
 import './Header.css'
 
 const Header = () => {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   
   const scrollToForm = () => {
     const formElement = document.getElementById('application-form')
