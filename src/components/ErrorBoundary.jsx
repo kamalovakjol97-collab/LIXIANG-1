@@ -26,8 +26,25 @@ class ErrorBoundary extends React.Component {
             Произошла ошибка
           </h1>
           <p style={{ color: '#666', marginBottom: '20px' }}>
-            {this.state.error?.message || 'Неизвестная ошибка'}
+            {this.state.error?.message || this.state.error?.toString() || 'Неизвестная ошибка'}
           </p>
+          {this.state.error && (
+            <details style={{ marginTop: '20px', textAlign: 'left', maxWidth: '600px', margin: '20px auto' }}>
+              <summary style={{ cursor: 'pointer', color: '#1a2332', marginBottom: '10px' }}>
+                Детали ошибки
+              </summary>
+              <pre style={{ 
+                background: '#f7fafc', 
+                padding: '15px', 
+                borderRadius: '4px', 
+                overflow: 'auto',
+                fontSize: '12px',
+                color: '#666'
+              }}>
+                {this.state.error.stack || JSON.stringify(this.state.error, null, 2)}
+              </pre>
+            </details>
+          )}
           <button
             onClick={() => window.location.reload()}
             style={{

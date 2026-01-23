@@ -2,7 +2,7 @@ import { useLanguage } from '../context/LanguageContext'
 import './Hero.css'
 
 const Hero = () => {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   
   const scrollToForm = () => {
     const formElement = document.getElementById('application-form')
