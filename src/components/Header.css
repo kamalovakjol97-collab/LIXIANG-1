@@ -30,7 +30,7 @@
 }
 
 .nav-link:hover {
-  color: var(--color-dark-blue);
+  color: var(--color-gold);
 }
 
 .header-right {
@@ -40,17 +40,18 @@
 }
 
 .header-cta {
-  background-color: var(--color-dark-blue);
+  background-color: var(--color-black);
   color: var(--color-white);
   padding: 12px 24px;
   border-radius: 4px;
   font-size: 16px;
   font-weight: 500;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .header-cta:hover {
-  background-color: var(--color-accent);
+  background-color: var(--color-gold);
+  color: var(--color-black);
 }
 
 @media (max-width: 768px) {

@@ -6,24 +6,26 @@
 
 .lang-btn {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: var(--color-white);
-  padding: 4px 12px;
+  border: 1px solid var(--color-gray);
+  color: var(--color-black);
+  padding: 6px 14px;
   border-radius: 4px;
   font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .lang-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--color-gold);
+  color: var(--color-black);
 }
 
 .lang-btn.active {
-  background: var(--color-white);
-  color: var(--color-dark-blue);
-  border-color: var(--color-white);
+  background: var(--color-gold);
+  color: var(--color-black);
+  border-color: var(--color-gold);
   font-weight: 600;
 }
 

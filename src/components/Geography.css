@@ -74,39 +74,39 @@
 .node-label {
   font-size: 12px;
   font-weight: 600;
-  color: var(--color-dark-blue);
-  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--color-black);
+  background-color: rgba(255, 255, 255, 0.95);
   padding: 4px 8px;
   border-radius: 4px;
   margin-top: 4px;
   white-space: nowrap;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 /* Расположение узлов */
-.map-node.port.shanghai { top: 12%; left: 18%; }
-.map-node.port.ningbo { top: 15%; left: 20%; }
-.map-node.port.qingdao { top: 18%; left: 22%; }
-.map-node.port.vladivostok { top: 22%; left: 78%; }
-.map-node.port.spb { top: 8%; left: 68%; }
-.map-node.port.novorossiysk { top: 28%; left: 63%; }
+.map-node.port.shanghai { top: 58%; left: 18%; }
+.map-node.port.ningbo { top: 60%; left: 20%; }
+.map-node.port.qingdao { top: 63%; left: 24%; }
+.map-node.port.vladivostok { top: 72%; left: 90%; }
+.map-node.port.novorossiysk { top: 80%; left: 70%; }
 
-.map-node.station.chengdu { top: 32%; left: 16%; }
-.map-node.station.chongqing { top: 38%; left: 18%; }
-.map-node.station.zhengzhou { top: 28%; left: 20%; }
-.map-node.station.suifenhe { top: 24%; left: 30%; }
-.map-node.station.moscow { top: 18%; left: 58%; }
-.map-node.station.ekb { top: 22%; left: 63%; }
-.map-node.station.novosibirsk { top: 32%; left: 68%; }
-.map-node.station.kazan { top: 26%; left: 60%; }
+.map-node.station.chengdu { top: 50%; left: 15%; }
+.map-node.station.chongqing { top: 55%; left: 17%; }
+.map-node.station.zhengzhou { top: 45%; left: 20%; }
+.map-node.station.suifenhe { top: 40%; left: 30%; }
+.map-node.station.moscow { top: 25%; left: 75%; }
+.map-node.station.ekb { top: 30%; left: 78%; }
+.map-node.station.novosibirsk { top: 40%; left: 80%; }
+.map-node.station.kazan { top: 35%; left: 72%; }
 
-.map-node.border-crossing.zabaykalsk { top: 26%; left: 52%; }
-.map-node.border-crossing.manzhouli { top: 26%; left: 30%; }
-.map-node.border-crossing.kraskino { top: 24%; left: 54%; }
-.map-node.border-crossing.suifenhe-border { top: 24%; left: 30%; }
-.map-node.border-crossing.khorgos-cn { top: 42%; left: 32%; }
-.map-node.border-crossing.khorgos-kz { top: 42%; left: 38%; }
-.map-node.border-crossing.altynkol { top: 44%; left: 48%; }
+.map-node.border-crossing.zabaykalsk { top: 80%; left: 82%; }
+.map-node.border-crossing.manzhouli { top: 80%; left: 30%; }
+.map-node.border-crossing.kraskino { top: 72%; left: 85%; }
+.map-node.border-crossing.suifenhe-border { top: 72%; left: 30%; }
+.map-node.border-crossing.khorgos-cn { top: 96%; left: 38%; }
+.map-node.border-crossing.khorgos-kz { top: 96%; left: 45%; }
+.map-node.border-crossing.altynkol { top: 98%; left: 60%; }
 
 .map-legend {
   display: flex;
@@ -177,7 +177,7 @@
 .route-title {
   font-size: 20px;
   font-weight: 700;
-  color: var(--color-dark-blue);
+  color: var(--color-black);
   margin-bottom: 20px;
   padding-bottom: 12px;
   border-bottom: 2px solid var(--color-light-gray);
@@ -202,7 +202,7 @@
   content: '→';
   position: absolute;
   left: 0;
-  color: var(--color-dark-blue);
+  color: var(--color-gold);
   font-weight: 700;
 }
 

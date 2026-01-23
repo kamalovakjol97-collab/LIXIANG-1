@@ -43,7 +43,7 @@
 
 .form-group input:focus {
   outline: none;
-  border-color: var(--color-dark-blue);
+  border-color: var(--color-gold);
 }
 
 .form-message {
@@ -66,17 +66,18 @@
 
 .form-submit {
   width: 100%;
-  background-color: var(--color-dark-blue);
+  background-color: var(--color-black);
   color: var(--color-white);
   padding: 16px;
   border-radius: 4px;
   font-size: 18px;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .form-submit:hover:not(:disabled) {
-  background-color: var(--color-accent);
+  background-color: var(--color-gold);
+  color: var(--color-black);
 }
 
 .form-submit:disabled {

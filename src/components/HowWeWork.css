@@ -16,7 +16,7 @@
 .step-number {
   font-size: 64px;
   font-weight: 700;
-  color: var(--color-dark-blue);
+  color: var(--color-gold);
   opacity: 0.2;
   margin-bottom: 16px;
   line-height: 1;
@@ -25,7 +25,7 @@
 .step-title {
   font-size: 22px;
   font-weight: 600;
-  color: var(--color-dark-blue);
+  color: var(--color-black);
   margin-bottom: 12px;
 }
 
@@ -49,13 +49,13 @@
 }
 
 .faq-link-btn {
-  background-color: var(--color-dark-blue);
+  background-color: var(--color-black);
   color: var(--color-white);
   padding: 12px 32px;
   border-radius: 4px;
   font-size: 16px;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
   border: none;
   display: inline-block;
@@ -63,7 +63,8 @@
 }
 
 .faq-link-btn:hover {
-  background-color: var(--color-accent);
+  background-color: var(--color-gold);
+  color: var(--color-black);
 }
 
 @media (max-width: 768px) {

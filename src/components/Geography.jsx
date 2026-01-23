@@ -7,8 +7,7 @@ const Geography = () => {
   const routes = language === 'ru' ? {
     sea: [
       'Китай (Шанхай, Нинбо) → Владивосток',
-      'Китай (Циндао) → Новороссийск',
-      'Китай → СПб (через европейские порты)'
+      'Китай (Циндао) → Новороссийск'
     ],
     rail: [
       'Китай (Чэнду, Чунцин) → Москва',
@@ -24,8 +23,7 @@ const Geography = () => {
   } : {
     sea: [
       '中国（上海、宁波）→ 符拉迪沃斯托克',
-      '中国（青岛）→ 新罗西斯克',
-      '中国 → 圣彼得堡（通过欧洲港口）'
+      '中国（青岛）→ 新罗西斯克'
     ],
     rail: [
       '中国（成都、重庆）→ 莫斯科',
@@ -54,8 +52,8 @@ const Geography = () => {
         
         <div className="geography-map-container">
           <div className="geography-map">
+            {/* Фон карты с контурами стран */}
             <svg className="map-svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet">
-              {/* Фон карты */}
               <defs>
                 <pattern id="railPattern" x="0" y="0" width="20" height="4" patternUnits="userSpaceOnUse">
                   <line x1="0" y1="2" x2="20" y2="2" stroke="#dc2626" strokeWidth="2"/>
@@ -66,24 +64,42 @@ const Geography = () => {
                 </pattern>
               </defs>
 
+              {/* Контуры стран (упрощенные) */}
+              <g id="countries">
+                {/* Китай (красный) */}
+                <path d="M 50 250 L 50 450 L 350 500 L 400 480 L 450 450 L 450 250 Z" fill="#dc2626" opacity="0.15" stroke="#dc2626" strokeWidth="2"/>
+                {/* Казахстан (оранжевый) */}
+                <path d="M 450 200 L 450 450 L 650 480 L 700 460 L 750 420 L 750 200 Z" fill="#f97316" opacity="0.15" stroke="#f97316" strokeWidth="2"/>
+                {/* Россия (голубой) */}
+                <path d="M 750 100 L 750 420 L 1150 500 L 1150 150 L 950 120 L 750 100 Z" fill="#2563eb" opacity="0.15" stroke="#2563eb" strokeWidth="2"/>
+              </g>
+
               {/* Морские маршруты (синяя прерывистая) */}
-              <path d="M 150 150 Q 300 200 500 180 T 850 160" fill="none" stroke="#2c5282" strokeWidth="3" strokeDasharray="8,4" opacity="0.6" className="route-line sea-route"/>
-              <path d="M 180 180 Q 350 220 550 200 T 900 180" fill="none" stroke="#2c5282" strokeWidth="3" strokeDasharray="8,4" opacity="0.6" className="route-line sea-route"/>
-              <path d="M 200 140 Q 400 180 600 160 T 1000 140" fill="none" stroke="#2c5282" strokeWidth="3" strokeDasharray="8,4" opacity="0.6" className="route-line sea-route"/>
+              {/* Шанхай/Нинбо → Владивосток */}
+              <path d="M 200 350 Q 400 320 600 340 T 900 360" fill="none" stroke="#2563eb" strokeWidth="3" strokeDasharray="8,4" opacity="0.8" className="route-line sea-route"/>
+              {/* Циндао → Новороссийск */}
+              <path d="M 250 380 Q 450 360 650 380 T 850 400" fill="none" stroke="#2563eb" strokeWidth="3" strokeDasharray="8,4" opacity="0.8" className="route-line sea-route"/>
 
               {/* Ж/Д маршруты (красная сплошная с рельсами) */}
-              <path d="M 120 280 Q 250 300 400 320 T 700 340 T 950 360" fill="none" stroke="#dc2626" strokeWidth="4" opacity="0.7" className="route-line rail-route"/>
-              <path d="M 120 280 Q 250 300 400 320 T 700 340 T 950 360" fill="url(#railPattern)" stroke="none" opacity="0.3"/>
+              {/* Чэнду/Чунцин → Москва */}
+              <path d="M 180 400 Q 400 380 600 400 T 950 280" fill="none" stroke="#dc2626" strokeWidth="4" opacity="0.9" className="route-line rail-route"/>
+              <path d="M 180 400 Q 400 380 600 400 T 950 280" fill="url(#railPattern)" stroke="none" opacity="0.5"/>
               
-              <path d="M 150 300 Q 300 320 450 340 T 750 360 T 1000 380" fill="none" stroke="#dc2626" strokeWidth="4" opacity="0.7" className="route-line rail-route"/>
-              <path d="M 150 300 Q 300 320 450 340 T 750 360 T 1000 380" fill="url(#railPattern)" stroke="none" opacity="0.3"/>
+              {/* Чжэнчжоу → Екатеринбург */}
+              <path d="M 220 380 Q 450 360 650 380 T 1000 320" fill="none" stroke="#dc2626" strokeWidth="4" opacity="0.9" className="route-line rail-route"/>
+              <path d="M 220 380 Q 450 360 650 380 T 1000 320" fill="url(#railPattern)" stroke="none" opacity="0.5"/>
               
-              <path d="M 180 320 Q 350 340 500 360 T 800 380 T 1050 400" fill="none" stroke="#dc2626" strokeWidth="4" opacity="0.7" className="route-line rail-route"/>
-              <path d="M 180 320 Q 350 340 500 360 T 800 380 T 1050 400" fill="url(#railPattern)" stroke="none" opacity="0.3"/>
+              {/* Суйфэньхэ → Новосибирск/Казань */}
+              <path d="M 300 360 Q 500 350 700 370 T 1050 350" fill="none" stroke="#dc2626" strokeWidth="4" opacity="0.9" className="route-line rail-route"/>
+              <path d="M 300 360 Q 500 350 700 370 T 1050 350" fill="url(#railPattern)" stroke="none" opacity="0.5"/>
 
               {/* Автомобильные маршруты (зеленая сплошная) */}
-              <path d="M 200 420 Q 400 400 600 420 T 1000 440" fill="none" stroke="#059669" strokeWidth="3" opacity="0.7" className="route-line road-route"/>
-              <path d="M 250 440 Q 450 420 650 440 T 1050 460" fill="none" stroke="#059669" strokeWidth="3" opacity="0.7" className="route-line road-route"/>
+              {/* Хоргос → Алтынколь */}
+              <path d="M 420 480 Q 550 470 700 480 T 900 490" fill="none" stroke="#059669" strokeWidth="4" opacity="0.9" className="route-line road-route"/>
+              {/* Забайкальск-Маньчжурия */}
+              <path d="M 300 400 Q 500 390 650 410" fill="none" stroke="#059669" strokeWidth="4" opacity="0.9" className="route-line road-route"/>
+              {/* Краскино-Суйфэньхэ */}
+              <path d="M 300 360 Q 500 350 700 370" fill="none" stroke="#059669" strokeWidth="4" opacity="0.9" className="route-line road-route"/>
             </svg>
 
             {/* Порты (Китай) */}
@@ -104,10 +120,6 @@ const Geography = () => {
             <div className="map-node port vladivostok" title={language === 'ru' ? 'Владивосток' : '符拉迪沃斯托克'}>
               <span className="node-icon">🚢</span>
               <span className="node-label">{language === 'ru' ? 'Владивосток' : '符拉迪沃斯托克'}</span>
-            </div>
-            <div className="map-node port spb" title={language === 'ru' ? 'СПб' : '圣彼得堡'}>
-              <span className="node-icon">🚢</span>
-              <span className="node-label">{language === 'ru' ? 'СПб' : '圣彼得堡'}</span>
             </div>
             <div className="map-node port novorossiysk" title={language === 'ru' ? 'Новороссийск' : '新罗西斯克'}>
               <span className="node-icon">🚢</span>

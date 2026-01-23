@@ -11,14 +11,15 @@
 }
 
 .logo-text {
-  font-size: 48px;
+  font-size: 56px;
   font-weight: 900;
-  letter-spacing: 6px;
-  color: var(--color-dark-blue);
+  letter-spacing: 8px;
+  color: var(--color-black);
   font-family: 'Georgia', 'Times New Roman', serif;
   display: flex;
   align-items: center;
   position: relative;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo-x {
@@ -29,7 +30,7 @@
 }
 
 .logo-g {
-  color: #fbbf24;
+  color: var(--color-gold);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
   position: relative;
   z-index: 2;
@@ -61,10 +62,10 @@
 
 @keyframes lantern-sway {
   0%, 100% {
-    transform: translateY(0px) rotate(-2deg);
+    transform: translateY(0px) rotate(-3deg) scale(1);
   }
   50% {
-    transform: translateY(-3px) rotate(2deg);
+    transform: translateY(-4px) rotate(3deg) scale(1.05);
   }
 }
 
