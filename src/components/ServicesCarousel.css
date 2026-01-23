@@ -28,28 +28,35 @@
 }
 
 .slide-auto {
-  background: linear-gradient(135deg, rgba(26, 35, 50, 0.9) 0%, rgba(45, 55, 72, 0.9) 100%),
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500"><rect width="1200" height="500" fill="%231a2332"/><path d="M0,300 Q200,200 400,300 T800,300 T1200,300 L1200,500 L0,500 Z" fill="%232d3748" opacity="0.3"/></svg>');
-}
-
-.slide-expediting {
-  background: linear-gradient(135deg, rgba(26, 35, 50, 0.9) 0%, rgba(45, 55, 72, 0.9) 100%),
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500"><rect width="1200" height="500" fill="%231a2332"/><rect x="100" y="100" width="200" height="150" fill="%23fbbf24" opacity="0.2"/><rect x="400" y="150" width="200" height="150" fill="%23fbbf24" opacity="0.2"/><rect x="700" y="120" width="200" height="150" fill="%23fbbf24" opacity="0.2"/></svg>');
+  background: 
+    linear-gradient(135deg, rgba(26, 35, 50, 0.85) 0%, rgba(45, 55, 72, 0.85) 100%),
+    url('/assets/service-auto.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .slide-import {
-  background: linear-gradient(135deg, rgba(26, 35, 50, 0.9) 0%, rgba(45, 55, 72, 0.9) 100%),
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500"><rect width="1200" height="500" fill="%231a2332"/><path d="M200,200 L400,200 L300,350 L100,350 Z" fill="%23fbbf24" opacity="0.2"/><path d="M600,180 L800,180 L700,330 L500,330 Z" fill="%23fbbf24" opacity="0.2"/></svg>');
+  background: 
+    linear-gradient(135deg, rgba(26, 35, 50, 0.85) 0%, rgba(45, 55, 72, 0.85) 100%),
+    url('/assets/service-import.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .slide-export {
-  background: linear-gradient(135deg, rgba(26, 35, 50, 0.9) 0%, rgba(45, 55, 72, 0.9) 100%),
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500"><rect width="1200" height="500" fill="%231a2332"/><circle cx="300" cy="250" r="80" fill="%23fbbf24" opacity="0.2"/><circle cx="700" cy="250" r="80" fill="%23fbbf24" opacity="0.2"/></svg>');
+  background: 
+    linear-gradient(135deg, rgba(26, 35, 50, 0.85) 0%, rgba(45, 55, 72, 0.85) 100%),
+    url('/assets/service-export.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .slide-customs {
-  background: linear-gradient(135deg, rgba(26, 35, 50, 0.9) 0%, rgba(45, 55, 72, 0.9) 100%),
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500"><rect width="1200" height="500" fill="%231a2332"/><rect x="200" y="150" width="100" height="200" fill="%23fbbf24" opacity="0.2"/><rect x="500" y="150" width="100" height="200" fill="%23fbbf24" opacity="0.2"/><rect x="800" y="150" width="100" height="200" fill="%23fbbf24" opacity="0.2"/></svg>');
+  background: 
+    linear-gradient(135deg, rgba(26, 35, 50, 0.85) 0%, rgba(45, 55, 72, 0.85) 100%),
+    url('/assets/service-customs.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .slide-overlay {
@@ -79,11 +86,6 @@
   letter-spacing: 8px;
 }
 
-.slide-icon {
-  font-size: 80px;
-  margin-bottom: 20px;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-}
 
 .slide-title {
   font-size: 36px;

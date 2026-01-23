@@ -80,7 +80,6 @@ const ServicesCarousel = () => {
                   <div className="slide-overlay">
                     <div className="slide-content">
                       <div className="slide-brand">XGL</div>
-                      <div className="slide-icon">{service.image}</div>
                       <h3 className="slide-title">{service.title}</h3>
                       <p className="slide-description">{service.description}</p>
                       <div className="slide-actions">

@@ -18,7 +18,8 @@ const Geography = () => {
     road: [
       'Через КПП Хоргос (Китай-Казахстан)',
       'Через КПП Алтынколь (Казахстан-Россия)',
-      'Прямой переход Забайкальск'
+      'Прямой переход Забайкальск-Маньчжурия',
+      'Прямой переход Краскино-Суйфэньхэ'
     ]
   } : {
     sea: [
@@ -34,7 +35,8 @@ const Geography = () => {
     road: [
       '通过霍尔果斯口岸（中国-哈萨克斯坦）',
       '通过阿尔滕科尔口岸（哈萨克斯坦-俄罗斯）',
-      '直接通过后贝加尔斯克'
+      '直接通过后贝加尔斯克-满洲里',
+      '直接通过克拉斯基诺-绥芬河'
     ]
   }
 
@@ -52,97 +54,134 @@ const Geography = () => {
         
         <div className="geography-map-container">
           <div className="geography-map">
-            {/* Порты */}
-            <div className="map-node port shanghai" title="Шанхай">
-              <span className="node-icon">🚢</span>
-              <span className="node-label">Шанхай</span>
-            </div>
-            <div className="map-node port ningbo" title="Нинбо">
-              <span className="node-icon">🚢</span>
-              <span className="node-label">Нинбо</span>
-            </div>
-            <div className="map-node port qingdao" title="Циндао">
-              <span className="node-icon">🚢</span>
-              <span className="node-label">Циндао</span>
-            </div>
-            <div className="map-node port vladivostok" title="Владивосток">
-              <span className="node-icon">🚢</span>
-              <span className="node-label">Владивосток</span>
-            </div>
-            <div className="map-node port spb" title="СПб">
-              <span className="node-icon">🚢</span>
-              <span className="node-label">СПб</span>
-            </div>
-            <div className="map-node port novorossiysk" title="Новороссийск">
-              <span className="node-icon">🚢</span>
-              <span className="node-label">Новороссийск</span>
-            </div>
+            <svg className="map-svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet">
+              {/* Фон карты */}
+              <defs>
+                <pattern id="railPattern" x="0" y="0" width="20" height="4" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="2" x2="20" y2="2" stroke="#dc2626" strokeWidth="2"/>
+                  <line x1="0" y1="0" x2="0" y2="4" stroke="#dc2626" strokeWidth="1" strokeDasharray="2,2"/>
+                </pattern>
+                <pattern id="seaPattern" x="0" y="0" width="20" height="4" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="2" x2="20" y2="2" stroke="#2c5282" strokeWidth="2" strokeDasharray="4,4"/>
+                </pattern>
+              </defs>
 
-            {/* Ж/Д станции */}
-            <div className="map-node station chengdu" title="Чэнду">
-              <span className="node-icon">🚂</span>
-              <span className="node-label">Чэнду</span>
-            </div>
-            <div className="map-node station chongqing" title="Чунцин">
-              <span className="node-icon">🚂</span>
-              <span className="node-label">Чунцин</span>
-            </div>
-            <div className="map-node station zhengzhou" title="Чжэнчжоу">
-              <span className="node-icon">🚂</span>
-              <span className="node-label">Чжэнчжоу</span>
-            </div>
-            <div className="map-node station suifenhe" title="Суйфэньхэ">
-              <span className="node-icon">🚂</span>
-              <span className="node-label">Суйфэньхэ</span>
-            </div>
-            <div className="map-node station moscow" title="Москва">
-              <span className="node-icon">🚂</span>
-              <span className="node-label">Москва</span>
-            </div>
-            <div className="map-node station ekb" title="Екатеринбург">
-              <span className="node-icon">🚂</span>
-              <span className="node-label">Екатеринбург</span>
-            </div>
-            <div className="map-node station novosibirsk" title="Новосибирск">
-              <span className="node-icon">🚂</span>
-              <span className="node-label">Новосибирск</span>
-            </div>
-            <div className="map-node station kazan" title="Казань">
-              <span className="node-icon">🚂</span>
-              <span className="node-label">Казань</span>
-            </div>
-
-            {/* Автопереходы */}
-            <div className="map-node road khorgos" title="Хоргос">
-              <span className="node-icon">🚛</span>
-              <span className="node-label">Хоргос</span>
-            </div>
-            <div className="map-node road altynkol" title="Алтынколь">
-              <span className="node-icon">🚛</span>
-              <span className="node-label">Алтынколь</span>
-            </div>
-            <div className="map-node road zabaykalsk" title="Забайкальск">
-              <span className="node-icon">🚛</span>
-              <span className="node-label">Забайкальск</span>
-            </div>
-
-            {/* Линии маршрутов */}
-            <svg className="map-routes" viewBox="0 0 1000 600">
               {/* Морские маршруты (синяя прерывистая) */}
-              <line x1="200" y1="200" x2="800" y2="150" stroke="#2c5282" strokeWidth="3" strokeDasharray="10,5" opacity="0.6" />
-              <line x1="250" y1="180" x2="750" y2="200" stroke="#2c5282" strokeWidth="3" strokeDasharray="10,5" opacity="0.6" />
-              <line x1="300" y1="190" x2="700" y2="100" stroke="#2c5282" strokeWidth="3" strokeDasharray="10,5" opacity="0.6" />
+              <path d="M 150 150 Q 300 200 500 180 T 850 160" fill="none" stroke="#2c5282" strokeWidth="3" strokeDasharray="8,4" opacity="0.6" className="route-line sea-route"/>
+              <path d="M 180 180 Q 350 220 550 200 T 900 180" fill="none" stroke="#2c5282" strokeWidth="3" strokeDasharray="8,4" opacity="0.6" className="route-line sea-route"/>
+              <path d="M 200 140 Q 400 180 600 160 T 1000 140" fill="none" stroke="#2c5282" strokeWidth="3" strokeDasharray="8,4" opacity="0.6" className="route-line sea-route"/>
+
+              {/* Ж/Д маршруты (красная сплошная с рельсами) */}
+              <path d="M 120 280 Q 250 300 400 320 T 700 340 T 950 360" fill="none" stroke="#dc2626" strokeWidth="4" opacity="0.7" className="route-line rail-route"/>
+              <path d="M 120 280 Q 250 300 400 320 T 700 340 T 950 360" fill="url(#railPattern)" stroke="none" opacity="0.3"/>
               
-              {/* Ж/Д маршруты (красная сплошная) */}
-              <line x1="150" y1="300" x2="500" y2="250" stroke="#dc2626" strokeWidth="4" opacity="0.7" />
-              <line x1="180" y1="320" x2="550" y2="280" stroke="#dc2626" strokeWidth="4" opacity="0.7" />
-              <line x1="220" y1="340" x2="600" y2="300" stroke="#dc2626" strokeWidth="4" opacity="0.7" />
+              <path d="M 150 300 Q 300 320 450 340 T 750 360 T 1000 380" fill="none" stroke="#dc2626" strokeWidth="4" opacity="0.7" className="route-line rail-route"/>
+              <path d="M 150 300 Q 300 320 450 340 T 750 360 T 1000 380" fill="url(#railPattern)" stroke="none" opacity="0.3"/>
               
+              <path d="M 180 320 Q 350 340 500 360 T 800 380 T 1050 400" fill="none" stroke="#dc2626" strokeWidth="4" opacity="0.7" className="route-line rail-route"/>
+              <path d="M 180 320 Q 350 340 500 360 T 800 380 T 1050 400" fill="url(#railPattern)" stroke="none" opacity="0.3"/>
+
               {/* Автомобильные маршруты (зеленая сплошная) */}
-              <line x1="200" y1="400" x2="450" y2="380" stroke="#059669" strokeWidth="3" opacity="0.7" />
-              <line x1="450" y1="380" x2="700" y2="360" stroke="#059669" strokeWidth="3" opacity="0.7" />
-              <line x1="250" y1="420" x2="650" y2="400" stroke="#059669" strokeWidth="3" opacity="0.7" />
+              <path d="M 200 420 Q 400 400 600 420 T 1000 440" fill="none" stroke="#059669" strokeWidth="3" opacity="0.7" className="route-line road-route"/>
+              <path d="M 250 440 Q 450 420 650 440 T 1050 460" fill="none" stroke="#059669" strokeWidth="3" opacity="0.7" className="route-line road-route"/>
             </svg>
+
+            {/* Порты (Китай) */}
+            <div className="map-node port shanghai" title={language === 'ru' ? 'Шанхай' : '上海'}>
+              <span className="node-icon">🚢</span>
+              <span className="node-label">{language === 'ru' ? 'Шанхай' : '上海'}</span>
+            </div>
+            <div className="map-node port ningbo" title={language === 'ru' ? 'Нинбо' : '宁波'}>
+              <span className="node-icon">🚢</span>
+              <span className="node-label">{language === 'ru' ? 'Нинбо' : '宁波'}</span>
+            </div>
+            <div className="map-node port qingdao" title={language === 'ru' ? 'Циндао' : '青岛'}>
+              <span className="node-icon">🚢</span>
+              <span className="node-label">{language === 'ru' ? 'Циндао' : '青岛'}</span>
+            </div>
+
+            {/* Порты (Россия) */}
+            <div className="map-node port vladivostok" title={language === 'ru' ? 'Владивосток' : '符拉迪沃斯托克'}>
+              <span className="node-icon">🚢</span>
+              <span className="node-label">{language === 'ru' ? 'Владивосток' : '符拉迪沃斯托克'}</span>
+            </div>
+            <div className="map-node port spb" title={language === 'ru' ? 'СПб' : '圣彼得堡'}>
+              <span className="node-icon">🚢</span>
+              <span className="node-label">{language === 'ru' ? 'СПб' : '圣彼得堡'}</span>
+            </div>
+            <div className="map-node port novorossiysk" title={language === 'ru' ? 'Новороссийск' : '新罗西斯克'}>
+              <span className="node-icon">🚢</span>
+              <span className="node-label">{language === 'ru' ? 'Новороссийск' : '新罗西斯克'}</span>
+            </div>
+
+            {/* Ж/Д станции (Китай) */}
+            <div className="map-node station chengdu" title={language === 'ru' ? 'Чэнду' : '成都'}>
+              <span className="node-icon">🚂</span>
+              <span className="node-label">{language === 'ru' ? 'Чэнду' : '成都'}</span>
+            </div>
+            <div className="map-node station chongqing" title={language === 'ru' ? 'Чунцин' : '重庆'}>
+              <span className="node-icon">🚂</span>
+              <span className="node-label">{language === 'ru' ? 'Чунцин' : '重庆'}</span>
+            </div>
+            <div className="map-node station zhengzhou" title={language === 'ru' ? 'Чжэнчжоу' : '郑州'}>
+              <span className="node-icon">🚂</span>
+              <span className="node-label">{language === 'ru' ? 'Чжэнчжоу' : '郑州'}</span>
+            </div>
+            <div className="map-node station suifenhe" title={language === 'ru' ? 'Суйфэньхэ' : '绥芬河'}>
+              <span className="node-icon">🚂</span>
+              <span className="node-label">{language === 'ru' ? 'Суйфэньхэ' : '绥芬河'}</span>
+            </div>
+
+            {/* Ж/Д станции (Россия) */}
+            <div className="map-node station moscow" title={language === 'ru' ? 'Москва' : '莫斯科'}>
+              <span className="node-icon">🚂</span>
+              <span className="node-label">{language === 'ru' ? 'Москва' : '莫斯科'}</span>
+            </div>
+            <div className="map-node station ekb" title={language === 'ru' ? 'Екатеринбург' : '叶卡捷琳堡'}>
+              <span className="node-icon">🚂</span>
+              <span className="node-label">{language === 'ru' ? 'Екатеринбург' : '叶卡捷琳堡'}</span>
+            </div>
+            <div className="map-node station novosibirsk" title={language === 'ru' ? 'Новосибирск' : '新西伯利亚'}>
+              <span className="node-icon">🚂</span>
+              <span className="node-label">{language === 'ru' ? 'Новосибирск' : '新西伯利亚'}</span>
+            </div>
+            <div className="map-node station kazan" title={language === 'ru' ? 'Казань' : '喀山'}>
+              <span className="node-icon">🚂</span>
+              <span className="node-label">{language === 'ru' ? 'Казань' : '喀山'}</span>
+            </div>
+
+            {/* Погранпереходы - обе стороны */}
+            <div className="map-node border-crossing zabaykalsk" title={language === 'ru' ? 'Забайкальск (РФ)' : '后贝加尔斯克（俄罗斯）'}>
+              <span className="node-icon">🚛</span>
+              <span className="node-label">{language === 'ru' ? 'Забайкальск' : '后贝加尔斯克'}</span>
+            </div>
+            <div className="map-node border-crossing manzhouli" title={language === 'ru' ? 'Маньчжурия (КНР)' : '满洲里（中国）'}>
+              <span className="node-icon">🚛</span>
+              <span className="node-label">{language === 'ru' ? 'Маньчжурия' : '满洲里'}</span>
+            </div>
+            
+            <div className="map-node border-crossing kraskino" title={language === 'ru' ? 'Краскино (РФ)' : '克拉斯基诺（俄罗斯）'}>
+              <span className="node-icon">🚛</span>
+              <span className="node-label">{language === 'ru' ? 'Краскино' : '克拉斯基诺'}</span>
+            </div>
+            <div className="map-node border-crossing suifenhe-border" title={language === 'ru' ? 'Суйфэньхэ (КНР)' : '绥芬河（中国）'}>
+              <span className="node-icon">🚛</span>
+              <span className="node-label">{language === 'ru' ? 'Суйфэньхэ' : '绥芬河'}</span>
+            </div>
+
+            <div className="map-node border-crossing khorgos-cn" title={language === 'ru' ? 'Хоргос (КНР)' : '霍尔果斯（中国）'}>
+              <span className="node-icon">🚛</span>
+              <span className="node-label">{language === 'ru' ? 'Хоргос' : '霍尔果斯'}</span>
+            </div>
+            <div className="map-node border-crossing khorgos-kz" title={language === 'ru' ? 'Хоргос (КЗХ)' : '霍尔果斯（哈萨克斯坦）'}>
+              <span className="node-icon">🚛</span>
+              <span className="node-label">{language === 'ru' ? 'Хоргос' : '霍尔果斯'}</span>
+            </div>
+            
+            <div className="map-node border-crossing altynkol" title={language === 'ru' ? 'Алтынколь (КЗХ-РФ)' : '阿尔滕科尔（哈萨克斯坦-俄罗斯）'}>
+              <span className="node-icon">🚛</span>
+              <span className="node-label">{language === 'ru' ? 'Алтынколь' : '阿尔滕科尔'}</span>
+            </div>
           </div>
 
           <div className="map-legend">
@@ -156,7 +195,7 @@ const Geography = () => {
             </div>
             <div className="legend-item">
               <span className="legend-icon">🚛</span>
-              <span className="legend-label">{language === 'ru' ? 'Автопереходы' : '汽车口岸'}</span>
+              <span className="legend-label">{language === 'ru' ? 'Погранпереходы' : '边境口岸'}</span>
             </div>
             <div className="legend-item">
               <span className="legend-line sea"></span>

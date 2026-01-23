@@ -11,42 +11,60 @@
 }
 
 .logo-text {
-  font-size: 42px;
+  font-size: 48px;
   font-weight: 900;
-  letter-spacing: 4px;
+  letter-spacing: 6px;
   color: var(--color-dark-blue);
   font-family: 'Georgia', 'Times New Roman', serif;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   position: relative;
 }
 
 .logo-x {
   color: #dc2626;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 2;
 }
 
 .logo-g {
   color: #fbbf24;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 2;
 }
 
 .logo-l {
   color: #059669;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 2;
 }
 
-.logo-decoration {
-  font-size: 24px;
-  animation: float 3s ease-in-out infinite;
+.logo-lantern {
+  font-size: 20px;
+  margin: 0 4px;
+  animation: lantern-sway 3s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
-@keyframes float {
+.lantern-left {
+  animation-delay: 0s;
+}
+
+.lantern-right {
+  animation-delay: 1.5s;
+}
+
+@keyframes lantern-sway {
   0%, 100% {
-    transform: translateY(0px);
+    transform: translateY(0px) rotate(-2deg);
   }
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-3px) rotate(2deg);
   }
 }
 
@@ -56,7 +74,7 @@
     letter-spacing: 3px;
   }
 
-  .logo-decoration {
-    font-size: 20px;
+  .logo-lantern {
+    font-size: 16px;
   }
 }

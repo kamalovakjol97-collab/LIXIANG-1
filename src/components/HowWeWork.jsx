@@ -72,17 +72,12 @@ const HowWeWork = () => {
               ? 'Не нашли нужную информацию?'
               : '找不到需要的信息？'}
           </p>
-          <button 
+          <a 
+            href="/faq"
             className="faq-link-btn"
-            onClick={() => {
-              const faqElement = document.getElementById('faq-section')
-              if (faqElement) {
-                faqElement.scrollIntoView({ behavior: 'smooth' })
-              }
-            }}
           >
             {language === 'ru' ? 'Часто задаваемые вопросы' : '常见问题'}
-          </button>
+          </a>
         </div>
       </div>
     </section>

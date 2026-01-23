@@ -27,7 +27,6 @@ function HomePage() {
         <Statistics />
         <ServicesCarousel />
         <HowWeWork />
-        <FAQ />
         <WhyXGLOG />
         <Geography />
         <ApplicationForm />
@@ -65,6 +64,14 @@ function App() {
                 <TopBar />
                 <Header />
                 <ContactsPage />
+                <Footer />
+              </>
+            } />
+            <Route path="/faq" element={
+              <>
+                <TopBar />
+                <Header />
+                <FAQ />
                 <Footer />
               </>
             } />

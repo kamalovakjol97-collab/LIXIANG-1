@@ -37,6 +37,7 @@ export const LanguageProvider = ({ children }) => {
       // Navigation
       'services': 'Услуги',
       'news': 'Новости и проекты',
+      'faq': 'FAQ',
       'contacts': 'Контакты',
       // Statistics
       'activeClients': 'ДЕЙСТВУЮЩИХ КЛИЕНТОВ',
@@ -70,6 +71,7 @@ export const LanguageProvider = ({ children }) => {
       // Navigation
       'services': '服务',
       'news': '新闻和项目',
+      'faq': '常见问题',
       'contacts': '联系方式',
       // Statistics
       'activeClients': '活跃客户',
