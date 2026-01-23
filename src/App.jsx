@@ -18,6 +18,7 @@ import ContactsPage from './pages/ContactsPage'
 import ProjectsPage from './pages/ProjectsPage'
 import HistoryPage from './pages/HistoryPage'
 import NewsSection from './components/NewsSection'
+import LegalProof from './components/LegalProof'
 import './App.css'
 
 function HomePage() {
@@ -38,6 +39,8 @@ function HomePage() {
         <Geography />
         <hr className="section-divider" />
         <NewsSection />
+        <hr className="section-divider" />
+        <LegalProof />
         <hr className="section-divider" />
         <ApplicationForm />
       </main>
