@@ -57,7 +57,7 @@ h1, h2, h3 {
 .section-title {
   font-size: var(--font-size-h2);
   font-weight: 800;
-  color: var(--color-primary);
+  color: var(--color-black);
   margin-bottom: 3rem;
   text-align: left; /* В стиле tflog чаще левое выравнивание */
   position: relative;
@@ -132,7 +132,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: var(--line-height-heading);
   letter-spacing: var(--letter-spacing-heading);
-  color: var(--color-primary);
+  color: var(--color-black);
   margin-bottom: var(--spacing-md);
 }
 
@@ -265,7 +265,7 @@ button {
   font-weight: 700;
   font-family: var(--font-family-heading);
   letter-spacing: var(--letter-spacing-heading);
-  color: var(--color-primary);
+  color: var(--color-black);
   margin-bottom: var(--spacing-xl);
   text-align: center;
 }

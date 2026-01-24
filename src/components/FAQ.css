@@ -28,7 +28,7 @@
   text-align: left;
   font-size: 18px;
   font-weight: 600;
-  color: var(--color-dark-blue);
+  color: var(--color-black);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -43,7 +43,7 @@
 .faq-icon {
   font-size: 24px;
   font-weight: 300;
-  color: var(--color-dark-blue);
+  color: var(--color-black);
   flex-shrink: 0;
   margin-left: 16px;
 }
