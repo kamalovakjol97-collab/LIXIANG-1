@@ -5,78 +5,101 @@
 }
 
 :root {
+  /* New Color Palette - Corporate Trust Style */
+  --color-primary: #0A2A5E;
+  --color-primary-dark: #071d3f;
+  --color-accent: #FF7A00;
+  --color-accent-hover: #e66a00;
+  --color-white: #FFFFFF;
+  --color-bg-light: #F8F9FA;
+  --color-footer-dark: #1A1D23;
+  --color-text-primary: #1A1D23;
+  --color-text-secondary: #666666;
+  --color-text-light: #999999;
+  --color-border: #E5E5E5;
+  
+  /* Legacy colors for compatibility */
   --color-black: #000000;
   --color-dark-black: #0a0a0a;
-  --color-graphite: #1a1a1a;
+  --color-graphite: #1A1D23;
   --color-gray: #666666;
-  --color-light-gray: #e5e5e5;
-  --color-white: #ffffff;
-  --color-gold: #d4af37;
-  --color-gold-light: #f4e4bc;
-  --color-gold-dark: #b8941f;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --color-accent: #2563eb;
-  --color-yellow: #d4af37;
-  --color-yellow-dark: #b8941f;
+  --color-light-gray: #E5E5E5;
+  --accent: #FF7A00;
+  --accent-hover: #e66a00;
+  --color-accent: #FF7A00;
   
-  /* Typography */
-  --font-size-base: 16px;
-  --font-size-h1: 3rem;
-  --font-size-h2: 2.25rem;
-  --font-size-h3: 1.75rem;
-  --line-height-base: 1.6;
+  /* Typography - Modern Grotesque */
+  --font-family-heading: 'Montserrat', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-body: 'Inter', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  --font-size-base: 18px;
+  --font-size-h1: 4rem;
+  --font-size-h2: 2.5rem;
+  --font-size-h3: 1.875rem;
+  --font-size-h4: 1.5rem;
+  --line-height-base: 1.7;
   --line-height-heading: 1.2;
+  --letter-spacing-heading: -0.02em;
+  --letter-spacing-wide: 0.05em;
   
-  /* Spacing */
+  /* Spacing - More Air */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  --spacing-2xl: 5rem;
+  --spacing-lg: 2.5rem;
+  --spacing-xl: 4rem;
+  --spacing-2xl: 6rem;
+  --spacing-3xl: 8rem;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-family-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--color-graphite);
+  color: var(--color-text-primary);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
   background-color: var(--color-white);
+  letter-spacing: 0.01em;
+  padding-top: 80px; /* Space for fixed header */
 }
 
-/* Typography */
+/* Typography - Corporate Style */
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
   font-weight: 700;
   line-height: var(--line-height-heading);
-  letter-spacing: -0.01em;
-  color: var(--accent);
+  letter-spacing: var(--letter-spacing-heading);
+  color: var(--color-primary);
   margin-bottom: var(--spacing-md);
 }
 
 h1 {
   font-size: var(--font-size-h1);
+  font-weight: 800;
   margin-bottom: var(--spacing-lg);
+  letter-spacing: -0.03em;
 }
 
 h2 {
   font-size: var(--font-size-h2);
-  margin-bottom: 2rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-lg);
 }
 
 h3 {
   font-size: var(--font-size-h3);
+  font-weight: 600;
   margin-bottom: var(--spacing-md);
 }
 
 p {
-  max-width: 65ch;
+  max-width: 70ch;
   margin: 0 auto var(--spacing-md);
   line-height: var(--line-height-base);
+  color: var(--color-text-primary);
 }
 
 ul, ol {
@@ -90,7 +113,7 @@ li {
 }
 
 strong, .highlight {
-  color: var(--accent);
+  color: var(--color-accent);
   font-weight: 600;
 }
 
@@ -122,25 +145,28 @@ strong, .highlight {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
 }
 
-/* CTA Button */
+/* CTA Button - New Style */
 .cta-button {
-  background: var(--accent);
+  background: var(--color-accent);
   color: var(--color-white);
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
+  padding: 1rem 2.5rem;
+  border-radius: 0.375rem;
   font-weight: 600;
-  font-size: var(--font-size-base);
-  transition: all 0.2s ease;
+  font-size: 1.125rem;
+  font-family: var(--font-family-heading);
+  transition: all 0.3s ease;
   display: inline-block;
   text-decoration: none;
   border: none;
   cursor: pointer;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 14px rgba(255, 122, 0, 0.25);
 }
 
 .cta-button:hover {
-  background: var(--accent-hover);
+  background: var(--color-accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 6px 20px rgba(255, 122, 0, 0.35);
 }
 
 /* Section spacing */
@@ -177,9 +203,10 @@ button {
 .section-title {
   font-size: var(--font-size-h2);
   font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--accent);
-  margin-bottom: 2rem;
+  font-family: var(--font-family-heading);
+  letter-spacing: var(--letter-spacing-heading);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xl);
   text-align: center;
 }
 

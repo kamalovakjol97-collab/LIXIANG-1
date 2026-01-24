@@ -292,12 +292,27 @@ const LegalProof = () => {
               </button>
 
               {expandedLicense === company.id && (
-                <div className="license-preview">
-                  <p className="license-note">
-                    {language === 'ru' 
-                      ? 'Лицензия будет отображена здесь. Для получения официальных заверенных копий обратитесь к нашему юристу.'
-                      : '许可证将在此处显示。如需获取官方认证副本，请联系我们的律师。'}
-                  </p>
+                <div className="license-modal-overlay" onClick={() => toggleLicense(company.id)}>
+                  <div className="license-modal" onClick={(e) => e.stopPropagation()}>
+                    <button className="license-modal-close" onClick={() => toggleLicense(company.id)}>×</button>
+                    <div className="license-modal-content">
+                      <h3 className="license-modal-title">
+                        {language === 'ru' ? 'Лицензия компании' : '公司许可证'} {company.name}
+                      </h3>
+                      <div className="license-image-placeholder">
+                        <img 
+                          src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" 
+                          alt="License"
+                          className="license-image"
+                        />
+                        <p className="license-note">
+                          {language === 'ru' 
+                            ? 'Для получения официальных заверенных копий документов обратитесь к нашему юристу.'
+                            : '如需获取官方认证副本，请联系我们的律师。'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
