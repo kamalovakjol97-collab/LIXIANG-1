@@ -16,73 +16,84 @@ const Geography = () => {
   }, [])
 
   return (
-    <section className="geography-map-section" ref={sectionRef}>
+    <section className="geo-global-section" ref={sectionRef}>
       <div className="container">
         <div className="geo-header">
           <h2 className="section-title">
-            {language === 'ru' ? 'География поставок' : '供应地理'}
+            {language === 'ru' ? 'Глобальная география XGL' : 'XGL 全球地理'}
           </h2>
           <p className="geo-subtitle">
             {language === 'ru' 
-              ? 'Разветвленная сеть маршрутов, объединяющая крупнейшие промышленные центры Китая и России.'
-              : '连接中国和俄罗斯最大工业中心的多样化航线网络。'}
+              ? 'Прямые маршруты между крупнейшими промышленными хабами Евразии.'
+              : '亚洲最大的工业中心之间的直航路线。'}
           </p>
         </div>
 
-        <div className={`map-visual-container ${isVisible ? 'animate' : ''}`}>
-          <svg viewBox="0 0 1000 500" className="interactive-svg-map">
-            {/* Упрощенная подложка карты Евразии */}
-            <path d="M100,250 Q200,100 400,150 T700,100 T950,200 L950,450 L100,450 Z" className="map-land-shape" />
+        <div className={`map-wrapper ${isVisible ? 'animate' : ''}`}>
+          <svg viewBox="0 0 1200 600" className="world-map-svg">
+            {/* Упрощенная карта мира (Евразия) */}
+            <path d="M100,300 Q200,50 500,100 T800,50 T1100,200 L1100,550 L100,550 Z" className="land-shape" />
             
-            {/* Морские маршруты (Пунктир) */}
-            <path d="M850,350 Q700,450 500,400 T200,350" className="route-sea" />
-            <path d="M880,320 Q950,400 900,480" className="route-sea" />
+            {/* МАРШРУТЫ Ж/Д (Поезда) */}
+            <path id="rail1" d="M900,450 L700,350 L300,200" className="path-rail" /> {/* Гуаньчжоу - Москва */}
+            <path id="rail2" d="M850,480 L600,400 L400,350" className="path-rail" /> {/* Чунцин - ЕКБ */}
+            <path id="rail3" d="M920,420 L750,300 L350,150" className="path-rail" /> {/* Сиань - СПБ */}
             
-            {/* Ж/Д маршруты */}
-            <path d="M750,250 L500,200 L300,180" className="route-rail" />
-            <path d="M780,280 L600,250 L400,240" className="route-rail" />
+            {/* МАРШРУТЫ МОРЕ (Корабли) */}
+            <path id="sea1" d="M950,500 Q1050,550 1100,450" className="path-sea" /> {/* Шанхай - Владивосток */}
+            <path id="sea2" d="M930,520 Q500,650 200,500" className="path-sea" /> {/* Нинбо - СПБ (упрощенно) */}
             
-            {/* Порты (Иконки якорей/круги) */}
-            <g className="point port">
-              <circle cx="850" cy="350" r="6" />
-              <text x="865" y="355">Шанхай / 上海</text>
+            {/* ИКОНКИ Ж/Д (Поезд) */}
+            <g className="moving-icon">
+              <text fontSize="24">🚂
+                <animateMotion dur="15s" repeatCount="indefinite">
+                  <mpath href="#rail1"/>
+                </animateMotion>
+              </text>
             </g>
-            <g className="point port">
-              <circle cx="200" cy="350" r="6" />
-              <text x="140" y="375">Новороссийск</text>
-            </g>
-            <g className="point port">
-              <circle cx="880" cy="220" r="6" />
-              <text x="895" y="225">Владивосток</text>
+            <g className="moving-icon">
+              <text fontSize="24">🚂
+                <animateMotion dur="18s" repeatCount="indefinite">
+                  <mpath href="#rail2"/>
+                </animateMotion>
+              </text>
             </g>
 
-            {/* Ж/Д Станции (Иконки поездов) */}
-            <g className="point rail-station">
-              <rect x="740" y="240" width="20" height="20" rx="4" />
-              <text x="740" y="230">Гуанчжоу / 广州</text>
+            {/* ИКОНКИ МОРЕ (Корабль) */}
+            <g className="moving-icon">
+              <text fontSize="24">🚢
+                <animateMotion dur="20s" repeatCount="indefinite">
+                  <mpath href="#sea1"/>
+                </animateMotion>
+              </text>
             </g>
-            <g className="point rail-station">
-              <rect x="300" y="170" width="20" height="20" rx="4" />
-              <text x="260" y="160">Москва</text>
-            </g>
-            <g className="point rail-station">
-              <rect x="500" y="190" width="20" height="20" rx="4" />
-              <text x="480" y="180">Забайкальск</text>
+            <g className="moving-icon">
+              <text fontSize="24">🚢
+                <animateMotion dur="25s" repeatCount="indefinite">
+                  <mpath href="#sea2"/>
+                </animateMotion>
+              </text>
             </g>
 
-            {/* Декоративный поезд на линии */}
-            <circle r="4" fill="var(--color-accent)" className="moving-train">
-              <animateMotion dur="10s" repeatCount="indefinite" path="M750,250 L500,200 L300,180" />
-            </circle>
+            {/* ТОЧКИ (ГОРОДА) */}
+            <g className="city-point">
+              <circle cx="900" cy="450" r="5" fill="var(--color-accent)" />
+              <text x="910" y="455">Guangzhou</text>
+            </g>
+            <g className="city-point">
+              <circle cx="300" cy="200" r="5" fill="var(--color-accent)" />
+              <text x="240" y="190">Moscow</text>
+            </g>
+            <g className="city-point">
+              <circle cx="1100" cy="450" r="5" fill="var(--color-accent)" />
+              <text x="1020" y="440">Vladivostok</text>
+            </g>
           </svg>
           
-          <div className="map-legend">
-            <div className="legend-item">
-              <span className="line sea"></span> {language === 'ru' ? 'Морские пути' : '海运航线'}
-            </div>
-            <div className="legend-item">
-              <span className="line rail"></span> {language === 'ru' ? 'Ж/Д магистрали' : '铁路干线'}
-            </div>
+          <div className="map-legend-modern">
+            <div className="legend-item"><span className="icon">🚂</span> Ж/Д маршруты</div>
+            <div className="legend-item"><span className="icon">🚢</span> Морские линии</div>
+            <div className="legend-item"><span className="icon">🚛</span> Автоперевозки</div>
           </div>
         </div>
       </div>

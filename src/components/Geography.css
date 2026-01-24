@@ -1,124 +1,78 @@
-.geography-map-section {
-  padding: var(--section-padding);
-  background-color: var(--color-bg-light);
+.geo-global-section {
+  padding: 120px 0;
+  background-color: var(--color-bg-dark);
+  color: white;
   overflow: hidden;
 }
 
-.geo-header {
-  text-align: center;
-  margin-bottom: 5rem;
-}
-
-.geo-subtitle {
-  font-size: 1.25rem;
-  color: var(--color-text-muted);
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.map-visual-container {
+.map-wrapper {
   position: relative;
-  background: var(--color-primary-dark);
-  border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
-.interactive-svg-map {
+.world-map-svg {
   width: 100%;
   height: auto;
 }
 
-.map-land-shape {
-  fill: rgba(255,255,255,0.05);
+.land-shape {
+  fill: rgba(255,255,255,0.03);
   stroke: rgba(255,255,255,0.1);
   stroke-width: 1;
 }
 
-.route-sea {
+.path-rail {
+  fill: none;
+  stroke: white;
+  stroke-width: 1;
+  stroke-dasharray: 5, 5;
+  opacity: 0.3;
+}
+
+.path-sea {
   fill: none;
   stroke: var(--color-accent);
-  stroke-width: 2;
-  stroke-dasharray: 8, 8;
+  stroke-width: 1.5;
+  stroke-dasharray: 10, 5;
   opacity: 0.4;
 }
 
-.route-rail {
-  fill: none;
-  stroke: white;
-  stroke-width: 1.5;
-  opacity: 0.2;
-}
-
-.point circle {
-  fill: var(--color-accent);
-  filter: drop-shadow(0 0 8px var(--color-accent));
-}
-
-.point rect {
+.city-point text {
   fill: white;
-  opacity: 0.8;
-}
-
-.point text {
-  fill: white;
-  font-size: 14px;
-  font-family: var(--font-heading);
+  font-size: 12px;
   font-weight: 600;
-  pointer-events: none;
+  opacity: 0.6;
 }
 
-.moving-train {
-  filter: drop-shadow(0 0 5px var(--color-accent));
+.moving-icon text {
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
 }
 
-.map-legend {
+.map-legend-modern {
   position: absolute;
   bottom: 40px;
   left: 40px;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.5);
   padding: 20px;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
 }
 
 .legend-item {
-  color: white;
-  font-size: 0.875rem;
   display: flex;
   align-items: center;
-  gap: 15px;
-  font-weight: 600;
-}
-
-.legend-item .line {
-  width: 30px;
-  height: 2px;
-}
-
-.legend-item .line.sea {
-  border-top: 2px dashed var(--color-accent);
-}
-
-.legend-item .line.rail {
-  background: white;
-  opacity: 0.5;
+  gap: 10px;
+  font-size: 0.875rem;
 }
 
 @media (max-width: 768px) {
-  .map-visual-container {
-    padding: 20px;
-  }
-  .point text {
-    display: none; /* Скрываем текст на мобильных для чистоты */
-  }
-  .map-legend {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    margin-top: 20px;
-  }
+  .map-wrapper { padding: 10px; }
+  .city-point text { display: none; }
+  .map-legend-modern { position: relative; bottom: 0; left: 0; margin-top: 20px; }
 }
