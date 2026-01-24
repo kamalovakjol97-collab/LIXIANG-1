@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useLanguage } from '../context/LanguageContext'
+import LanguageSwitcher from './LanguageSwitcher'
 import './TopBar.css'
 
 const TopBar = () => {
-  const { t, language } = useLanguage()
+  const { t } = useLanguage()
   const [exchangeRates, setExchangeRates] = useState({
     cny: '12.50',
     usd: '92.30',
@@ -13,60 +14,22 @@ const TopBar = () => {
   useEffect(() => {
     const fetchExchangeRates = async () => {
       try {
-        // Получаем курс ЦБ РФ
-        const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js', {
-          mode: 'cors',
-          headers: {
-            'Accept': 'application/json'
-          }
-        })
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch exchange rates')
-        }
-        
+        const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js', { mode: 'cors' })
+        if (!response.ok) throw new Error('API Error')
         const data = await response.json()
-        
-        // USD к RUB (ЦБ + 3%)
-        const usdRate = data.Valute?.USD?.Value 
-          ? (data.Valute.USD.Value * 1.03).toFixed(2)
-          : '92.30'
-        
-        // CNY к RUB через USD (ЦБ + 3%)
-        // 1 CNY = USD/CNY * USD/RUB
-        const cnyToUsd = data.Valute?.CNY?.Value || 7.2
-        const cnyRate = data.Valute?.USD?.Value
-          ? ((1 / cnyToUsd) * data.Valute.USD.Value * 1.03).toFixed(2)
-          : '12.50'
+        const usdRate = (data.Valute?.USD?.Value * 1.03).toFixed(2)
+        const cnyRate = (data.Valute?.CNY?.Value * 1.03).toFixed(2)
         
         setExchangeRates({
           cny: cnyRate,
           usd: usdRate,
-          date: new Date().toLocaleDateString('ru-RU', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric'
-          })
+          date: new Date().toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit' })
         })
       } catch (error) {
-        console.error('Error fetching exchange rates:', error)
-        // Используем значения по умолчанию при ошибке
-        setExchangeRates(prev => ({
-          ...prev,
-          date: new Date().toLocaleDateString('ru-RU', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric'
-          })
-        }))
+        console.error('Rates fetch failed', error)
       }
     }
-
     fetchExchangeRates()
-    // Обновляем каждые 4 часа
-    const interval = setInterval(fetchExchangeRates, 4 * 60 * 60 * 1000)
-    
-    return () => clearInterval(interval)
   }, [])
 
   return (
@@ -74,20 +37,21 @@ const TopBar = () => {
       <div className="container">
         <div className="top-bar-content">
           <div className="top-bar-left">
+            <LanguageSwitcher />
+            <span className="divider">|</span>
             <span className="working-hours">{t('workingHours')}</span>
           </div>
+          
           <div className="top-bar-right">
             <div className="exchange-rates">
-              <span className="rate-date">{exchangeRates.date}</span>
-              <span className="rate-item">
-                <span className="rate-label">CNY/RUB:</span>
-                <span className="rate-value">{exchangeRates.cny}</span>
-              </span>
-              <span className="rate-divider">|</span>
-              <span className="rate-item">
-                <span className="rate-label">USD/RUB:</span>
-                <span className="rate-value">{exchangeRates.usd}</span>
-              </span>
+              <span className="rate-item">CNY/RUB {exchangeRates.cny}</span>
+              <span className="rate-item">USD/RUB {exchangeRates.usd}</span>
+            </div>
+            <span className="divider">|</span>
+            <a href="tel:88005117794" className="top-phone">8 800 511 77 94</a>
+            <div className="top-socials">
+              <a href="#" className="social-icon">W</a>
+              <a href="#" className="social-icon">T</a>
             </div>
           </div>
         </div>

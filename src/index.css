@@ -5,65 +5,122 @@
 }
 
 :root {
-  /* New Color Palette - Corporate Trust Style */
-  --color-primary: #0A2A5E;
-  --color-primary-dark: #071d3f;
-  --color-accent: #FF7A00;
-  --color-accent-hover: #e66a00;
+  /* New Corporate Palette (tflog-style) */
+  --color-primary: #0A2A5E;        /* Deep Trust Blue */
+  --color-primary-dark: #051A3D;
+  --color-accent: #FF7A00;         /* Amber Orange */
+  --color-accent-hover: #E66E00;
   --color-white: #FFFFFF;
   --color-bg-light: #F8F9FA;
-  --color-footer-dark: #1A1D23;
-  --color-text-primary: #1A1D23;
-  --color-text-secondary: #666666;
-  --color-text-light: #999999;
-  --color-border: #E5E5E5;
+  --color-bg-dark: #1A1D23;
+  --color-text-main: #1A1D23;
+  --color-text-muted: #666666;
+  --color-border: #E5E7EB;
   
-  /* Legacy colors for compatibility */
-  --color-black: #000000;
-  --color-dark-black: #0a0a0a;
-  --color-graphite: #1A1D23;
-  --color-gray: #666666;
-  --color-light-gray: #E5E5E5;
-  --accent: #FF7A00;
-  --accent-hover: #e66a00;
-  --color-accent: #FF7A00;
+  /* Typography */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
   
-  /* Typography - Modern Grotesque */
-  --font-family-heading: 'Montserrat', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-family-body: 'Inter', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  
-  --font-size-base: 18px;
-  --font-size-h1: 4rem;
-  --font-size-h2: 2.5rem;
-  --font-size-h3: 1.875rem;
-  --font-size-h4: 1.5rem;
+  --font-size-h1: 4.5rem;
+  --font-size-h2: 2.75rem;
+  --font-size-h3: 1.5rem;
   --line-height-base: 1.7;
-  --line-height-heading: 1.2;
-  --letter-spacing-heading: -0.02em;
-  --letter-spacing-wide: 0.05em;
+  --letter-spacing-h: -0.03em;
   
-  /* Spacing - More Air */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2.5rem;
-  --spacing-xl: 4rem;
-  --spacing-2xl: 6rem;
-  --spacing-3xl: 8rem;
+  /* Layout */
+  --container-width: 1320px;
+  --section-padding: 100px 0;
+  --border-radius: 4px;
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap');
 
 body {
-  font-family: var(--font-family-body);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: var(--color-text-primary);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
+  font-family: var(--font-body);
+  color: var(--color-text-main);
   background-color: var(--color-white);
-  letter-spacing: 0.01em;
-  padding-top: 80px; /* Space for fixed header */
+  line-height: var(--line-height-base);
+  -webkit-font-smoothing: antialiased;
+  padding-top: 0; /* Будем использовать фиксированный хедер поверх hero */
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  letter-spacing: var(--letter-spacing-h);
+  text-transform: none;
+}
+
+.section-title {
+  font-size: var(--font-size-h2);
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 3rem;
+  text-align: left; /* В стиле tflog чаще левое выравнивание */
+  position: relative;
+  padding-left: 20px;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10%;
+  height: 80%;
+  width: 5px;
+  background: var(--color-accent);
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Эффект поднятия карточек */
+.card-lift {
+  transition: var(--transition);
+}
+
+.card-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--color-white);
+  padding: 18px 36px;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+  box-shadow: 0 10px 20px rgba(255, 122, 0, 0.3);
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
 }
 
 /* Typography - Corporate Style */

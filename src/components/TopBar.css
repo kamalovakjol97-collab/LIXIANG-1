@@ -1,19 +1,11 @@
 .top-bar {
-  background-color: var(--color-black);
+  background-color: var(--color-bg-dark);
   color: var(--color-white);
-  padding: 4px 0;
   font-size: 12px;
-  position: sticky;
-  top: 0;
-  z-index: 200;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.top-bar.footer-top-bar {
-  position: static;
-  background: transparent;
-  padding: 0;
-  box-shadow: none;
+  padding: 8px 0;
+  font-weight: 500;
+  position: relative;
+  z-index: 1001;
 }
 
 .top-bar-content {
@@ -22,60 +14,53 @@
   align-items: center;
 }
 
-.working-hours {
-  color: rgba(255, 255, 255, 0.9);
+.top-bar-left, .top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.divider {
+  opacity: 0.2;
 }
 
 .exchange-rates {
   display: flex;
-  align-items: center;
   gap: 12px;
-  flex-wrap: wrap;
+  color: rgba(255,255,255,0.6);
 }
 
-.rate-date {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 11px;
-  margin-right: 8px;
-  font-weight: 400;
-}
-
-.rate-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.rate-label {
-  color: rgba(255, 255, 255, 0.8);
+.top-phone {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 700;
   font-size: 13px;
 }
 
-.rate-value {
-  color: var(--color-white);
-  font-weight: 600;
+.top-socials {
+  display: flex;
+  gap: 8px;
 }
 
-.rate-divider {
-  color: rgba(255, 255, 255, 0.3);
+.social-icon {
+  width: 24px;
+  height: 24px;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+  color: white;
+  transition: var(--transition);
 }
 
-@media (max-width: 768px) {
+.social-icon:hover {
+  background: var(--color-accent);
+}
+
+@media (max-width: 992px) {
   .top-bar {
-    font-size: 12px;
-    padding: 6px 0;
-  }
-
-  .top-bar-content {
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .exchange-rates {
-    gap: 8px;
-  }
-
-  .rate-label {
-    font-size: 11px;
+    display: none; /* Скрываем на мобильных для чистоты интерфейса */
   }
 }

@@ -9,92 +9,40 @@ const ApplicationForm = () => {
   const sectionRef = useRef(null)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
-      }
-    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setIsVisible(true)
+    }, { threshold: 0.1 })
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    return () => observer.disconnect()
   }, [])
+
   const [formData, setFormData] = useState({
     cargoType: '',
     from: '',
     to: '',
-    weightVolume: '',
-    email: '',
     phone: '',
-    inn: '',
-    companyName: '',
-    fullName: ''
+    companyName: ''
   })
+  
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null)
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    setFormData(prev => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setSubmitStatus(null)
-
     try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-      const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY
-
-      if (!supabaseUrl || !supabaseKey) {
-        throw new Error('Supabase is not configured. Please check your environment variables.')
-      }
-
       const { error } = await supabase
         .from('applications')
-        .insert([{
-          cargo_type: formData.cargoType,
-          from_location: formData.from,
-          to_location: formData.to,
-          weight_volume: formData.weightVolume,
-          email: formData.email,
-          phone: formData.phone,
-          inn: formData.inn,
-          company_name: formData.companyName,
-          full_name: formData.fullName,
-          created_at: new Date().toISOString()
-        }])
-
+        .insert([formData])
       if (error) throw error
-
       setSubmitStatus('success')
-      setFormData({
-        cargoType: '',
-        from: '',
-        to: '',
-        weightVolume: '',
-        email: '',
-        phone: '',
-        inn: '',
-        companyName: '',
-        fullName: ''
-      })
+      setFormData({ cargoType: '', from: '', to: '', phone: '', companyName: '' })
     } catch (error) {
-      console.error('Error submitting form:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -102,150 +50,84 @@ const ApplicationForm = () => {
   }
 
   return (
-      <section id="application-form" className="application-form" ref={sectionRef}>
-        <div className="application-form-background"></div>
-        <div className="application-form-overlay"></div>
-        <div className="container">
-          <div className={`application-form-content ${isVisible ? 'fade-in' : ''}`}>
-            <h2 className="application-form-title">{t('applicationForm')}</h2>
-            <p className="application-form-subtitle">
+    <section id="application-form" className="cta-section" ref={sectionRef}>
+      <div className="cta-bg"></div>
+      <div className="container">
+        <div className={`cta-content ${isVisible ? 'fade-in' : ''}`}>
+          <div className="cta-text">
+            <h2 className="cta-title">
+              {language === 'ru' ? 'Готовы начать сотрудничество?' : '准备好开始合作了吗？'}
+            </h2>
+            <p className="cta-subtitle">
               {language === 'ru' 
-                ? 'Заполните форму, и мы подготовим для вас персональное коммерческое предложение'
-                : '填写表格，我们将为您准备个性化的商业提案'}
+                ? 'Оставьте заявку, и наш ведущий логист свяжется с вами в течение 15 минут для детального расчета.'
+                : '提交申请，我们的首席物流师将在15分钟内与您联系，进行详细计算。'}
             </p>
-            <form className="form" onSubmit={handleSubmit}>
-          <div className="form-grid">
-            <div className="form-group">
-              <label htmlFor="cargoType">Тип груза</label>
-              <input
-                type="text"
-                id="cargoType"
-                name="cargoType"
-                value={formData.cargoType}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="from">Откуда</label>
-              <input
-                type="text"
-                id="from"
-                name="from"
-                value={formData.from}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="to">Куда</label>
-              <input
-                type="text"
-                id="to"
-                name="to"
-                value={formData.to}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="weightVolume">Вес / объём</label>
-              <input
-                type="text"
-                id="weightVolume"
-                name="weightVolume"
-                value={formData.weightVolume}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="phone">Телефон</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="inn">ИНН компании</label>
-              <input
-                type="text"
-                id="inn"
-                name="inn"
-                value={formData.inn}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="companyName">Название компании</label>
-              <input
-                type="text"
-                id="companyName"
-                name="companyName"
-                value={formData.companyName}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group form-group-full">
-              <label htmlFor="fullName">ФИО</label>
-              <input
-                type="text"
-                id="fullName"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
-                required
-              />
+            <div className="cta-features">
+              <div className="cta-feature">
+                <strong>15 {language === 'ru' ? 'мин' : '分钟'}</strong>
+                <span>{language === 'ru' ? 'Среднее время ответа' : '平均响应时间'}</span>
+              </div>
+              <div className="cta-feature">
+                <strong>100%</strong>
+                <span>{language === 'ru' ? 'Точность расчета' : '计算准确性'}</span>
+              </div>
             </div>
           </div>
-
-          {submitStatus === 'success' && (
-            <div className="form-message form-message-success">
-              Заявка принята, мы свяжемся с вами
-            </div>
-          )}
-
-          {submitStatus === 'error' && (
-            <div className="form-message form-message-error">
-              Произошла ошибка. Пожалуйста, попробуйте ещё раз.
-            </div>
-          )}
-
-          <button
-            type="submit"
-            className="form-submit"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
-          </button>
-        </form>
+          
+          <div className="cta-form-container">
+            <form className="modern-form" onSubmit={handleSubmit}>
+              <div className="form-row">
+                <input 
+                  type="text" 
+                  name="cargoType" 
+                  placeholder={language === 'ru' ? 'Тип груза' : '货物类型'} 
+                  value={formData.cargoType}
+                  onChange={handleChange}
+                  required 
+                />
+              </div>
+              <div className="form-grid-inner">
+                <input 
+                  type="text" 
+                  name="from" 
+                  placeholder={language === 'ru' ? 'Откуда' : '始发地'} 
+                  value={formData.from}
+                  onChange={handleChange}
+                  required 
+                />
+                <input 
+                  type="text" 
+                  name="to" 
+                  placeholder={language === 'ru' ? 'Куда' : '目的地'} 
+                  value={formData.to}
+                  onChange={handleChange}
+                  required 
+                />
+              </div>
+              <div className="form-row">
+                <input 
+                  type="tel" 
+                  name="phone" 
+                  placeholder={language === 'ru' ? 'Ваш телефон' : '您的电话'} 
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required 
+                />
+              </div>
+              
+              {submitStatus === 'success' && (
+                <div className="form-msg success">{language === 'ru' ? 'Заявка отправлена!' : '申请已提交！'}</div>
+              )}
+              
+              <button className="btn-primary w-full" disabled={isSubmitting}>
+                {isSubmitting ? '...' : (language === 'ru' ? 'Отправить запрос' : '发送申请')}
+              </button>
+            </form>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
   )
 }
 
