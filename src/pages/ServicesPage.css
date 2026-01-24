@@ -4,16 +4,18 @@
 }
 
 .services-hero {
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-bg-light);
   padding: 80px 0;
-  color: white;
+  color: var(--color-black);
   text-align: left;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .services-page-title {
   font-size: 3.5rem;
   font-weight: 800;
   margin-top: 20px;
+  color: var(--color-black);
 }
 
 .services-bottom-cta {

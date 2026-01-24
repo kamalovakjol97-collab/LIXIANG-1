@@ -4,16 +4,18 @@
 }
 
 .contacts-hero {
-  background: linear-gradient(135deg, var(--color-dark-blue) 0%, var(--color-graphite) 100%);
-  color: var(--color-white);
+  background-color: var(--color-bg-light);
+  color: var(--color-black);
   padding: 80px 0;
   text-align: center;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .contacts-page-title {
   font-size: 48px;
   font-weight: 700;
   margin: 0;
+  color: var(--color-black);
 }
 
 .contacts-content {

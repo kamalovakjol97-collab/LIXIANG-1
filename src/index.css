@@ -11,10 +11,13 @@
   --color-accent: #FF7A00;         /* Amber Orange */
   --color-accent-hover: #E66E00;
   --color-white: #FFFFFF;
+  --color-black: #000000;
   --color-bg-light: #F8F9FA;
   --color-bg-dark: #1A1D23;
   --color-text-main: #1A1D23;
   --color-text-muted: #666666;
+  --color-gray: #718096;
+  --color-light-gray: #E2E8F0;
   --color-border: #E5E7EB;
   
   /* Typography */
