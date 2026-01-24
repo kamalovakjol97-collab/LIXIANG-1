@@ -64,10 +64,19 @@
 .service-card-title {
   font-size: 2rem;
   font-weight: 800;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   line-height: 1.2;
-  color: var(--color-accent); /* Делаем заголовок оранжевым для контраста */
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Добавляем небольшую тень для еще большей четкости */
+  color: var(--color-accent);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.service-card-description {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 25px;
+  line-height: 1.4;
+  opacity: 1;
 }
 
 .service-sub-list {
