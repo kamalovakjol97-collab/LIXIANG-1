@@ -57,7 +57,7 @@ h1, h2, h3 {
 .section-title {
   font-size: var(--font-size-h2);
   font-weight: 800;
-  color: var(--color-black);
+  color: var(--color-accent); /* Меняем на оранжевый как на скриншоте 4 */
   margin-bottom: 3rem;
   text-align: left; /* В стиле tflog чаще левое выравнивание */
   position: relative;
