@@ -4,7 +4,7 @@ import TopBar from './components/TopBar'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Statistics from './components/Statistics'
-import ServicesCarousel from './components/ServicesCarousel'
+import Services from './components/Services'
 import HowWeWork from './components/HowWeWork'
 import WhyXGLOG from './components/WhyXGLOG'
 import Geography from './components/Geography'
@@ -30,7 +30,7 @@ function HomePage() {
         <Hero />
         <Statistics />
         <hr className="section-divider" />
-        <ServicesCarousel />
+        <Services />
         <hr className="section-divider" />
         <HowWeWork />
         <hr className="section-divider" />
