@@ -34,8 +34,6 @@ function HomePage() {
         <hr className="section-divider" />
         <WhyXGLOG />
         <hr className="section-divider" />
-        <Geography />
-        <hr className="section-divider" />
         <ApplicationForm />
       </main>
       <Footer />

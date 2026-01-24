@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { Link } from 'react-router-dom'
+import Geography from '../components/Geography'
 import './ProjectsPage.css'
 
 const ProjectsPage = () => {
@@ -123,7 +124,10 @@ const ProjectsPage = () => {
           </h1>
         </div>
       </div>
-      <div className="container" ref={sectionRef}>
+      
+      <Geography />
+
+      <div className="container">
         <div className="projects-list">
           {currentProjects.map((project, index) => (
             <article 
