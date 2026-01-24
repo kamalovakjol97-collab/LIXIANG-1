@@ -15,39 +15,76 @@ const Geography = () => {
     return () => observer.disconnect()
   }, [])
 
-  // Координаты точек (x, y) для viewBox="0 0 1200 800"
+  // Координаты точек для Европы и Азии (viewBox="0 0 1200 800")
+  // Обновлены для более точного географического соответствия
   const nodes = {
-    // Россия
-    spb: { x: 180, y: 180, label: language === 'ru' ? 'Санкт-Петербург' : '圣彼得堡', type: 'port-ru' },
-    mow: { x: 250, y: 220, label: language === 'ru' ? 'Москва' : '莫斯科', type: 'city-ru' },
-    kazan: { x: 320, y: 240, label: language === 'ru' ? 'Казань' : '喀山', type: 'city-ru' },
-    nvr: { x: 150, y: 380, label: language === 'ru' ? 'Новороссийск' : '新罗西斯克', type: 'port-ru' },
-    ekb: { x: 450, y: 280, label: language === 'ru' ? 'Екатеринбург' : '叶卡捷琳堡', type: 'city-ru' },
-    omsk: { x: 550, y: 310, label: language === 'ru' ? 'Омск' : '鄂木斯克', type: 'city-ru' },
-    nsk: { x: 650, y: 330, label: language === 'ru' ? 'Новосибирск' : '新西伯利亚', type: 'city-ru' },
-    vvo: { x: 1100, y: 420, label: language === 'ru' ? 'Владивосток' : '符拉迪沃斯托克', type: 'port-ru' },
+    // Россия - Порты и города
+    spb: { x: 200, y: 150, label: language === 'ru' ? 'Санкт-Петербург' : '圣彼得堡', type: 'port-ru' },
+    mow: { x: 350, y: 200, label: language === 'ru' ? 'Москва' : '莫斯科', type: 'city-ru' },
+    kazan: { x: 450, y: 220, label: language === 'ru' ? 'Казань' : '喀山', type: 'city-ru' },
+    nvr: { x: 280, y: 420, label: language === 'ru' ? 'Новороссийск' : '新罗西斯克', type: 'port-ru' },
+    ekb: { x: 550, y: 250, label: language === 'ru' ? 'Екатеринбург' : '叶卡捷琳堡', type: 'city-ru' },
+    omsk: { x: 650, y: 280, label: language === 'ru' ? 'Омск' : '鄂木斯克', type: 'city-ru' },
+    nsk: { x: 750, y: 300, label: language === 'ru' ? 'Новосибирск' : '新西伯利亚', type: 'city-ru' },
+    vvo: { x: 1080, y: 380, label: language === 'ru' ? 'Владивосток' : '符拉迪沃斯托克', type: 'port-ru' },
 
-    // Погранпереходы (Граница)
-    zabaikal: { x: 920, y: 380, label: language === 'ru' ? 'Забайкальск-Маньчжурия' : '后贝加尔斯克-满洲里', type: 'border' },
-    heihe: { x: 1000, y: 340, label: language === 'ru' ? 'Благовещенск-Хэйхэ' : '布拉戈维申斯克-黑河', type: 'border' },
-    suifenhe: { x: 1080, y: 390, label: language === 'ru' ? 'Пограничный-Суйфэньхэ' : '波格拉尼奇内-绥芬河', type: 'border' },
-    hunchun: { x: 1090, y: 410, label: language === 'ru' ? 'Краскино-Хуньчунь' : '克拉斯基诺-珲春', type: 'border' },
+    // Погранпереходы
+    zabaikal: { x: 920, y: 350, label: language === 'ru' ? 'Забайкальск-Маньчжурия' : '后贝加尔斯克-满洲里', type: 'border' },
+    heihe: { x: 1000, y: 320, label: language === 'ru' ? 'Благовещенск-Хэйхэ' : '布拉戈维申斯克-黑河', type: 'border' },
+    suifenhe: { x: 1060, y: 360, label: language === 'ru' ? 'Пограничный-Суйфэньхэ' : '波格拉尼奇内-绥芬河', type: 'border' },
+    hunchun: { x: 1070, y: 380, label: language === 'ru' ? 'Краскино-Хуньчунь' : '克拉斯基诺-珲春', type: 'border' },
 
     // Китай - Города
-    beijing: { x: 950, y: 460, label: 'Beijing', type: 'city-cn' },
-    shenyang: { x: 1020, y: 440, label: 'Shenyang', type: 'city-cn' },
-    wuhan: { x: 900, y: 580, label: 'Wuhan', type: 'city-cn' },
-    zhengzhou: { x: 920, y: 520, label: 'Zhengzhou', type: 'city-cn' },
-    chengdu: { x: 820, y: 560, label: 'Chengdu', type: 'city-cn' },
+    beijing: { x: 960, y: 420, label: 'Beijing', type: 'city-cn' },
+    shenyang: { x: 1020, y: 400, label: 'Shenyang', type: 'city-cn' },
+    wuhan: { x: 920, y: 540, label: 'Wuhan', type: 'city-cn' },
+    zhengzhou: { x: 940, y: 480, label: 'Zhengzhou', type: 'city-cn' },
+    chengdu: { x: 850, y: 520, label: 'Chengdu', type: 'city-cn' },
 
     // Китай - Порты
-    sha: { x: 1050, y: 550, label: 'Port of Shanghai', type: 'port-cn' },
-    szx: { x: 950, y: 680, label: 'Port of Shenzhen', type: 'port-cn' },
-    nbo: { x: 1060, y: 580, label: 'Ningbo-Zhoushan', type: 'port-cn' },
-    can: { x: 930, y: 660, label: 'Guangzhou Port', type: 'port-cn' },
-    tao: { x: 1010, y: 510, label: 'Qingdao Port', type: 'port-cn' },
-    tsn: { x: 970, y: 480, label: 'Port of Tianjin', type: 'port-cn' },
+    sha: { x: 1050, y: 510, label: 'Port of Shanghai', type: 'port-cn' },
+    szx: { x: 960, y: 640, label: 'Port of Shenzhen', type: 'port-cn' },
+    nbo: { x: 1060, y: 540, label: 'Ningbo-Zhoushan', type: 'port-cn' },
+    can: { x: 940, y: 620, label: 'Guangzhou Port', type: 'port-cn' },
+    tao: { x: 1010, y: 470, label: 'Qingdao Port', type: 'port-cn' },
+    tsn: { x: 980, y: 440, label: 'Port of Tianjin', type: 'port-cn' },
   }
+
+  // SVG иконки для транспорта
+  const TrainIcon = () => (
+    <g transform="scale(0.8)">
+      <rect x="0" y="8" width="20" height="12" fill="#FF7A00" rx="2"/>
+      <rect x="2" y="10" width="16" height="8" fill="#fff"/>
+      <circle cx="5" cy="20" r="2" fill="#333"/>
+      <circle cx="15" cy="20" r="2" fill="#333"/>
+      <rect x="22" y="8" width="18" height="12" fill="#FF7A00" rx="2"/>
+      <rect x="24" y="10" width="14" height="8" fill="#fff"/>
+      <circle cx="28" cy="20" r="2" fill="#333"/>
+      <circle cx="38" cy="20" r="2" fill="#333"/>
+    </g>
+  )
+
+  const ShipIcon = () => (
+    <g transform="scale(0.7)">
+      <path d="M5 25 L35 25 L40 20 L40 15 L35 10 L5 10 Z" fill="#FF7A00"/>
+      <rect x="8" y="12" width="24" height="8" fill="#fff"/>
+      <rect x="12" y="8" width="4" height="4" fill="#FF7A00"/>
+      <rect x="20" y="8" width="4" height="4" fill="#FF7A00"/>
+      <rect x="28" y="8" width="4" height="4" fill="#FF7A00"/>
+      <path d="M0 25 L5 25 M35 25 L40 25" stroke="#FF7A00" strokeWidth="2"/>
+    </g>
+  )
+
+  const TruckIcon = () => (
+    <g transform="scale(0.7)">
+      <rect x="2" y="12" width="20" height="12" fill="#FF7A00" rx="1"/>
+      <rect x="4" y="14" width="16" height="8" fill="#fff"/>
+      <rect x="22" y="16" width="12" height="8" fill="#FF7A00" rx="1"/>
+      <circle cx="8" cy="26" r="3" fill="#333"/>
+      <circle cx="28" cy="26" r="3" fill="#333"/>
+      <rect x="6" y="10" width="2" height="2" fill="#FF7A00"/>
+    </g>
+  )
 
   return (
     <section className="geo-global-section" ref={sectionRef}>
@@ -75,30 +112,47 @@ const Geography = () => {
               </filter>
             </defs>
 
-            {/* --- КОНТУРЫ СТРАН (ПОЛУПРОЗРАЧНЫЕ) --- */}
-            <path d="M100,100 L800,100 L1150,350 L1150,450 L800,500 L100,500 Z" className="country-shape russia-area-v2" />
-            <path d="M400,350 L750,350 L850,450 L450,450 Z" className="country-shape kazakhstan-area-v2" />
-            <path d="M750,450 L1100,450 L1100,750 L750,750 Z" className="country-shape china-area-v2" />
-
-            {/* Метки стран - яркие */}
-            <text x="300" y="150" className="country-label-v2">RUSSIA</text>
-            <text x="550" y="420" className="country-label-v2">KAZAKHSTAN</text>
-            <text x="900" y="720" className="country-label-v2">CHINA</text>
+            {/* --- КОНТУРЫ СТРАН (ЕВРОПА И АЗИЯ) --- */}
+            <path d="M50,50 L700,50 L1150,300 L1150,500 L700,600 L50,600 Z" className="country-shape russia-area-v2" />
+            <path d="M450,300 L750,300 L850,400 L500,400 Z" className="country-shape kazakhstan-area-v2" />
+            <path d="M750,400 L1100,400 L1100,750 L750,750 Z" className="country-shape china-area-v2" />
             
-            {/* --- МАРШРУТЫ --- */}
-            <path id="main-rail" d="M1050,550 L920,380 L650,330 L450,280 L250,220" className="path-rail-v2" />
-            <path id="sea-route" d="M1050,550 Q600,750 150,380" className="path-sea-v2" />
+            {/* --- МАРШРУТЫ (обновлены для правильного прохождения через точки) --- */}
+            {/* ЖД маршрут: СПб → Москва → Екатеринбург → Новосибирск → Забайкальск → Китай */}
+            <path id="main-rail" d="M200,150 L350,200 L550,250 L750,300 L920,350 L960,420" className="path-rail-v2" />
+            
+            {/* Морской маршрут: Новороссийск → море → Шанхай */}
+            <path id="sea-route" d="M280,420 Q600,200 1050,510" className="path-sea-v2" />
+            
+            {/* Автомаршрут: Москва → Казань → Екатеринбург → Омск → Забайкальск */}
+            <path id="auto-route" d="M350,200 L450,220 L550,250 L650,280 L920,350" className="path-auto-v2" />
 
-            {/* --- АНИМАЦИЯ --- */}
+            {/* --- АНИМАЦИЯ С ПРОФЕССИОНАЛЬНЫМИ ИКОНКАМИ --- */}
             <g className="moving-unit">
-              <text fontSize="24">🚂
-                <animateMotion dur="15s" repeatCount="indefinite"><mpath href="#main-rail"/></animateMotion>
-              </text>
+              <g transform="translate(-20, -20)">
+                <TrainIcon />
+                <animateMotion dur="18s" repeatCount="indefinite">
+                  <mpath href="#main-rail"/>
+                </animateMotion>
+              </g>
             </g>
+            
             <g className="moving-unit">
-              <text fontSize="24">🚢
-                <animateMotion dur="25s" repeatCount="indefinite"><mpath href="#sea-route"/></animateMotion>
-              </text>
+              <g transform="translate(-20, -20)">
+                <ShipIcon />
+                <animateMotion dur="30s" repeatCount="indefinite">
+                  <mpath href="#sea-route"/>
+                </animateMotion>
+              </g>
+            </g>
+            
+            <g className="moving-unit">
+              <g transform="translate(-20, -20)">
+                <TruckIcon />
+                <animateMotion dur="22s" repeatCount="indefinite">
+                  <mpath href="#auto-route"/>
+                </animateMotion>
+              </g>
             </g>
 
             {/* --- ОТРИСОВКА ТОЧЕК --- */}

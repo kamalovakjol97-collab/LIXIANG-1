@@ -36,10 +36,11 @@
   height: 100%;
   background-image: url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'); /* Физическая карта в темных тонах */
   background-size: cover;
-  background-position: center;
-  opacity: 0.12; /* Уменьшаем opacity для устранения блика */
+  background-position: 30% 50%; /* Смещаем для фокуса на Европу и Азию */
+  opacity: 0.1; /* Еще больше уменьшаем для устранения блика */
   z-index: 0;
-  filter: grayscale(100%) contrast(110%) brightness(0.7);
+  filter: grayscale(100%) contrast(110%) brightness(0.6);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); /* Обрезка для Европы и Азии */
 }
 
 .world-map-svg-large {
@@ -60,14 +61,7 @@
 .china-area-v2 { fill: rgba(239, 68, 68, 0.05); stroke: rgba(239, 68, 68, 0.1); }
 .kazakhstan-area-v2 { fill: rgba(245, 158, 11, 0.05); stroke: rgba(245, 158, 11, 0.1); }
 
-.country-label-v2 {
-  fill: rgba(255,255,255,0.2);
-  font-size: 28px;
-  font-weight: 900;
-  letter-spacing: 10px;
-  pointer-events: none;
-  font-family: var(--font-heading);
-}
+/* Убраны названия стран */
 
 /* Маршруты */
 .path-rail-v2 {
@@ -83,6 +77,13 @@
   stroke-width: 2;
   stroke-dasharray: 12, 6;
   opacity: 0.5;
+}
+
+.path-auto-v2 {
+  fill: none;
+  stroke: rgba(255,255,255,0.4);
+  stroke-width: 2;
+  stroke-dasharray: 6, 3;
 }
 
 /* Точки */
@@ -116,36 +117,46 @@
   fill: var(--color-accent);
 }
 
+/* Анимация транспорта */
+.moving-unit {
+  filter: drop-shadow(0 0 8px rgba(255, 122, 0, 0.6));
+}
+
+.moving-unit g {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
 /* Легенда */
 .map-legend-v4 {
   position: absolute;
-  bottom: 40px;
-  right: 40px;
+  bottom: 30px;
+  right: 30px;
   background: rgba(26, 29, 35, 0.95);
-  padding: 30px;
-  border-radius: 20px;
+  padding: 18px 22px;
+  border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.1);
   z-index: 2;
   box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  max-width: 200px;
 }
 
 .legend-group h4 {
-  margin-bottom: 20px;
-  font-size: 1rem;
+  margin-bottom: 12px;
+  font-size: 0.75rem;
   color: var(--color-accent);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   font-weight: 800;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 15px;
-  font-size: 0.9rem;
-  margin-bottom: 12px;
+  gap: 10px;
+  font-size: 0.75rem;
+  margin-bottom: 8px;
   color: white;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .dot {
