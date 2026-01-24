@@ -124,10 +124,7 @@ const ProjectsPage = () => {
           </h1>
         </div>
       </div>
-      
-      <Geography />
-
-      <div className="container">
+      <div className="container" ref={sectionRef}>
         <div className="projects-list">
           {currentProjects.map((project, index) => (
             <article 
@@ -193,6 +190,8 @@ const ProjectsPage = () => {
           ))}
         </div>
       </div>
+      
+      <Geography />
     </div>
   )
 }

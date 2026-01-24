@@ -37,9 +37,9 @@
   background-image: url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80'); /* Физическая карта в темных тонах */
   background-size: cover;
   background-position: center;
-  opacity: 0.15; /* Делаем подложку неброской, но видимой */
+  opacity: 0.12; /* Уменьшаем opacity для устранения блика */
   z-index: 0;
-  filter: grayscale(100%) contrast(120%);
+  filter: grayscale(100%) contrast(110%) brightness(0.7);
 }
 
 .world-map-svg-large {
@@ -121,8 +121,7 @@
   position: absolute;
   bottom: 40px;
   right: 40px;
-  background: rgba(26, 29, 35, 0.9);
-  backdrop-filter: blur(15px);
+  background: rgba(26, 29, 35, 0.95);
   padding: 30px;
   border-radius: 20px;
   border: 1px solid rgba(255,255,255,0.1);
