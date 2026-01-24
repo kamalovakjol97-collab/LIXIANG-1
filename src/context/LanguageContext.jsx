@@ -23,14 +23,6 @@ export const LanguageProvider = ({ children }) => {
       calculate: '计算',
       workingHours: '周一至周五 10:00 - 19:00',
       heroSubtitle: '全周期国际物流'
-    },
-    ky: {
-      services: 'Кызматтар',
-      news: 'Жаңылыктар',
-      contacts: 'Байланыштар',
-      calculate: 'Эсептөө',
-      workingHours: 'Дүй-Жум 10:00 - 19:00',
-      heroSubtitle: 'Эл аралык логистикалык кызматтар'
     }
   }
 

@@ -25,7 +25,8 @@ const LegalProof = () => {
       capital: '1 800 000 CNY',
       location: language === 'ru' ? 'Маньчжурия, КНР' : '中国满洲里',
       status: language === 'ru' ? 'Действующая компания' : '运营中',
-      role: language === 'ru' ? 'Головная компания — основатель группы' : '母公司 — 集团创始人'
+      role: language === 'ru' ? 'Головная компания — основатель группы' : '母公司 — 集团创始人',
+      licenseImg: '/assets/c__Users_Notebook_AppData_Roaming_Cursor_User_workspaceStorage_f742ad0ad9fbd53d56a5c50ad748b463_images_Image_20260124132406-887bae52-5ef8-4d5b-819c-f75d95acce98.png'
     },
     {
       id: 'guosen',
@@ -35,9 +36,12 @@ const LegalProof = () => {
       capital: '2 000 000 CNY',
       location: language === 'ru' ? 'Маньчжурия, КНР' : '中国满洲里',
       status: language === 'ru' ? 'Действующая компания' : '运营中',
-      role: language === 'ru' ? 'Профильное логистическое подразделение' : '专业物流部门'
+      role: language === 'ru' ? 'Профильное логистическое подразделение' : '专业物流部门',
+      licenseImg: '/assets/c__Users_Notebook_AppData_Roaming_Cursor_User_workspaceStorage_f742ad0ad9fbd53d56a5c50ad748b463_images_Image_20260124132623-c8d3a04e-29ad-41ab-a019-effef72d58ba.png'
     }
   ]
+
+  const currentCompany = companies.find(c => c.id === modalOpen)
 
   return (
     <section className="legal-section" ref={sectionRef}>
@@ -90,9 +94,10 @@ const LegalProof = () => {
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <button className="close-modal" onClick={() => setModalOpen(null)}>×</button>
             <div className="modal-inner">
-              <img src="https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=800&q=80" alt="License" />
+              <h3 className="modal-license-title">{currentCompany?.name}</h3>
+              <img src={currentCompany?.licenseImg} alt="Official Chinese License" className="license-scan-img" />
               <div className="modal-note">
-                <p>{language === 'ru' ? 'Официальная копия лицензии (КНР). Для верификации обратитесь в юридический отдел.' : '营业执照官方副本。如需验证，请联系法律部门。'}</p>
+                <p>{language === 'ru' ? 'Официальный скан лицензии (КНР). Для верификации обратитесь в юридический отдел.' : '营业执照官方扫描件。如需验证，请联系法律部门。'}</p>
               </div>
             </div>
           </div>

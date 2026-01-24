@@ -127,10 +127,26 @@
   padding: 60px;
 }
 
-.modal-inner img {
+.modal-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-license-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.license-scan-img {
   width: 100%;
+  max-width: 600px; /* Ограничиваем ширину для удобства просмотра */
   height: auto;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  border: 1px solid #ddd;
 }
 
 .close-modal {

@@ -5,9 +5,8 @@ const LanguageSwitcher = () => {
   const { language, setLanguage } = useLanguage()
 
   const langs = [
-    { code: 'ru', label: 'RU', flag: '🇷🇺' },
-    { code: 'zh', label: '中文', flag: '🇨🇳' },
-    { code: 'ky', label: 'KG', flag: '🇰🇬' }
+    { code: 'ru', flag: '🇷🇺' },
+    { code: 'zh', flag: '🇨🇳' }
   ]
 
   return (
@@ -17,9 +16,9 @@ const LanguageSwitcher = () => {
           key={lang.code}
           className={`lang-btn ${language === lang.code ? 'active' : ''}`}
           onClick={() => setLanguage(lang.code)}
+          title={lang.code === 'ru' ? 'Русский' : '中文'}
         >
           <span className="lang-flag">{lang.flag}</span>
-          <span className="lang-code">{lang.label}</span>
         </button>
       ))}
     </div>

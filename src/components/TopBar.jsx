@@ -48,7 +48,7 @@ const TopBar = () => {
               <span className="rate-item">USD/RUB {exchangeRates.usd}</span>
             </div>
             <span className="divider">|</span>
-            <a href="tel:88005117794" className="top-phone">8 800 511 77 94</a>
+            <a href="tel:+79315084299" className="top-phone">+7 (931) 508-42-99</a>
             <div className="top-socials">
               <a href="#" className="social-icon">W</a>
               <a href="#" className="social-icon">T</a>

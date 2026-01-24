@@ -1,39 +1,45 @@
 import { useLanguage } from '../context/LanguageContext'
-import './HowWeWork.css'
+import './StickyStyles.css'
 
 const HowWeWork = () => {
   const { language } = useLanguage()
   
   const steps = language === 'ru' ? [
-    { id: '01', title: 'Онлайн-заявка', text: 'Заполните форму на сайте с параметрами груза' },
-    { id: '02', title: 'Подбор решения', text: 'В течение 15 минут подготовим КП с точной стоимостью' },
-    { id: '03', title: 'Организация', text: 'Координируем все этапы логистики и таможни' },
-    { id: '04', title: 'Доставка', text: 'Груз прибывает в указанный пункт назначения' }
+    { id: '01', title: 'Онлайн-заявка', text: 'Заполните форму на сайте с параметрами груза. Ваш запрос мгновенно попадает к нашему логисту.' },
+    { id: '02', title: 'Подбор решения', text: 'В течение 15 минут подготовим персональное предложение с точной стоимостью.' },
+    { id: '03', title: 'Организация перевозки', text: 'Координируем все этапы логистики, документальное сопровождение и таможню.' },
+    { id: '04', title: 'Доставка до клиента', text: 'Груз прибывает в указанный пункт назначения. Бесшовная логистика «от двери до двери».' }
   ] : [
-    { id: '01', title: '在线申请', text: '填写表格' },
-    { id: '02', title: '方案选择', text: '15分钟内提供报价' },
-    { id: '03', title: '组织工作', text: '协调物流' },
-    { id: '04', title: '交付', text: '货物到达' }
+    { id: '01', title: '在线申请', text: '填写表格。' },
+    { id: '02', title: '方案选择', text: '15分钟内提供报价。' },
+    { id: '03', title: '组织工作', text: '协调物流。' },
+    { id: '04', title: '交付', text: '货物到达。' }
   ]
 
   return (
-    <section className="work-sticky-section">
+    <section className="sticky-section-dark" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
       <div className="container">
         <div className="sticky-layout">
           <div className="sticky-left">
-            <h2 className="section-title-sticky">
+            <h2 className="sticky-title-large">
               {language === 'ru' ? 'Как мы работаем' : '我们如何运作'}
             </h2>
-            <div className="work-stat">
+            <p className="sticky-subtitle-large">
+              {language === 'ru' 
+                ? 'Максимум простоты для вас — мы берем все сложности на себя.' 
+                : '为您提供最大的简便性 — 我们承担所有复杂性。'}
+            </p>
+            <div className="sticky-accent-box">
+              <div className="sticky-divider-line"></div>
               <strong>15</strong>
-              <span>{language === 'ru' ? 'минут на расчет' : '分钟响应'}</span>
+              <span>{language === 'ru' ? 'минут на ответ' : '分钟响应'}</span>
             </div>
           </div>
-          <div className="scroll-right">
+          <div className="scroll-list-right">
             {steps.map((step) => (
-              <div key={step.id} className="work-scroll-card">
-                <div className="step-id">{step.id}</div>
-                <div className="step-content">
+              <div key={step.id} className="scroll-card-modern">
+                <div className="scroll-card-id">{step.id}</div>
+                <div className="scroll-card-body">
                   <h3>{step.title}</h3>
                   <p>{step.text}</p>
                 </div>

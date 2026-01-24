@@ -10,16 +10,16 @@
   background: transparent;
   border: none;
   color: white;
-  padding: 6px 12px;
-  border-radius: 20px;
+  padding: 8px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 700;
+  justify-content: center;
   cursor: pointer;
   transition: var(--transition);
   opacity: 0.6;
+  width: 36px;
+  height: 36px;
 }
 
 .lang-btn:hover {
@@ -30,11 +30,11 @@
 .lang-btn.active {
   opacity: 1;
   background: var(--color-accent);
-  color: white;
 }
 
 .lang-flag {
-  font-size: 16px;
+  font-size: 20px;
+  line-height: 1;
 }
 
 @media (max-width: 768px) {

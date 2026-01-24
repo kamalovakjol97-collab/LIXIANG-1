@@ -1,6 +1,6 @@
 .geo-global-section {
   padding: 120px 0;
-  background-color: var(--color-bg-dark);
+  background-color: #1A1D23;
   color: white;
   overflow: hidden;
 }
@@ -9,8 +9,9 @@
   position: relative;
   background: rgba(255,255,255,0.02);
   border-radius: 20px;
-  padding: 40px;
+  padding: 60px;
   border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5);
 }
 
 .world-map-svg {
@@ -20,16 +21,15 @@
 
 .land-shape {
   fill: rgba(255,255,255,0.03);
-  stroke: rgba(255,255,255,0.1);
+  stroke: rgba(255,255,255,0.08);
   stroke-width: 1;
 }
 
 .path-rail {
   fill: none;
-  stroke: white;
+  stroke: rgba(255,255,255,0.2);
   stroke-width: 1;
-  stroke-dasharray: 5, 5;
-  opacity: 0.3;
+  stroke-dasharray: 4, 4;
 }
 
 .path-sea {
@@ -37,42 +37,65 @@
   stroke: var(--color-accent);
   stroke-width: 1.5;
   stroke-dasharray: 10, 5;
+  opacity: 0.3;
+}
+
+.path-truck {
+  fill: none;
+  stroke: #00ff88;
+  stroke-width: 1.5;
+  stroke-dasharray: 6, 3;
   opacity: 0.4;
+}
+
+.city-point circle {
+  fill: var(--color-accent);
+  filter: drop-shadow(0 0 8px var(--color-accent));
+}
+
+.city-point.russia circle {
+  fill: #3b82f6;
+  filter: drop-shadow(0 0 8px #3b82f6);
 }
 
 .city-point text {
   fill: white;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  opacity: 0.6;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
-.moving-icon text {
-  filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
+.moving-unit text {
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
 }
 
-.map-legend-modern {
+.map-legend-v2 {
   position: absolute;
   bottom: 40px;
   left: 40px;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background: rgba(0,0,0,0.5);
-  padding: 20px;
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
+  background: rgba(0,0,0,0.6);
+  padding: 25px;
+  backdrop-filter: blur(15px);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.875rem;
+  gap: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
-@media (max-width: 768px) {
-  .map-wrapper { padding: 10px; }
+.unit-icon { font-size: 1.2rem; }
+
+@media (max-width: 992px) {
+  .map-wrapper { padding: 20px; }
   .city-point text { display: none; }
-  .map-legend-modern { position: relative; bottom: 0; left: 0; margin-top: 20px; }
+  .map-legend-v2 { position: relative; bottom: 0; left: 0; margin-top: 30px; }
 }
