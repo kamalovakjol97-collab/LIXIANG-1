@@ -13,15 +13,18 @@
 .logo-container {
   display: flex;
   align-items: center;
-  height: 80px; /* Увеличиваем высоту логотипа для лучшей читаемости деталей */
+  height: 90px; /* Увеличиваем под дракона */
 }
 
-.logo-image {
+.dragon-logo {
   height: 100%;
   width: auto;
   object-fit: contain;
-  /* Небольшой фильтр для четкости на светлом/темном фоне */
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+}
+
+.header.scrolled .logo-container {
+  height: 70px;
 }
 
 @media (max-width: 768px) {

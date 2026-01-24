@@ -1,112 +1,161 @@
-.services-modern {
+.services-carousel-section {
   padding: var(--section-padding);
   background-color: var(--color-white);
+  overflow: hidden;
 }
 
-.services-grid-modern {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-  margin-top: 4rem;
+.carousel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
 }
 
-.service-card-premium {
+.carousel-nav {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--color-border);
+  background: white;
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.nav-btn:hover {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.carousel-container-premium {
+  width: 100%;
+  overflow: hidden;
   position: relative;
-  height: 450px;
+}
+
+.carousel-track-premium {
+  display: flex;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.carousel-slide-premium {
+  min-width: 100%;
+  padding: 0 10px;
+}
+
+.service-premium-card {
+  position: relative;
+  height: 550px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  background: #fcfcfc;
   overflow: hidden;
   cursor: pointer;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: var(--transition);
+  border: 1px solid var(--color-border);
 }
 
-.service-card-premium.fade-in {
-  opacity: 1;
-  transform: translateY(0);
+.service-premium-img {
+  position: relative;
+  overflow: hidden;
 }
 
-.service-img-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.service-img-wrapper img {
+.service-premium-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s ease;
+  transition: transform 1.2s ease;
 }
 
-.service-overlay-modern {
+.service-premium-card:hover .service-premium-img img {
+  transform: scale(1.05);
+}
+
+.service-premium-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, transparent 40%, rgba(10, 42, 94, 0.9) 100%);
-  z-index: 1;
+  background: linear-gradient(90deg, rgba(10, 42, 94, 0.2) 0%, transparent 100%);
 }
 
-.service-info-premium {
-  position: relative;
-  z-index: 2;
-  height: 100%;
+.service-premium-content {
+  padding: 60px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 50px;
-  color: white;
+  justify-content: center;
+  background: white;
 }
 
-.service-info-premium h3 {
-  color: white;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  font-weight: 800;
+.service-premium-title {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  margin-bottom: 2rem;
+  line-height: 1.1;
 }
 
-.service-info-premium p {
-  font-size: 1rem;
-  line-height: 1.6;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: var(--transition);
-  margin-bottom: 1.5rem;
+.service-premium-desc {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  margin-bottom: 3rem;
 }
 
-.service-link-modern {
+.learn-more {
   font-family: var(--font-heading);
   font-weight: 800;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   letter-spacing: 0.15em;
   color: var(--color-accent);
 }
 
-.service-card-premium:hover .service-img-wrapper img {
-  transform: scale(1.1);
+.carousel-dots-modern {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 3rem;
 }
 
-.service-card-premium:hover .service-info-premium p {
-  opacity: 1;
-  transform: translateY(0);
+.dot-modern {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddd;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.dot-modern.active {
+  background: var(--color-accent);
+  width: 30px;
+  border-radius: 10px;
 }
 
 @media (max-width: 992px) {
-  .services-grid-modern {
+  .service-premium-card {
     grid-template-columns: 1fr;
+    height: auto;
   }
-  .service-card-premium {
-    height: 350px;
+  .service-premium-img {
+    height: 300px;
   }
-  .service-info-premium {
-    padding: 30px;
+  .service-premium-content {
+    padding: 40px;
   }
-  .service-info-premium p {
-    opacity: 1;
-    transform: none;
+  .service-premium-title {
+    font-size: 2rem;
   }
 }

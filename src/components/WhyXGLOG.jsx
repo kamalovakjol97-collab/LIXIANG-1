@@ -4,7 +4,6 @@ import './WhyXGLOG.css'
 
 const WhyXGLOG = () => {
   const { language } = useLanguage()
-  const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef(null)
   
   const advantages = language === 'ru' ? [
@@ -71,52 +70,38 @@ const WhyXGLOG = () => {
     }
   ]
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) setIsVisible(true)
-    }, { threshold: 0.1 })
-    
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section className="why-xg" ref={sectionRef}>
-      <div className="why-bg"></div>
+    <section className="why-sticky-section" ref={sectionRef}>
       <div className="container">
-        <div className="why-content">
-          <div className="why-left">
-            <h2 className="why-title">
-              {language === 'ru' ? 'Почему нам доверяют' : '为什么选择我们'}
-            </h2>
-            <div className="why-intro">
-              <p>
+        <div className="why-sticky-layout">
+          <div className="why-sticky-left">
+            <div className="sticky-content">
+              <h2 className="why-title-large">
+                {language === 'ru' ? 'Почему нам доверяют' : '为什么选择我们'}
+              </h2>
+              <p className="why-subtitle-large">
                 {language === 'ru' 
-                  ? 'Мы не просто перевозчик, а ваш стратегический логистический партнер. Берем на себя всю организацию, документы и решение проблем любой сложности.'
-                  : '我们不仅是承运商，更是您的战略物流合作伙伴。我们承担所有组织、文件和任何复杂问题的解决。'}
+                  ? 'Мы создаем максимально прогнозируемый результат, исключая неопределенность на каждом этапе.'
+                  : '我们创造了高度可预测的结果，消除了每个阶段的不确定性。'}
               </p>
-              <ul className="why-list-minimal">
-                <li><span>✓</span> {language === 'ru' ? 'Максимально прогнозируемый результат' : '结果高度可预测'}</li>
-                <li><span>✓</span> {language === 'ru' ? 'Отсутствие неопределенности' : '消除不确定性'}</li>
-                <li><span>✓</span> {language === 'ru' ? 'Прозрачность процессов' : '流程透明'}</li>
-              </ul>
+              <div className="why-stat-box">
+                <span className="accent-line"></span>
+                <strong>9+</strong>
+                <span>{language === 'ru' ? 'лет опыта' : '年经验'}</span>
+              </div>
             </div>
           </div>
           
-          <div className="why-right">
-            <div className="why-grid-modern">
-              {advantages.map((adv, index) => (
-                <div 
-                  key={adv.id} 
-                  className={`why-card-modern ${isVisible ? 'fade-in' : ''}`}
-                  style={{ animationDelay: `${index * 0.15}s` }}
-                >
-                  <div className="adv-id">{adv.id}</div>
-                  <h3 className="adv-title">{adv.title}</h3>
-                  <p className="adv-text">{adv.text}</p>
+          <div className="why-scroll-right">
+            {advantages.map((adv) => (
+              <div key={adv.id} className="why-scroll-card">
+                <div className="card-number">{adv.id}</div>
+                <div className="card-body">
+                  <h3>{adv.title}</h3>
+                  <p>{adv.text}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
