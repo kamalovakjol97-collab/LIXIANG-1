@@ -66,6 +66,8 @@
   font-weight: 800;
   margin-bottom: 30px;
   line-height: 1.2;
+  color: var(--color-accent); /* Делаем заголовок оранжевым для контраста */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Добавляем небольшую тень для еще большей четкости */
 }
 
 .service-sub-list {
