@@ -1,4 +1,5 @@
 import { useLanguage } from '../context/LanguageContext'
+import LegalProof from '../components/LegalProof'
 import './ContactsPage.css'
 
 const ContactsPage = () => {
@@ -63,6 +64,8 @@ const ContactsPage = () => {
           </div>
         </div>
       </div>
+      
+      <LegalProof />
     </div>
   )
 }

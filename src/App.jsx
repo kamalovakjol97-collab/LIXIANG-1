@@ -17,8 +17,6 @@ import NewsPage from './pages/NewsPage'
 import ContactsPage from './pages/ContactsPage'
 import ProjectsPage from './pages/ProjectsPage'
 import HistoryPage from './pages/HistoryPage'
-import NewsSection from './components/NewsSection'
-import LegalProof from './components/LegalProof'
 import './App.css'
 
 function HomePage() {
@@ -37,10 +35,6 @@ function HomePage() {
         <WhyXGLOG />
         <hr className="section-divider" />
         <Geography />
-        <hr className="section-divider" />
-        <NewsSection />
-        <hr className="section-divider" />
-        <LegalProof />
         <hr className="section-divider" />
         <ApplicationForm />
       </main>
