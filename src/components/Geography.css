@@ -1,17 +1,16 @@
 .geo-global-section {
-  padding: 120px 0;
-  background-color: #1A1D23;
+  padding: 100px 0;
+  background-color: #0d1117;
   color: white;
-  overflow: hidden;
 }
 
 .map-wrapper {
   position: relative;
-  background: rgba(255,255,255,0.02);
-  border-radius: 20px;
-  padding: 60px;
+  background: radial-gradient(circle at center, #161b22 0%, #0d1117 100%);
+  border-radius: 24px;
+  padding: 40px;
   border: 1px solid rgba(255,255,255,0.05);
-  box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+  box-shadow: 0 50px 100px rgba(0,0,0,0.6);
 }
 
 .world-map-svg {
@@ -19,17 +18,32 @@
   height: auto;
 }
 
-.land-shape {
-  fill: rgba(255,255,255,0.03);
-  stroke: rgba(255,255,255,0.08);
+/* Страны */
+.country-shape {
+  fill: rgba(255,255,255,0.02);
+  stroke: rgba(255,255,255,0.05);
   stroke-width: 1;
+  transition: all 0.5s ease;
 }
 
+.russia-area { fill: rgba(59, 130, 246, 0.03); }
+.china-area { fill: rgba(239, 68, 68, 0.03); }
+.kazakhstan-area { fill: rgba(245, 158, 11, 0.03); }
+
+.country-label {
+  fill: rgba(255,255,255,0.1);
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  pointer-events: none;
+}
+
+/* Маршруты */
 .path-rail {
   fill: none;
-  stroke: rgba(255,255,255,0.2);
-  stroke-width: 1;
-  stroke-dasharray: 4, 4;
+  stroke: rgba(255,255,255,0.15);
+  stroke-width: 1.5;
+  stroke-dasharray: 5, 5;
 }
 
 .path-sea {
@@ -40,62 +54,76 @@
   opacity: 0.3;
 }
 
-.path-truck {
-  fill: none;
-  stroke: #00ff88;
-  stroke-width: 1.5;
-  stroke-dasharray: 6, 3;
-  opacity: 0.4;
-}
-
-.city-point circle {
-  fill: var(--color-accent);
-  filter: drop-shadow(0 0 8px var(--color-accent));
-}
-
-.city-point.russia circle {
-  fill: #3b82f6;
-  filter: drop-shadow(0 0 8px #3b82f6);
-}
-
-.city-point text {
+/* Точки */
+.node-dot {
   fill: white;
-  font-size: 11px;
-  font-weight: 600;
-  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.port-ru .node-dot { fill: #3b82f6; filter: drop-shadow(0 0 5px #3b82f6); }
+.port-cn .node-dot { fill: #ef4444; filter: drop-shadow(0 0 5px #ef4444); }
+.border .node-dot { fill: #f59e0b; filter: drop-shadow(0 0 8px #f59e0b); }
+.city-ru .node-dot, .city-cn .node-dot { fill: rgba(255,255,255,0.5); }
+
+.node-text {
+  fill: rgba(255,255,255,0.4);
+  font-size: 10px;
+  font-weight: 500;
   pointer-events: none;
+  transition: all 0.3s ease;
 }
 
-.moving-unit text {
-  filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
+.node-group:hover .node-text {
+  fill: white;
+  font-size: 12px;
 }
 
-.map-legend-v2 {
+.node-group:hover .node-dot {
+  r: 6;
+}
+
+/* Легенда */
+.map-legend-v3 {
   position: absolute;
-  bottom: 40px;
-  left: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  background: rgba(0,0,0,0.6);
-  padding: 25px;
-  backdrop-filter: blur(15px);
-  border-radius: 12px;
+  top: 40px;
+  right: 40px;
+  background: rgba(13, 17, 23, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.1);
+}
+
+.legend-group h4 {
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  gap: 10px;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  color: rgba(255,255,255,0.7);
 }
 
-.unit-icon { font-size: 1.2rem; }
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
 
-@media (max-width: 992px) {
+.dot.port-ru { background: #3b82f6; }
+.dot.port-cn { background: #ef4444; }
+.dot.border { background: #f59e0b; }
+.dot.city { background: rgba(255,255,255,0.5); }
+
+@media (max-width: 1024px) {
   .map-wrapper { padding: 20px; }
-  .city-point text { display: none; }
-  .map-legend-v2 { position: relative; bottom: 0; left: 0; margin-top: 30px; }
+  .node-text { display: none; }
+  .map-legend-v3 { position: relative; top: 0; right: 0; margin-top: 20px; }
 }

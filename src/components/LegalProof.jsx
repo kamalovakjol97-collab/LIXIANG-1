@@ -26,7 +26,7 @@ const LegalProof = () => {
       location: language === 'ru' ? 'Маньчжурия, КНР' : '中国满洲里',
       status: language === 'ru' ? 'Действующая компания' : '运营中',
       role: language === 'ru' ? 'Головная компания — основатель группы' : '母公司 — 集团创始人',
-      licenseImg: '/assets/c__Users_Notebook_AppData_Roaming_Cursor_User_workspaceStorage_f742ad0ad9fbd53d56a5c50ad748b463_images_Image_20260124132406-887bae52-5ef8-4d5b-819c-f75d95acce98.png'
+      licenseImg: '/assets/license-dongxin.png'
     },
     {
       id: 'guosen',
@@ -37,7 +37,7 @@ const LegalProof = () => {
       location: language === 'ru' ? 'Маньчжурия, КНР' : '中国满洲里',
       status: language === 'ru' ? 'Действующая компания' : '运营中',
       role: language === 'ru' ? 'Профильное логистическое подразделение' : '专业物流部门',
-      licenseImg: '/assets/c__Users_Notebook_AppData_Roaming_Cursor_User_workspaceStorage_f742ad0ad9fbd53d56a5c50ad748b463_images_Image_20260124132623-c8d3a04e-29ad-41ab-a019-effef72d58ba.png'
+      licenseImg: '/assets/license-guosen.png'
     }
   ]
 
