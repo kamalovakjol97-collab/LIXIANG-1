@@ -173,6 +173,10 @@ const Geography = () => {
               <div className="legend-item"><span className="dot port-cn"></span> {language === 'ru' ? 'Порты КНР' : '中国港口'}</div>
               <div className="legend-item"><span className="dot border"></span> {language === 'ru' ? 'Погранпереходы' : '边境口岸'}</div>
               <div className="legend-item"><span className="dot city"></span> {language === 'ru' ? 'Ключевые города' : '主要城市'}</div>
+              <h4 style={{ marginTop: '14px', marginBottom: '8px' }}>{language === 'ru' ? 'Маршруты' : '路线'}</h4>
+              <div className="legend-route"><span className="legend-route-line rail"></span> {language === 'ru' ? 'ЖД перевозки' : '铁路运输'}</div>
+              <div className="legend-route"><span className="legend-route-line sea"></span> {language === 'ru' ? 'Морские перевозки' : '海运'}</div>
+              <div className="legend-route"><span className="legend-route-line auto"></span> {language === 'ru' ? 'Автоперевозки' : '汽车运输'}</div>
             </div>
           </div>
         </div>
