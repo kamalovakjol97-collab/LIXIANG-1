@@ -1,8 +1,11 @@
+import { useState, useEffect } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import './Services.css'
 
 const Services = () => {
   const { language, t } = useLanguage()
+  const [activeService, setActiveService] = useState(0)
+  const [fadeKey, setFadeKey] = useState(0)
   
   const scrollToForm = () => {
     const formElement = document.getElementById('application-form')
@@ -10,6 +13,35 @@ const Services = () => {
       formElement.scrollIntoView({ behavior: 'smooth' })
     }
   }
+
+  const handleServiceClick = (index) => {
+    setFadeKey(prev => prev + 1)
+    setActiveService(index)
+  }
+
+  // Устанавливаем первую услугу активной при загрузке
+  useEffect(() => {
+    setActiveService(0)
+    setFadeKey(0)
+  }, [language])
+
+  // Обработка клавиатурной навигации
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault()
+        const direction = e.key === 'ArrowDown' ? 1 : -1
+        const newIndex = Math.max(0, Math.min(currentServices.length - 1, activeService + direction))
+        if (newIndex !== activeService) {
+          setFadeKey(prev => prev + 1)
+          setActiveService(newIndex)
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [activeService, currentServices.length])
 
   const servicesData = {
     ru: [
@@ -159,36 +191,78 @@ const Services = () => {
   }
 
   const currentServices = servicesData[language] || servicesData.ru
+  const activeServiceData = currentServices[activeService]
 
   return (
-    <section className="services-section">
+    <section className="services-section" aria-label={t('services')}>
       <div className="container">
         <h2 className="section-title-modern">{t('services')}</h2>
-        <div className="services-modern-grid">
-          {currentServices.map((service, index) => (
-            <article 
-              key={service.id} 
-              className="service-modern-card fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="service-card-image">
-                <img src={service.image} alt={service.title} />
-                <div className="image-overlay-dark"></div>
-                <div className="service-card-content">
-                  <h2 className="service-card-title">{service.title}</h2>
-                  <p className="service-card-description">{service.description}</p>
-                  <ul className="service-sub-list">
-                    {service.subs.map((sub, i) => (
-                      <li key={i}>{sub}</li>
-                    ))}
-                  </ul>
-                  <button className="service-card-btn" onClick={scrollToForm}>
-                    {language === 'ru' ? 'Оставить заявку' : '提交申请'}
+        
+        <div className="services-two-column-layout">
+          {/* Левая колонка: Список услуг */}
+          <aside className="services-list-column" role="navigation" aria-label={language === 'ru' ? 'Список услуг' : '服务列表'}>
+            <nav className="services-nav-list" role="list">
+              {currentServices.map((service, index) => {
+                const isActive = index === activeService
+                const serviceNumber = String(index + 1).padStart(2, '0')
+                
+                return (
+                  <button
+                    key={service.id}
+                    className={`service-nav-item ${isActive ? 'active' : ''}`}
+                    onClick={() => handleServiceClick(index)}
+                    role="listitem"
+                    aria-label={`${language === 'ru' ? 'Выбрать услугу' : '选择服务'}: ${service.title}`}
+                    aria-current={isActive ? 'page' : undefined}
+                    tabIndex={isActive ? 0 : -1}
+                  >
+                    <span className="service-number">{serviceNumber}</span>
+                    <div className="service-nav-content">
+                      <h3 className="service-nav-title">{service.title}</h3>
+                      <p className="service-nav-subtitle">{service.description}</p>
+                    </div>
+                    {isActive && <span className="service-nav-indicator" aria-hidden="true"></span>}
                   </button>
-                </div>
+                )
+              })}
+            </nav>
+          </aside>
+
+          {/* Правая колонка: Детальное описание */}
+          <main className="services-detail-column" role="main">
+            <article 
+              key={fadeKey}
+              className="service-detail-content fade-in"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <header className="service-detail-header">
+                <h2 className="service-detail-title">{activeServiceData.title}</h2>
+                <p className="service-detail-description">{activeServiceData.description}</p>
+              </header>
+
+              <div className="service-detail-body">
+                <ul className="service-detail-list" role="list">
+                  {activeServiceData.subs.map((sub, i) => (
+                    <li key={i} role="listitem">
+                      <span className="service-detail-checkmark" aria-hidden="true">✓</span>
+                      <span>{sub}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
+
+              <footer className="service-detail-footer">
+                <button 
+                  className="service-detail-cta-btn"
+                  onClick={scrollToForm}
+                  aria-label={language === 'ru' ? 'Оставить заявку на услугу' : '提交服务申请'}
+                >
+                  {language === 'ru' ? 'ОСТАВИТЬ ЗАЯВКУ' : '提交申请'}
+                </button>
+              </footer>
             </article>
-          ))}
+          </main>
         </div>
       </div>
     </section>
