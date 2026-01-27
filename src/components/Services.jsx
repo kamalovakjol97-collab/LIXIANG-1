@@ -211,12 +211,29 @@ const Services = () => {
   return (
     <section className="services-section" aria-label={t('services')}>
       <div className="container">
-        <h2 className="section-title-modern">{t('services')}</h2>
-        
         <div className="services-two-column-layout">
-          {/* Левая колонка: Список услуг */}
-          <aside className="services-list-column" role="navigation" aria-label={language === 'ru' ? 'Список услуг' : '服务列表'}>
-            <nav className="services-nav-list" role="list">
+          {/* Левая колонка: Информация и брендинг */}
+          <aside className="services-info-column" role="complementary">
+            <div className="services-info-content">
+              <h2 className="services-info-title">{t('services')}</h2>
+              <p className="services-info-description">
+                {language === 'ru' 
+                  ? 'Реализуем логистические стратегии любой сложности, обеспечивая бесперебойность ваших поставок.'
+                  : '我们实施任何复杂程度的物流战略，确保您的供应不间断。'}
+              </p>
+              <div className="services-branding">
+                <div className="services-branding-line"></div>
+                <div className="services-branding-text">
+                  <strong className="services-branding-xgl">XGL</strong>
+                  <span className="services-branding-group">LOGISTICS GROUP</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          {/* Правая колонка: Список услуг */}
+          <main className="services-list-column" role="main">
+            <div className="services-cards-list">
               {currentServices.map((service, index) => {
                 const isActive = index === safeActiveService
                 const serviceNumber = String(index + 1).padStart(2, '0')
@@ -224,27 +241,23 @@ const Services = () => {
                 return (
                   <button
                     key={service.id}
-                    className={`service-nav-item ${isActive ? 'active' : ''}`}
+                    className={`service-card-item ${isActive ? 'active' : ''}`}
                     onClick={() => handleServiceClick(index)}
-                    role="listitem"
+                    role="button"
                     aria-label={`${language === 'ru' ? 'Выбрать услугу' : '选择服务'}: ${service.title}`}
                     aria-current={isActive ? 'page' : undefined}
-                    tabIndex={isActive ? 0 : -1}
                   >
-                    <span className="service-number">{serviceNumber}</span>
-                    <div className="service-nav-content">
-                      <h3 className="service-nav-title">{service.title}</h3>
-                      <p className="service-nav-subtitle">{service.description}</p>
+                    <span className="service-card-number">{serviceNumber}</span>
+                    <div className="service-card-content">
+                      <h3 className="service-card-title">{service.title}</h3>
+                      <p className="service-card-description">{service.description}</p>
                     </div>
-                    {isActive && <span className="service-nav-indicator" aria-hidden="true"></span>}
                   </button>
                 )
               })}
-            </nav>
-          </aside>
+            </div>
 
-          {/* Правая колонка: Детальное описание */}
-          <main className="services-detail-column" role="main">
+            {/* Детальное описание активной услуги */}
             {activeServiceData && (
               <article 
                 key={fadeKey}
