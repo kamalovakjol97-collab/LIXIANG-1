@@ -19,30 +19,7 @@ const Services = () => {
     setActiveService(index)
   }
 
-  // Устанавливаем первую услугу активной при загрузке
-  useEffect(() => {
-    setActiveService(0)
-    setFadeKey(0)
-  }, [language])
-
-  // Обработка клавиатурной навигации
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault()
-        const direction = e.key === 'ArrowDown' ? 1 : -1
-        const newIndex = Math.max(0, Math.min(currentServices.length - 1, activeService + direction))
-        if (newIndex !== activeService) {
-          setFadeKey(prev => prev + 1)
-          setActiveService(newIndex)
-        }
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [activeService, currentServices.length])
-
+  // Данные услуг должны быть объявлены до использования в useEffect
   const servicesData = {
     ru: [
       {
@@ -191,7 +168,45 @@ const Services = () => {
   }
 
   const currentServices = servicesData[language] || servicesData.ru
-  const activeServiceData = currentServices[activeService]
+
+  // Устанавливаем первую услугу активной при загрузке и при смене языка
+  useEffect(() => {
+    setActiveService(0)
+    setFadeKey(0)
+  }, [language])
+
+  // Защита: если activeService выходит за границы массива, сбрасываем на 0
+  useEffect(() => {
+    if (activeService >= currentServices.length || activeService < 0) {
+      setActiveService(0)
+    }
+  }, [activeService, currentServices.length])
+
+  // Обработка клавиатурной навигации
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault()
+        const direction = e.key === 'ArrowDown' ? 1 : -1
+        const newIndex = Math.max(0, Math.min(currentServices.length - 1, activeService + direction))
+        if (newIndex !== activeService) {
+          setFadeKey(prev => prev + 1)
+          setActiveService(newIndex)
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [activeService, currentServices.length])
+
+  // Безопасное получение данных активной услуги
+  const activeServiceData = currentServices[activeService] || currentServices[0]
+
+  // Проверяем, что activeService в допустимых пределах
+  const safeActiveService = activeService >= 0 && activeService < currentServices.length 
+    ? activeService 
+    : 0
 
   return (
     <section className="services-section" aria-label={t('services')}>
@@ -203,7 +218,7 @@ const Services = () => {
           <aside className="services-list-column" role="navigation" aria-label={language === 'ru' ? 'Список услуг' : '服务列表'}>
             <nav className="services-nav-list" role="list">
               {currentServices.map((service, index) => {
-                const isActive = index === activeService
+                const isActive = index === safeActiveService
                 const serviceNumber = String(index + 1).padStart(2, '0')
                 
                 return (
@@ -230,38 +245,40 @@ const Services = () => {
 
           {/* Правая колонка: Детальное описание */}
           <main className="services-detail-column" role="main">
-            <article 
-              key={fadeKey}
-              className="service-detail-content fade-in"
-              aria-live="polite"
-              aria-atomic="true"
-            >
-              <header className="service-detail-header">
-                <h2 className="service-detail-title">{activeServiceData.title}</h2>
-                <p className="service-detail-description">{activeServiceData.description}</p>
-              </header>
+            {activeServiceData && (
+              <article 
+                key={fadeKey}
+                className="service-detail-content fade-in"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                <header className="service-detail-header">
+                  <h2 className="service-detail-title">{activeServiceData.title}</h2>
+                  <p className="service-detail-description">{activeServiceData.description}</p>
+                </header>
 
-              <div className="service-detail-body">
-                <ul className="service-detail-list" role="list">
-                  {activeServiceData.subs.map((sub, i) => (
-                    <li key={i} role="listitem">
-                      <span className="service-detail-checkmark" aria-hidden="true">✓</span>
-                      <span>{sub}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                <div className="service-detail-body">
+                  <ul className="service-detail-list" role="list">
+                    {activeServiceData.subs && activeServiceData.subs.map((sub, i) => (
+                      <li key={i} role="listitem">
+                        <span className="service-detail-checkmark" aria-hidden="true">✓</span>
+                        <span>{sub}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-              <footer className="service-detail-footer">
-                <button 
-                  className="service-detail-cta-btn"
-                  onClick={scrollToForm}
-                  aria-label={language === 'ru' ? 'Оставить заявку на услугу' : '提交服务申请'}
-                >
-                  {language === 'ru' ? 'ОСТАВИТЬ ЗАЯВКУ' : '提交申请'}
-                </button>
-              </footer>
-            </article>
+                <footer className="service-detail-footer">
+                  <button 
+                    className="service-detail-cta-btn"
+                    onClick={scrollToForm}
+                    aria-label={language === 'ru' ? 'Оставить заявку на услугу' : '提交服务申请'}
+                  >
+                    {language === 'ru' ? 'ОСТАВИТЬ ЗАЯВКУ' : '提交申请'}
+                  </button>
+                </footer>
+              </article>
+            )}
           </main>
         </div>
       </div>
