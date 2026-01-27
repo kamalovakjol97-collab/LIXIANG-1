@@ -163,31 +163,21 @@ const Services = () => {
   return (
     <section className="services-section">
       <div className="container">
-        <h2 className="section-title-modern">{t('services')}</h2>
-        <div className="services-modern-grid">
-          {currentServices.map((service, index) => (
-            <article 
-              key={service.id} 
-              className="service-modern-card fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="service-card-image">
-                <img src={service.image} alt={service.title} />
-                <div className="image-overlay-dark"></div>
-                <div className="service-card-content">
-                  <h2 className="service-card-title">{service.title}</h2>
-                  <p className="service-card-description">{service.description}</p>
-                  <ul className="service-sub-list">
-                    {service.subs.map((sub, i) => (
-                      <li key={i}>{sub}</li>
-                    ))}
-                  </ul>
-                  <button className="service-card-btn" onClick={scrollToForm}>
-                    {language === 'ru' ? 'Оставить заявку' : '提交申请'}
-                  </button>
-                </div>
-              </div>
-            </article>
+        <h2 className="section-title">{t('services')}</h2>
+        <div className="services-list">
+          {currentServices.map((service) => (
+            <div key={service.id} className="service-item">
+              <h3 className="service-title">{service.title}</h3>
+              <p className="service-description">{service.description}</p>
+              <ul className="service-subs">
+                {service.subs.map((sub, i) => (
+                  <li key={i}>{sub}</li>
+                ))}
+              </ul>
+              <button className="service-btn" onClick={scrollToForm}>
+                {language === 'ru' ? 'Оставить заявку' : '提交申请'}
+              </button>
+            </div>
           ))}
         </div>
       </div>
