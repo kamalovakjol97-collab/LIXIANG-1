@@ -1,12 +1,13 @@
 .services-section {
   padding: 100px 0;
-  background-color: var(--color-bg-light);
+  background-color: var(--color-bg-dark);
+  color: white;
 }
 
 .section-title-modern {
   font-size: 3rem;
   font-weight: 800;
-  color: var(--color-primary);
+  color: var(--color-accent);
   margin-bottom: 60px;
   text-align: left;
 }
@@ -104,7 +105,7 @@
 
 .service-nav-subtitle {
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.7);
   margin: 0;
   line-height: 1.4;
   display: -webkit-box;
@@ -130,10 +131,11 @@
 }
 
 .service-detail-content {
-  background: white;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
   padding: 60px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Fade анимация */
@@ -193,7 +195,7 @@
   gap: 16px;
   font-size: 1.0625rem;
   line-height: 1.6;
-  color: var(--color-text);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .service-detail-checkmark {
