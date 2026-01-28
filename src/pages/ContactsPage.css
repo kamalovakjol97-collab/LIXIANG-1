@@ -62,6 +62,21 @@
   margin-bottom: 0;
 }
 
+.contact-item--logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.company-logo {
+  max-width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+
 .contact-label {
   font-size: 32px;
   font-weight: 700;
