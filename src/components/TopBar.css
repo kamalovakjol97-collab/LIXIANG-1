@@ -1,7 +1,7 @@
 .top-bar {
   background-color: var(--color-bg-dark);
   color: var(--color-white);
-  font-size: 12px;
+  font-size: 15px;
   padding: 8px 0;
   font-weight: 500;
   position: relative;
@@ -34,7 +34,7 @@
   color: var(--color-white);
   text-decoration: none;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .top-socials {

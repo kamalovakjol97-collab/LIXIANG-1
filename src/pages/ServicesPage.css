@@ -10,11 +10,26 @@
   display: flex;
   align-items: center;
   padding: 100px 0;
-  color: var(--color-white);
+  color: #FFFFFF;
   text-align: left;
   overflow: hidden;
-  background-color: var(--color-primary);
+  background-color: #051A3D;
+  background-image: url('https://images.unsplash.com/photo-1605745341112-859208192469?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-bottom: 1px solid var(--color-border);
+}
+
+.services-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(10, 42, 94, 0.9) 0%, rgba(10, 42, 94, 0.4) 50%, transparent 100%);
+  z-index: 0;
 }
 
 .services-hero .container {
