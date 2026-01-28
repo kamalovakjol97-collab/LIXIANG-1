@@ -3,87 +3,297 @@
   background-color: var(--color-bg-light);
 }
 
-.section-title {
+.services-section-title {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--color-primary);
   margin-bottom: 50px;
-  text-align: center;
+  text-align: left;
+  position: relative;
+  padding-left: 20px;
 }
 
-.services-list {
+.services-section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10%;
+  height: 80%;
+  width: 5px;
+  background: var(--color-accent);
+}
+
+/* Two-column layout */
+.services-two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 30%) minmax(0, 70%);
+  gap: 48px;
+  align-items: start;
+}
+
+/* Left column: nav list */
+.services-nav {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 0;
+  position: sticky;
+  top: 120px;
 }
 
-.service-item {
-  padding: 30px;
-  background: white;
+.service-nav-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  padding: 20px 20px 20px 16px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.25s ease, color 0.25s ease;
+  border-left: 4px solid transparent;
+  color: var(--color-text-main);
 }
 
-.service-title {
+.service-nav-item:hover {
+  background-color: rgba(10, 42, 94, 0.06);
+}
+
+.service-nav-item:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.service-nav-item--active {
+  background-color: rgba(255, 122, 0, 0.08);
+  border-left-color: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.service-nav-number {
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  line-height: 1.2;
+}
+
+.service-nav-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.service-nav-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: inherit;
+}
+
+.service-nav-teaser {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.service-nav-item--active .service-nav-teaser {
+  color: var(--color-text-main);
+}
+
+/* Right column: detail panel */
+.services-detail {
+  min-height: 320px;
+  background: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 40px 48px;
+}
+
+.services-detail-inner {
+  animation: servicesDetailFadeIn 0.3s ease-out;
+}
+
+.services-detail-inner--fade {
+  opacity: 0.6;
+}
+
+@keyframes servicesDetailFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.services-detail-title {
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--color-primary);
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
-.service-description {
+.services-detail-description {
   font-size: 1.1rem;
-  color: var(--color-text);
-  margin-bottom: 20px;
+  color: var(--color-text-main);
   line-height: 1.6;
+  margin-bottom: 24px;
 }
 
-.service-subs {
+.services-detail-subs {
   list-style: none;
   padding: 0;
-  margin: 0 0 25px 0;
+  margin: 0 0 32px 0;
 }
 
-.service-subs li {
+.services-detail-subs li {
   font-size: 1rem;
-  color: var(--color-text);
-  margin-bottom: 10px;
-  padding-left: 20px;
+  color: var(--color-text-main);
+  margin-bottom: 12px;
+  padding-left: 24px;
   position: relative;
   line-height: 1.5;
 }
 
-.service-subs li::before {
-  content: '•';
+.services-detail-subs li::before {
+  content: '';
   position: absolute;
   left: 0;
-  color: var(--color-accent);
-  font-weight: bold;
+  top: 0.5em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
 }
 
 .service-btn {
   background: var(--color-accent);
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 14px 28px;
   font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
   cursor: pointer;
   border-radius: 4px;
-  transition: background 0.3s;
+  transition: background 0.25s ease;
 }
 
 .service-btn:hover {
   background: var(--color-accent-hover);
 }
 
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 2rem;
+.service-btn:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.services-detail-cta {
+  min-width: 200px;
+}
+
+/* Responsive: tablet — nav becomes horizontal scroll */
+@media (max-width: 992px) {
+  .services-two-column {
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
-  .service-item {
-    padding: 20px;
+
+  .services-nav {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 0;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
   }
-  .service-title {
-    font-size: 1.5rem;
+
+  .services-nav::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .services-nav::-webkit-scrollbar-thumb {
+    background: var(--color-light-gray);
+    border-radius: 3px;
+  }
+
+  .service-nav-item {
+    flex-shrink: 0;
+    min-width: 240px;
+    max-width: 280px;
+  }
+
+  .service-nav-item--active {
+    border-left-color: var(--color-accent);
+    border-bottom: 2px solid transparent;
+  }
+
+  .services-detail {
+    padding: 32px 24px;
+  }
+}
+
+/* Responsive: mobile — compact nav, smaller detail */
+@media (max-width: 576px) {
+  .services-section {
+    padding: 48px 0;
+  }
+
+  .services-section-title {
+    font-size: 1.75rem;
+    margin-bottom: 28px;
+  }
+
+  .service-nav-item {
+    min-width: 200px;
+    padding: 16px 14px 16px 12px;
+  }
+
+  .service-nav-number {
+    font-size: 1rem;
+  }
+
+  .service-nav-title {
+    font-size: 1rem;
+  }
+
+  .service-nav-teaser {
+    -webkit-line-clamp: 1;
+    font-size: 0.8rem;
+  }
+
+  .services-detail {
+    padding: 24px 20px;
+    min-height: 260px;
+  }
+
+  .services-detail-title {
+    font-size: 1.4rem;
+  }
+
+  .services-detail-description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .services-detail-subs li {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+
+  .services-detail-cta {
+    width: 100%;
+    min-width: 0;
   }
 }
