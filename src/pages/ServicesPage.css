@@ -12,8 +12,7 @@
   color: var(--color-white);
   text-align: left;
   overflow: hidden;
-  background: linear-gradient(90deg, rgba(10, 42, 94, 0.88) 0%, rgba(10, 42, 94, 0.5) 60%, rgba(10, 42, 94, 0.2) 100%),
-    url('https://images.unsplash.com/photo-1605745341112-859208192469?w=1920&q=80') center/cover no-repeat;
+  background: rgb(10, 42, 94);
   border-bottom: 1px solid var(--color-border);
 }
 
