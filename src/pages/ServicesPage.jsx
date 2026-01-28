@@ -215,7 +215,7 @@ const ServicesPage = () => {
       <div className="container">
         <div className="services-bottom-cta">
           <h2 className="bottom-cta-title">
-            {language === 'ru' ? 'Логистика, которая помогает бизнесу работать быстрее' : '助您业务提速的物流'}
+            {language === 'ru' ? 'Мы доставляем не просто грузы, а возможности для бизнеса' : '我们不仅运送货物，还为您的业务带来机遇'}
           </h2>
           <button className="btn-primary" onClick={scrollToForm}>
             {language === 'ru' ? 'Рассчитать стоимость' : '计算费用'}
