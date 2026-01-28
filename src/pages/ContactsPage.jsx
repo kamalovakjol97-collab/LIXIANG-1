@@ -20,13 +20,7 @@ const ContactsPage = () => {
             <div className="contacts-brand">XGL</div>
           </div>
           <div className="contacts-info">
-            <div className="contact-item contact-item--logo">
-              <img 
-                src="/assets/xgl-logo.png" 
-                alt="XGL Group Logo" 
-                className="company-logo"
-              />
-            </div>
+            <div className="contacts-info-text">
             <div className="contact-item">
               <h3 className="contact-label">
                 {language === 'ru' ? 'ООО ГК ХЖЛ' : '有限责任公司 XGL'}
@@ -67,6 +61,14 @@ const ContactsPage = () => {
               <p className="contact-value">
                 7806621373
               </p>
+            </div>
+            </div>
+            <div className="contacts-logo">
+              <img 
+                src="/assets/xgl-logo.png" 
+                alt="XGL Group Logo" 
+                className="company-logo"
+              />
             </div>
           </div>
         </div>
