@@ -49,7 +49,8 @@ const ProjectsPage = () => {
         keyNumberLabel: 'позиций вывезено из порта Бронка',
         cta: 'Подробнее о сотрудничестве',
         logo: 'CC7',
-        route: 'Китай → Бронка → объект'
+        route: 'Китай → Бронка → объект',
+        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80'
       },
       {
         id: 'eastern-ring',
@@ -66,7 +67,8 @@ const ProjectsPage = () => {
         keyNumber: null,
         result: 'Бесшовная логистика «от двери до двери»',
         cta: 'Узнать больше',
-        route: 'Китай → транзит → Россия'
+        route: 'Китай → транзит → Россия',
+        image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80'
       }
     ],
     zh: [
@@ -86,7 +88,8 @@ const ProjectsPage = () => {
         keyNumberLabel: '从布龙卡港运出的项目',
         cta: '了解更多合作信息',
         logo: 'CC7',
-        route: '中国 → 布龙卡 → 项目现场'
+        route: '中国 → 布龙卡 → 项目现场',
+        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80'
       },
       {
         id: 'eastern-ring',
@@ -103,7 +106,8 @@ const ProjectsPage = () => {
         keyNumber: null,
         result: '“门到门”无缝物流',
         cta: '了解更多',
-        route: '中国 → 中转 → 俄罗斯'
+        route: '中国 → 中转 → 俄罗斯',
+        image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80'
       }
     ]
   }
@@ -132,6 +136,11 @@ const ProjectsPage = () => {
               className={`project-card card ${isVisible ? 'fade-in' : ''}`}
               style={{ animationDelay: `${index * 0.15}s` }}
             >
+              {project.image && (
+                <div className="project-image">
+                  <img src={project.image} alt={project.title} />
+                </div>
+              )}
               <div className="project-header">
                 <div className="project-status">
                   <span className={`status-badge ${project.statusClass}`}>

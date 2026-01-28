@@ -88,15 +88,29 @@
 }
 
 .event-icon {
-  font-size: 2rem;
   width: 56px;
   height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(37, 99, 235, 0.1);
-  border-radius: 0.5rem;
+  background: linear-gradient(135deg, rgba(255, 122, 0, 0.1) 0%, rgba(10, 42, 94, 0.1) 100%);
+  border-radius: 0.75rem;
   flex-shrink: 0;
+  border: 2px solid rgba(255, 122, 0, 0.2);
+  color: var(--color-accent);
+  transition: all 0.3s ease;
+}
+
+.event-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.timeline-event:hover .event-icon {
+  background: linear-gradient(135deg, rgba(255, 122, 0, 0.15) 0%, rgba(10, 42, 94, 0.15) 100%);
+  border-color: var(--color-accent);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2);
 }
 
 .event-date {
