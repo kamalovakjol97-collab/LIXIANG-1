@@ -222,8 +222,6 @@ const ServicesPage = () => {
           </button>
         </div>
       </div>
-
-      <ApplicationForm />
     </div>
   )
 }
