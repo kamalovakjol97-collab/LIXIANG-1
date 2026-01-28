@@ -19,6 +19,9 @@
   --color-gray: #718096;
   --color-light-gray: #E2E8F0;
   --color-border: #E5E7EB;
+  --color-graphite: #1A1D23;
+  --color-dark-blue: #0A2A5E;
+  --color-footer-dark: #1A1D23;
   
   /* Typography */
   --font-heading: 'Montserrat', sans-serif;

@@ -2,6 +2,7 @@
   background-color: var(--color-footer-dark);
   color: var(--color-white);
   padding: var(--spacing-2xl) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-content {
@@ -28,6 +29,7 @@
   font-size: 18px;
   font-weight: 600;
   margin: 0;
+  color: var(--color-white);
 }
 
 .footer-email {

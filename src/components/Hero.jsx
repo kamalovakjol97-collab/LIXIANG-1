@@ -28,7 +28,7 @@ const Hero = () => {
       <div className="container">
         <div className={`hero-content ${isVisible ? 'fade-in' : ''}`}>
           <div className="hero-tag">
-            {language === 'ru' ? 'Международная логистика' : '国际物流'}
+            {language === 'ru' ? 'Международная логистика с душой' : '有灵魂的国际物流'}
           </div>
           <h1 className="hero-title">
             {language === 'ru' 

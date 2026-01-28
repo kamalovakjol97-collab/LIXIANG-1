@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Logo from './Logo'
 import { useLanguage } from '../context/LanguageContext'
 import './Header.css'
@@ -8,6 +8,7 @@ const Header = () => {
   const { t, language } = useLanguage()
   const [isScrolled, setIsScrolled] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
   
   useEffect(() => {
     const handleScroll = () => {
@@ -17,11 +18,8 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToForm = () => {
-    const formElement = document.getElementById('application-form')
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth' })
-    }
+  const handleCabinetClick = () => {
+    navigate('/lk')
   }
 
   const isHome = location.pathname === '/'
@@ -41,7 +39,7 @@ const Header = () => {
           </nav>
           
           <div className="header-right">
-            <button className="btn-primary header-cta" onClick={scrollToForm}>
+            <button className="btn-primary header-cta" onClick={handleCabinetClick}>
               {language === 'ru' ? 'Личный кабинет XGL' : 'XGL 个人账户'}
               <span className="btn-icon">→</span>
             </button>

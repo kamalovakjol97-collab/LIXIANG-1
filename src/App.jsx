@@ -17,6 +17,7 @@ import NewsPage from './pages/NewsPage'
 import ContactsPage from './pages/ContactsPage'
 import ProjectsPage from './pages/ProjectsPage'
 import HistoryPage from './pages/HistoryPage'
+import CabinetPage from './pages/CabinetPage'
 import './App.css'
 
 function HomePage() {
@@ -101,6 +102,14 @@ function App() {
                 <TopBar />
                 <Header />
                 <PrivacyPolicy />
+                <Footer />
+              </>
+            } />
+            <Route path="/lk" element={
+              <>
+                <TopBar />
+                <Header />
+                <CabinetPage />
                 <Footer />
               </>
             } />
