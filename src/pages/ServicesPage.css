@@ -4,220 +4,94 @@
   color: var(--color-text-main);
 }
 
-/* ——— 1. Hero ——— */
 .services-hero {
-  padding: 120px 0 90px;
-  color: var(--color-white);
+  position: relative;
+  min-height: 45vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 0;
+  color: #FFFFFF;
   text-align: left;
-  background-color: var(--color-primary);
+  overflow: hidden;
+  background-color: var(--color-primary-dark);
+  background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=2000&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-bottom: 1px solid var(--color-border);
+}
+
+.services-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(10, 42, 94, 0.9) 0%, rgba(10, 42, 94, 0.4) 50%, transparent 100%);
+  z-index: 0;
+}
+
+.services-hero .container {
+  position: relative;
+  z-index: 1;
 }
 
 .services-hero .breadcrumbs,
 .services-hero .breadcrumbs a {
   color: rgba(255, 255, 255, 0.9);
-  text-decoration: none;
-}
-
-.services-hero .breadcrumbs a:hover {
-  text-decoration: underline;
 }
 
 .services-hero .breadcrumbs span {
   color: rgba(255, 255, 255, 0.7);
-  margin: 0 0.25rem;
 }
 
-.services-title {
-  font-size: var(--font-size-h1);
-  font-weight: 700;
-  margin: 0.5rem 0 0;
+.services-page-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-top: 20px;
   color: var(--color-white);
-  letter-spacing: var(--letter-spacing-h);
-  line-height: 1.2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
 }
 
-.services-subtitle {
-  font-size: 1.25rem;
-  line-height: 1.5;
-  margin: 0.75rem 0 0;
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 640px;
-}
-
-/* ——— 2. Intro ——— */
-.services-intro {
-  padding: var(--spacing-2xl) 0;
-  text-align: center;
-}
-
-.services-intro .container p {
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: var(--color-text-main);
-  margin: 0;
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ——— 3. List & cards ——— */
-.services-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3rem;
-  padding: var(--spacing-2xl) 0;
-}
-
-.service-card {
-  padding: 2rem;
-  border-radius: 0.5rem;
-  background: var(--color-white);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-top: 4px solid var(--color-accent);
-  transition: box-shadow 0.3s ease;
-}
-
-.service-card:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
-
-.service-header {
-  margin-bottom: 0.5rem;
-}
-
-.service-title {
-  font-size: var(--font-size-h2);
-  font-weight: 700;
-  color: var(--color-accent);
-  margin: 0;
-  letter-spacing: var(--letter-spacing-h);
-  line-height: var(--line-height-heading);
-}
-
-.service-text {
-  font-size: 1rem;
-  line-height: var(--line-height-base);
-  color: var(--color-text-main);
-  margin: 0.75rem 0 0;
-}
-
-.service-details {
-  margin: 1rem 0 0;
-  padding-left: 1.25rem;
-  list-style: disc;
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--color-text-muted);
-}
-
-.service-details li {
-  margin-bottom: 0.5rem;
-}
-
-.service-details li:last-child {
-  margin-bottom: 0;
-}
-
-/* ——— Fade-in animation ——— */
-.service-card.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
-}
-
-.service-card.fade-in.visible {
-  opacity: 1;
-  transform: none;
-}
-
-/* ——— 4. CTA ——— */
-.services-cta {
-  padding: 3rem 0 4rem;
-  text-align: center;
+.services-bottom-cta {
+  padding: 100px 0;
+  text-align: left;
   border-top: 1px solid var(--color-border);
 }
 
-.services-cta .btn.btn-accent {
-  display: inline-block;
-  padding: 1rem 2rem;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--color-white);
-  background-color: var(--color-accent);
-  border: none;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  transition: background-color 0.25s ease;
+.bottom-cta-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 40px;
+  max-width: 800px;
 }
 
-.services-cta .btn.btn-accent:hover {
-  background-color: var(--color-accent-hover);
-}
-
-/* ——— Desktop (default already 2 cols) ——— */
 @media (max-width: 992px) {
-  .services-list {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .service-title {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 768px) {
   .services-hero {
-    padding: 80px 0 60px;
+    min-height: 35vh;
+    padding: 80px 0;
   }
-
-  .services-title {
-    font-size: 2.25rem;
-  }
-
-  .services-subtitle {
-    font-size: 1.0625rem;
-  }
-
-  .service-card {
-    padding: 1.5rem;
-  }
-
-  .service-title {
-    font-size: 1.75rem;
-  }
-
-  .service-text {
-    font-size: 0.9375rem;
-  }
-
-  .services-cta {
-    padding: 2rem 0 3rem;
-  }
-
-  .services-cta .btn.btn-accent {
-    padding: 0.875rem 1.5rem;
-    font-size: 1rem;
-    width: 100%;
-    max-width: 320px;
+  .services-page-title {
+    font-size: 2.5rem;
   }
 }
 
 @media (max-width: 576px) {
   .services-hero {
-    padding: 60px 0 50px;
+    min-height: 30vh;
+    padding: 60px 0;
   }
-
-  .services-title {
+  .services-page-title {
     font-size: 2rem;
   }
+}
 
-  .service-card {
-    padding: 1.25rem;
-  }
-
-  .service-title {
-    font-size: 1.5rem;
+@media (max-width: 576px) {
+  .bottom-cta-title {
+    font-size: 1.8rem;
   }
 }

@@ -1,11 +1,11 @@
-import { useEffect, useRef } from 'react'
+import { Fragment } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { Link } from 'react-router-dom'
 import './ServicesPage.css'
+import '../components/StickyStyles.css'
 
 const ServicesPage = () => {
   const { language } = useLanguage()
-  const cardRefs = useRef([])
 
   const scrollToForm = () => {
     const formElement = document.getElementById('application-form')
@@ -14,31 +14,13 @@ const ServicesPage = () => {
     }
   }
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-            observer.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-    )
-
-    const nodes = cardRefs.current.filter(Boolean)
-    nodes.forEach((el) => observer.observe(el))
-
-    return () => observer.disconnect()
-  }, [language])
-
   const servicesData = {
     ru: [
       {
         id: '01',
         title: 'Автомобильные перевозки',
         description: 'Надёжные и гибкие автоперевозки по любым маршрутам Китай — Россия',
+        accentText: 'Надёжные и гибкие автоперевозки по любым маршрутам Китай — Россия',
         cards: [
           'Региональные и межгородские перевозки по России: Доставка до двери в Москве, СПб и любом городе РФ.',
           'Международные автоперевозки из Китая: Прямые и транзитные (через Казахстан) маршруты.',
@@ -50,6 +32,7 @@ const ServicesPage = () => {
         id: '02',
         title: 'Экспедирование грузов',
         description: 'Ваш персональный логист в порту, на станции и на СВХ',
+        accentText: 'Ваш персональный логист в порту, на станции и на СВХ',
         cards: [
           'Экспедирование в морских портах: Встреча судна, контроль выгрузки, минимизация простоев.',
           'Экспедирование на ж/д терминалах: Приёмка груза, проверка комплектности, оформление накладных.',
@@ -61,6 +44,7 @@ const ServicesPage = () => {
         id: '03',
         title: 'Импорт из Китая',
         description: 'Комплексный импорт под ключ: от поиска поставщика до доставки на склад',
+        accentText: 'Комплексный импорт под ключ: от поиска поставщика до доставки на склад',
         cards: [
           'Доставка сборных грузов (LCL): Консолидация на нашем складе в Китае и доставка до вашего города.',
           'Контейнерные перевозки (FCL): Полноконтейнерные перевозки 20/40 футов (море, ж/д, авто).',
@@ -72,6 +56,7 @@ const ServicesPage = () => {
         id: '04',
         title: 'Экспорт',
         description: 'Надёжный экспорт из России: выстраиваем понятные логистические коридоры',
+        accentText: 'Надёжный экспорт из России: выстраиваем понятные логистические коридоры',
         cards: [
           'Экспорт в Китай: Авто и ж/д транспорт, оформление деклараций и сертификатов.',
           'Экспорт в Египет: Морские контейнерные перевозки до Александрии или Порт-Саида.',
@@ -83,6 +68,7 @@ const ServicesPage = () => {
         id: '05',
         title: 'Таможенное оформление',
         description: 'Юридически безупречное таможенное оформление «под ключ»',
+        accentText: 'Юридически безупречное таможенное оформление «под ключ»',
         cards: [
           'Таможенное оформление импорта: Расчёт платежей, НДС, акцизов. Классификация по ТН ВЭД.',
           'Таможенное оформление экспорта: Декларации, подтверждение нулевой ставки НДС.',
@@ -94,6 +80,7 @@ const ServicesPage = () => {
         id: '06',
         title: 'Аналитика и консалтинг',
         description: 'Стратегический подход к вашей логистике: от анализа до легализации',
+        accentText: 'Стратегический подход к вашей логистике: от анализа до легализации',
         cards: [
           'Легализация «серого» импорта: Анализ схем, аудит цепочек и разработка правовых решений.',
           'ВЭД-консалтинг: Полное сопровождение внешнеэкономической деятельности вашей компании.'
@@ -105,6 +92,7 @@ const ServicesPage = () => {
         id: '01',
         title: '汽车运输',
         description: '中国-俄罗斯各条路线上可靠且灵活的汽车运输',
+        accentText: '中国-俄罗斯各条路线上可靠且灵活的汽车运输',
         cards: [
           '俄罗斯境内区域和城际运输：送货上门。',
           '来自中国的国际汽车运输：直接和过境路线。',
@@ -116,6 +104,7 @@ const ServicesPage = () => {
         id: '02',
         title: '货物代理',
         description: '您在港口、车站和临时仓库的私人物流师',
+        accentText: '您在港口、车站和临时仓库的私人物流师',
         cards: [
           '海港代理：接船、卸货控制、尽量减少停工时间。',
           '铁路枢纽代理：接货、检查完整性、办理运单。',
@@ -127,6 +116,7 @@ const ServicesPage = () => {
         id: '03',
         title: '中国进口',
         description: '全方位一站式进口：从寻找供应商到送货入库',
+        accentText: '全方位一站式进口：从寻找供应商到送货入库',
         cards: [
           '拼箱货运 (LCL)：在中国仓库拼箱并送达您的城市。',
           '整箱运输 (FCL)：20/40英尺集装箱运输（海、铁、汽）。',
@@ -138,6 +128,7 @@ const ServicesPage = () => {
         id: '04',
         title: '出口服务',
         description: '来自俄罗斯的可靠出口：建立清晰的物流走廊',
+        accentText: '来自俄罗斯的可靠出口：建立清晰的物流走廊',
         cards: [
           '向中国出口：汽运和铁运，办理申报和证书。',
           '向埃及出口：海运集装箱运输至亚历山大或塞得港。',
@@ -149,6 +140,7 @@ const ServicesPage = () => {
         id: '05',
         title: '海关清关',
         description: '法律上完美的一站式海关清关',
+        accentText: '法律上完美的一站式海关清关',
         cards: [
           '进口清关：税费计算、增值税。HS编码分类。',
           '出口清关：出口申报，确认零增值税率。',
@@ -160,6 +152,7 @@ const ServicesPage = () => {
         id: '06',
         title: '分析与咨询',
         description: '物流战略方法：从分析到合法化',
+        accentText: '物流战略方法：从分析到合法化',
         cards: [
           '贸易合法化咨询：方案分析、供应链审计和法律方案开发。',
           '外贸咨询：为您的公司提供全方位的外贸支持。'
@@ -172,64 +165,71 @@ const ServicesPage = () => {
 
   return (
     <div className="services-page">
-      <header className="services-hero">
+      <div className="services-hero">
         <div className="container">
-          <nav className="breadcrumbs" aria-label="Breadcrumb">
+          <div className="breadcrumbs">
             <Link to="/">{language === 'ru' ? 'Главная' : '首页'}</Link>
             <span>/</span>
             <span>{language === 'ru' ? 'Наши услуги' : '我们的服务'}</span>
-          </nav>
-          <h1 className="services-title">
-            {language === 'ru' ? 'Наши услуги' : '我们的服务'}
-          </h1>
-          <p className="services-subtitle">
+          </div>
+          <h1 className="services-page-title">
             {language === 'ru' ? 'Логистические услуги XGL' : 'XGL 物流服务'}
-          </p>
+          </h1>
         </div>
-      </header>
+      </div>
 
-      <section className="services-intro">
-        <div className="container">
-          <p>
-            {language === 'ru'
-              ? 'Мы доставляем не просто грузы, а возможности для бизнеса.'
-              : '我们不仅运送货物，还为您的业务带来机遇。'}
-          </p>
-        </div>
-      </section>
+      <hr className="section-divider" />
+
+      {currentServices.map((service, index) => (
+        <Fragment key={service.id}>
+          {index > 0 && <hr className="section-divider" />}
+          {service.id === '06' && <hr className="section-divider" />}
+          <section className="sticky-section-dark">
+            <div className="container">
+              <div className="sticky-layout">
+                <div className="sticky-left">
+                  <h2 className="sticky-title-large">{service.title}</h2>
+                  <p className="sticky-subtitle-large">
+                    {service.description}
+                  </p>
+                  <div className="sticky-accent-box">
+                    <div className="sticky-divider-line"></div>
+                    <strong>{service.id}</strong>
+                    <span>{service.accentText}</span>
+                  </div>
+                </div>
+                <div className="scroll-list-right">
+                  {service.cards.map((card, cardIndex) => (
+                    <div
+                      key={cardIndex}
+                      className="scroll-card-modern"
+                      onClick={scrollToForm}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <div className="scroll-card-id">{String(cardIndex + 1).padStart(2, '0')}</div>
+                      <div className="scroll-card-body">
+                        <p>{card}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        </Fragment>
+      ))}
+
+      <hr className="section-divider" />
 
       <div className="container">
-        <div className="services-list">
-          {currentServices.map((service, index) => (
-            <article
-              key={service.id}
-              className="service-card fade-in"
-              ref={(el) => { cardRefs.current[index] = el }}
-            >
-              <div className="service-header">
-                <h2 className="service-title">{service.title}</h2>
-              </div>
-              <p className="service-text">{service.description}</p>
-              {service.cards && service.cards.length > 0 && (
-                <ul className="service-details">
-                  {service.cards.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              )}
-            </article>
-          ))}
-        </div>
-
-        <section className="services-cta">
-          <button
-            type="button"
-            className="btn btn-accent"
-            onClick={scrollToForm}
-          >
+        <div className="services-bottom-cta">
+          <h2 className="bottom-cta-title">
+            {language === 'ru' ? 'Мы доставляем не просто грузы, а возможности для бизнеса' : '我们不仅运送货物，还为您的业务带来机遇'}
+          </h2>
+          <button className="btn-primary" onClick={scrollToForm}>
             {language === 'ru' ? 'Рассчитать стоимость' : '计算费用'}
           </button>
-        </section>
+        </div>
       </div>
     </div>
   )
