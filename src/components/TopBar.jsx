@@ -69,7 +69,7 @@ const TopBar = () => {
           </div>
 
           <div className="top-bar-right">
-            <a href="tel:88006007779" className="top-bar-phone">8 800 600 777 9</a>
+            <a href="tel:+79315084299" className="top-bar-phone">+ 7 931 508 4299</a>
             <div className="top-bar-socials">
               <a href="#" className="top-bar-social" aria-label="Telegram">
                 <PaperPlaneIcon />

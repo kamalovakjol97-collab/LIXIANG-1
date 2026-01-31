@@ -1,20 +1,20 @@
 .header {
   position: fixed;
-  top: 36px; /* Высота top-bar */
+  top: 36px;
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 12px 0;
+  padding: 18px 0;
   transition: var(--transition);
   background: transparent;
 }
 
 .header.scrolled {
   top: 0;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(15px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  padding: 8px 0;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+  padding: 14px 0;
 }
 
 .header.inner-page {
@@ -22,28 +22,31 @@
   top: 0;
   background: var(--color-white);
   border-bottom: 1px solid var(--color-border);
+  padding: 18px 0;
 }
 
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 24px;
 }
 
 .header-nav {
   display: flex;
-  gap: 32px;
+  align-items: center;
+  gap: 40px;
 }
 
 .nav-link {
   color: var(--color-white);
-  font-family: var(--font-heading);
-  font-weight: 700;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.02em;
   text-decoration: none;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: var(--transition);
+  transition: color 0.2s ease;
+  white-space: nowrap;
 }
 
 .header.scrolled .nav-link,
@@ -55,28 +58,74 @@
   color: var(--color-accent) !important;
 }
 
+/* ——— Кнопка «Личный кабинет» ——— */
 .header-cta {
-  padding: 12px 24px;
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  color: var(--color-primary);
+  background: var(--color-accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
 }
 
-.btn-icon {
-  margin-left: 8px;
-  font-weight: 900;
+.header-cta:hover {
+  background: var(--color-accent-hover);
+}
+
+.header-cta:active {
+  transform: scale(0.98);
+}
+
+.header-cta-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+}
+
+.header-cta-text {
+  letter-spacing: 0.01em;
 }
 
 @media (max-width: 1200px) {
   .header-nav {
-    display: none; /* Гамбургер нужно будет добавить позже */
+    display: none;
+  }
+
+  .header-content {
+    gap: 16px;
   }
 }
 
 @media (max-width: 992px) {
   .header {
     top: 0;
-    background: white;
+    background: var(--color-white);
   }
+
+  .header,
+  .header.scrolled {
+    padding: 12px 0;
+  }
+
+  .header.inner-page {
+    padding: 12px 0;
+  }
+
   .nav-link {
     color: var(--color-primary);
+  }
+
+  .header-cta {
+    padding: 12px 20px;
+    font-size: 13px;
   }
 }
