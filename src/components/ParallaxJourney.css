@@ -87,6 +87,18 @@
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
 }
 
+/* Стиль под накладную CMR / дорожный знак для первой карточки */
+.parallax-journey-card.card-cmr {
+  border-left: 4px solid var(--color-accent);
+  padding-left: 24px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.parallax-journey-card.card-cmr .parallax-journey-card-year {
+  font-family: var(--font-body);
+  letter-spacing: 0.05em;
+}
+
 .parallax-journey-card-year {
   display: inline-block;
   font-size: 12px;
@@ -141,6 +153,143 @@
   50% { transform: translateY(6px); }
 }
 
+/* Шкала времени */
+.parallax-journey-timeline {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.parallax-journey-timeline-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(26, 29, 35, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.parallax-journey-timeline-btn:hover {
+  color: #fff;
+  background: rgba(26, 29, 35, 0.9);
+  border-color: var(--color-accent);
+}
+
+.parallax-journey-timeline-btn.active {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: rgba(255, 122, 0, 0.12);
+}
+
+/* Пауза / Воспроизведение */
+.parallax-journey-controls {
+  position: absolute;
+  left: 16px;
+  bottom: 24px;
+  z-index: 15;
+}
+
+.parallax-journey-control-btn {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: rgba(26, 29, 35, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+.parallax-journey-control-btn:hover {
+  background: rgba(26, 29, 35, 0.95);
+  border-color: var(--color-accent);
+}
+
+/* Грузовик остановлен (финальная сцена) */
+.parallax-journey-truck.stopped {
+  transition: left 0.5s ease-out;
+}
+
+.parallax-journey-truck.truck-2 .parallax-journey-truck-svg {
+  width: 110px;
+  opacity: 0.85;
+}
+
+/* Финальная сцена: текст + CTA */
+.parallax-journey-final {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 12;
+  text-align: center;
+  max-width: 560px;
+  padding: 32px 24px;
+}
+
+.parallax-journey-final-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.5;
+  margin: 0 0 28px 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.parallax-journey-final-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.parallax-journey-cta-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+}
+
+.parallax-journey-cta-btn.primary {
+  color: var(--color-primary);
+  background: var(--color-accent);
+  border: 2px solid var(--color-accent);
+}
+
+.parallax-journey-cta-btn.primary:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  transform: scale(1.02);
+}
+
+.parallax-journey-cta-btn.secondary {
+  color: #fff;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.parallax-journey-cta-btn.secondary:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.02);
+}
+
 @media (max-width: 768px) {
   .parallax-journey-card {
     right: 5%;
@@ -163,5 +312,43 @@
 
   .parallax-journey-truck-svg {
     width: 120px;
+  }
+
+  .parallax-journey-timeline {
+    right: 8px;
+  }
+
+  .parallax-journey-timeline-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .parallax-journey-controls {
+    left: 8px;
+    bottom: 16px;
+  }
+
+  .parallax-journey-control-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .parallax-journey-final {
+    padding: 24px 16px;
+  }
+
+  .parallax-journey-final-text {
+    font-size: 1.0625rem;
+    margin-bottom: 20px;
+  }
+
+  .parallax-journey-final-cta {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .parallax-journey-cta-btn {
+    padding: 12px 24px;
+    font-size: 0.9375rem;
   }
 }

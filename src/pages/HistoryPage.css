@@ -48,6 +48,27 @@
   margin-right: auto;
 }
 
+.history-hero-cta {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  color: var(--color-primary);
+  background: var(--color-accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 4px 16px rgba(255, 122, 0, 0.35);
+}
+
+.history-hero-cta:hover {
+  background: var(--color-accent-hover);
+  transform: scale(1.02);
+}
+
 @media (max-width: 768px) {
   .history-hero {
     min-height: 35vh;

@@ -6,6 +6,10 @@ import './HistoryPage.css'
 const HistoryPage = () => {
   const { language } = useLanguage()
 
+  const scrollToJourney = () => {
+    document.getElementById('history-journey')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <div className="history-page">
       <div className="history-hero">
@@ -20,13 +24,16 @@ const HistoryPage = () => {
           </h1>
           <p className="history-hero-subtitle">
             {language === 'ru'
-              ? 'Листайте вниз — путешествие от первого грузовика до современной логистики'
-              : '向下滚动 — 从第一辆卡车到现代物流的旅程'}
+              ? 'Путешествие от первого грузовика до современной логистики'
+              : '从第一辆卡车到现代物流的旅程'}
           </p>
+          <button type="button" className="history-hero-cta" onClick={scrollToJourney}>
+            {language === 'ru' ? 'В путь!' : '出发！'}
+          </button>
         </div>
       </div>
 
-      <ParallaxJourney />
+      <ParallaxJourney id="history-journey" />
     </div>
   )
 }
