@@ -1,66 +1,121 @@
 .top-bar {
-  background-color: var(--color-bg-dark);
+  background: rgba(26, 29, 35, 0.95);
   color: var(--color-white);
-  font-size: 15px;
-  padding: 8px 0;
+  font-size: 14px;
   font-weight: 500;
+  padding: 8px 0;
+  min-height: 36px;
   position: relative;
   z-index: 1001;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .top-bar-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 24px;
 }
 
-.top-bar-left, .top-bar-right {
+.top-bar-left,
+.top-bar-center,
+.top-bar-right {
   display: flex;
   align-items: center;
-  gap: 16px;
-}
-
-.divider {
-  opacity: 0.2;
-}
-
-.exchange-rates {
-  display: flex;
   gap: 12px;
-  color: rgba(255,255,255,0.6);
 }
 
-.top-phone {
-  color: var(--color-white);
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 15px;
+.top-bar-center {
+  flex: 1;
+  justify-content: center;
+  text-align: center;
 }
 
-.top-socials {
-  display: flex;
+/* ——— Язык (глобус + RU + стрелка) ——— */
+.top-bar-lang {
+  display: inline-flex;
+  align-items: center;
   gap: 8px;
+  background: none;
+  border: none;
+  color: var(--color-white);
+  cursor: pointer;
+  padding: 4px 0;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
 }
 
-.social-icon {
-  width: 24px;
-  height: 24px;
-  background: rgba(255,255,255,0.1);
+.top-bar-lang:hover {
+  opacity: 0.9;
+}
+
+.top-bar-lang-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  text-decoration: none;
-  color: white;
-  transition: var(--transition);
+  color: var(--color-accent);
 }
 
-.social-icon:hover {
-  background: var(--color-accent);
+.top-bar-lang-code {
+  letter-spacing: 0.02em;
+}
+
+.top-bar-lang-caret {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ——— График работы (центр) ——— */
+.top-bar-schedule {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+
+/* ——— Телефон и соц. иконки (справа) ——— */
+.top-bar-phone {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.top-bar-phone:hover {
+  color: var(--color-accent);
+}
+
+.top-bar-socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.top-bar-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.top-bar-social:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: rgba(255, 122, 0, 0.08);
 }
 
 @media (max-width: 992px) {
   .top-bar {
-    display: none; /* Скрываем на мобильных для чистоты интерфейса */
+    display: none;
   }
 }

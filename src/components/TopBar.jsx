@@ -1,57 +1,85 @@
-import { useState, useEffect } from 'react'
 import { useLanguage } from '../context/LanguageContext'
-import LanguageSwitcher from './LanguageSwitcher'
 import './TopBar.css'
 
-const TopBar = () => {
-  const { t } = useLanguage()
-  const [exchangeRates, setExchangeRates] = useState({
-    cny: '12.50',
-    usd: '92.30',
-    date: new Date().toLocaleDateString('ru-RU')
-  })
+const GlobeIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" strokeWidth="1.5" />
+  </svg>
+)
 
-  useEffect(() => {
-    const fetchExchangeRates = async () => {
-      try {
-        const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js', { mode: 'cors' })
-        if (!response.ok) throw new Error('API Error')
-        const data = await response.json()
-        const usdRate = (data.Valute?.USD?.Value * 1.03).toFixed(2)
-        const cnyRate = (data.Valute?.CNY?.Value * 1.03).toFixed(2)
-        
-        setExchangeRates({
-          cny: cnyRate,
-          usd: usdRate,
-          date: new Date().toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit' })
-        })
-      } catch (error) {
-        console.error('Rates fetch failed', error)
-      }
-    }
-    fetchExchangeRates()
-  }, [])
+const CaretDown = () => (
+  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)
+
+const PaperPlaneIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)
+
+const GridIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
+    <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
+    <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
+    <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
+  </svg>
+)
+
+const WhatsAppIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M17.5 14.5a9.5 9.5 0 1 1-2.5-18.5 9.5 9.5 0 0 1 2.5 18.5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M9 10a1 1 0 0 0 1 1h1a3 3 0 0 1 3 3v0a1 1 0 0 1-1 1H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)
+
+const TopBar = () => {
+  const { t, language, setLanguage } = useLanguage()
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'ru' ? 'zh' : 'ru')
+  }
 
   return (
     <div className="top-bar">
       <div className="container">
         <div className="top-bar-content">
           <div className="top-bar-left">
-            <LanguageSwitcher />
-            <span className="divider">|</span>
-            <span className="working-hours">{t('workingHours')}</span>
+            <button
+              type="button"
+              className="top-bar-lang"
+              onClick={toggleLanguage}
+              aria-label={language === 'ru' ? 'Переключить на 中文' : 'Switch to Russian'}
+            >
+              <span className="top-bar-lang-icon">
+                <GlobeIcon />
+              </span>
+              <span className="top-bar-lang-code">{language === 'ru' ? 'RU' : '中文'}</span>
+              <span className="top-bar-lang-caret">
+                <CaretDown />
+              </span>
+            </button>
           </div>
-          
+
+          <div className="top-bar-center">
+            <span className="top-bar-schedule">{t('topBarSchedule')}</span>
+          </div>
+
           <div className="top-bar-right">
-            <div className="exchange-rates">
-              <span className="rate-item">CNY/RUB {exchangeRates.cny}</span>
-              <span className="rate-item">USD/RUB {exchangeRates.usd}</span>
-            </div>
-            <span className="divider">|</span>
-            <a href="tel:+79315084299" className="top-phone">+7 (931) 508-42-99</a>
-            <div className="top-socials">
-              <a href="#" className="social-icon">W</a>
-              <a href="#" className="social-icon">T</a>
+            <a href="tel:88006007779" className="top-bar-phone">8 800 600 777 9</a>
+            <div className="top-bar-socials">
+              <a href="#" className="top-bar-social" aria-label="Telegram">
+                <PaperPlaneIcon />
+              </a>
+              <a href="#" className="top-bar-social" aria-label="Ссылка">
+                <GridIcon />
+              </a>
+              <a href="#" className="top-bar-social" aria-label="WhatsApp">
+                <WhatsAppIcon />
+              </a>
             </div>
           </div>
         </div>
