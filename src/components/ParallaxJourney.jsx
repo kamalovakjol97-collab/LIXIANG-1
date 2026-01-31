@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import './ParallaxJourney.css'
 
@@ -91,7 +91,7 @@ const ParallaxJourney = () => {
   const truckPosition = 10 + progress * 78 // 10% .. 88%
 
   return (
-    <section className="parallax-journey" ref={sectionRef}>
+    <section className="parallax-journey" ref={sectionRef} aria-label={language === 'ru' ? 'Путешествие по истории компании' : '公司历史之旅'}>
       <div
         className="parallax-journey-spacer"
         style={{ height: `${SCROLL_HEIGHT_VH}vh` }}
