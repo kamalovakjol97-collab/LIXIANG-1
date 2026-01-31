@@ -18,6 +18,25 @@
   border-bottom: 1px solid var(--color-border);
 }
 
+.projects-hero-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/f3/Map_of_Eurasia.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.06;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.projects-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
 .projects-hero .breadcrumbs,
 .projects-hero .breadcrumbs a {
   color: rgba(255, 255, 255, 0.9);
@@ -31,11 +50,35 @@
   font-size: var(--font-size-h1);
   font-weight: 700;
   letter-spacing: -0.01em;
-  margin: 0;
+  margin: 0 0 0.5rem 0;
   color: var(--color-white);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 1;
+}
+
+.projects-hero-subtitle {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.projects-intro {
+  padding: var(--spacing-2xl) 0;
+  background-color: var(--color-bg-light);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.projects-intro .container p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--color-text-main);
+  margin: 0;
+  max-width: 720px;
 }
 
 .projects-list {
@@ -50,25 +93,13 @@
   transform: translateY(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   overflow: hidden;
-}
-
-.project-image {
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  margin-bottom: var(--spacing-lg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--color-white);
   border-radius: 0.5rem;
-}
-
-.project-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.project-card:hover .project-image img {
-  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-border);
 }
 
 .project-card.fade-in {
@@ -76,15 +107,54 @@
   transform: translateY(0);
 }
 
-.project-header {
-  margin-bottom: var(--spacing-lg);
+.project-media {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+  background-color: var(--color-light-gray);
 }
 
-.project-status {
+.project-media .project-image {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  margin: 0;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.project-media .project-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-media .project-image img {
+  transform: scale(1.05);
+}
+
+.project-media .status-badge {
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  z-index: 2;
+}
+
+.project-body {
+  padding: var(--spacing-xl);
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: var(--spacing-md);
-  margin-bottom: var(--spacing-md);
+}
+
+.project-header {
+  margin-bottom: 0;
+}
+
+.project-header .project-logo {
+  display: inline-block;
+  margin-bottom: 0.25rem;
 }
 
 .status-badge {
@@ -147,7 +217,7 @@
   margin-bottom: var(--spacing-md);
 }
 
-.timeline-items {
+.timeline-list {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
@@ -180,13 +250,8 @@
   max-width: 65ch;
 }
 
-.project-key-number {
-  margin: var(--spacing-xl) 0;
-  padding: var(--spacing-xl);
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%);
-  border-radius: 0.5rem;
-  text-align: center;
-  border: 2px solid var(--accent);
+.project-body > .project-key-number {
+  display: none;
 }
 
 .key-number-value {
@@ -236,10 +301,95 @@
   flex-shrink: 0;
 }
 
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  align-items: flex-start;
+}
+
+.project-meta .project-route {
+  margin: 0;
+  padding: var(--spacing-sm) 0;
+  background: none;
+  font-size: 0.9375rem;
+}
+
+.project-meta .project-route svg {
+  width: 18px;
+  height: 18px;
+}
+
+.project-meta .project-key-number {
+  margin: 0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%);
+  border-radius: 0.25rem;
+  border: 2px solid var(--color-accent);
+  text-align: center;
+}
+
+.project-meta .key-number-value {
+  font-size: 1.75rem;
+  margin-bottom: 0.125rem;
+}
+
+.project-meta .key-number-label {
+  font-size: 0.8125rem;
+}
+
 .project-cta {
   margin-top: var(--spacing-lg);
   padding-top: var(--spacing-md);
   border-top: 1px solid var(--color-light-gray);
+}
+
+.project-body .project-cta {
+  margin-top: auto;
+}
+
+.projects-geography {
+  margin-top: 0;
+}
+
+.projects-final-cta {
+  padding: var(--spacing-2xl) 0;
+  text-align: center;
+  background-color: var(--color-bg-light);
+  border-top: 1px solid var(--color-border);
+}
+
+.projects-final-cta-title {
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.projects-final-cta-text {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--spacing-xl) 0;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.projects-final-cta .cta-button {
+  display: inline-block;
+  text-decoration: none;
+}
+
+@media (max-width: 992px) {
+  .project-card {
+    grid-template-columns: 1fr;
+  }
+
+  .project-media .project-image,
+  .project-media .project-image img {
+    min-height: 240px;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
 }
 
 @media (max-width: 768px) {
@@ -252,16 +402,25 @@
     font-size: 2rem;
   }
 
-  .project-card {
-    padding: 1.5rem;
+  .projects-hero-subtitle {
+    font-size: 1.0625rem;
+  }
+
+  .project-body {
+    padding: var(--spacing-lg);
   }
 
   .project-title {
     font-size: 1.75rem;
   }
 
-  .key-number-value {
-    font-size: 3rem;
+  .project-meta {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .project-meta .key-number-value {
+    font-size: 1.5rem;
   }
 
   .timeline-item {
@@ -271,5 +430,9 @@
 
   .timeline-date {
     min-width: auto;
+  }
+
+  .projects-final-cta-title {
+    font-size: 1.75rem;
   }
 }

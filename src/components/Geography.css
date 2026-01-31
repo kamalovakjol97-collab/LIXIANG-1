@@ -8,6 +8,14 @@
   margin-bottom: 60px;
 }
 
+.projects-geography .section-title {
+  margin-bottom: 0.5rem;
+}
+
+.projects-geography .geo-subtitle {
+  margin-bottom: 60px;
+}
+
 .geo-subtitle {
   font-size: 1.125rem;
   color: var(--color-text-muted);

@@ -117,6 +117,7 @@ const ProjectsPage = () => {
   return (
     <div className="projects-page">
       <div className="projects-hero">
+        <div className="projects-hero-pattern" aria-hidden="true" />
         <div className="container">
           <div className="breadcrumbs">
             <Link to="/">{language === 'ru' ? 'Главная' : '首页'}</Link>
@@ -126,81 +127,117 @@ const ProjectsPage = () => {
           <h1 className="projects-page-title">
             {language === 'ru' ? 'Ключевые проекты' : '关键项目'}
           </h1>
+          <p className="projects-hero-subtitle">
+            {language === 'ru'
+              ? 'Крупные инфраструктурные и проектные решения в логистике Китай–Россия'
+              : '中俄物流领域的大型基础设施与项目解决方案'}
+          </p>
         </div>
       </div>
+
+      <section className="projects-intro">
+        <div className="container">
+          <p>
+            {language === 'ru'
+              ? 'Мы реализуем проекты, требующие точной координации, работы с тяжёлыми и негабаритными грузами, а также полного логистического цикла в Китае и России.'
+              : '我们实施需要精准协调、重型和超限货物运输以及中俄全物流周期的项目。'}
+          </p>
+        </div>
+      </section>
+
       <div className="container" ref={sectionRef}>
         <div className="projects-list">
           {currentProjects.map((project, index) => (
-            <article 
-              key={project.id} 
-              className={`project-card card ${isVisible ? 'fade-in' : ''}`}
+            <article
+              key={project.id}
+              className={`project-card ${isVisible ? 'fade-in' : ''}`}
               style={{ animationDelay: `${index * 0.15}s` }}
             >
-              {project.image && (
-                <div className="project-image">
-                  <img src={project.image} alt={project.title} />
-                </div>
-              )}
-              <div className="project-header">
-                <div className="project-status">
-                  <span className={`status-badge ${project.statusClass}`}>
-                    {project.status}
-                  </span>
+              <div className="project-media">
+                {project.image && (
+                  <div className="project-image">
+                    <img src={project.image} alt={project.title} />
+                  </div>
+                )}
+                <span className={`status-badge ${project.statusClass}`}>
+                  {project.status}
+                </span>
+              </div>
+
+              <div className="project-body">
+                <div className="project-header">
                   {project.logo && (
                     <span className="project-logo">{project.logo}</span>
                   )}
+                  <h2 className="project-title">{project.title}</h2>
+                  <p className="project-partner">{project.partner}</p>
                 </div>
-                <h2 className="project-title">{project.title}</h2>
-                <p className="project-partner">{project.partner}</p>
-              </div>
 
-              <div className="project-timeline">
-                <h3 className="timeline-title">
-                  {language === 'ru' ? 'Хронология' : '时间线'}
-                </h3>
-                <div className="timeline-items">
-                  {project.timeline.map((item, idx) => (
-                    <div key={idx} className="timeline-item">
-                      <span className="timeline-date">{item.date}</span>
-                      <span className="timeline-event">{item.event}</span>
+                <div className="project-meta">
+                  <div className="project-route">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="currentColor"/>
+                    </svg>
+                    <span>{project.route}</span>
+                  </div>
+                  {project.keyNumber && (
+                    <div className="project-key-number">
+                      <span className="key-number-value">{project.keyNumber}</span>
+                      <span className="key-number-label">{project.keyNumberLabel}</span>
                     </div>
-                  ))}
+                  )}
                 </div>
-              </div>
 
-              <p className="project-description">{project.description}</p>
+                <p className="project-description">{project.description}</p>
 
-              {project.keyNumber && (
-                <div className="project-key-number">
-                  <div className="key-number-value">{project.keyNumber}</div>
-                  <div className="key-number-label">{project.keyNumberLabel}</div>
+                <div className="project-timeline">
+                  <h3 className="timeline-title">
+                    {language === 'ru' ? 'Хронология' : '时间线'}
+                  </h3>
+                  <div className="timeline-list">
+                    {project.timeline.map((item, idx) => (
+                      <div key={idx} className="timeline-item">
+                        <span className="timeline-date">{item.date}</span>
+                        <span className="timeline-event">{item.event}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              )}
 
-              {project.result && (
-                <div className="project-result">
-                  <strong>{project.result}</strong>
+                {project.result && (
+                  <div className="project-result">
+                    <strong>{project.result}</strong>
+                  </div>
+                )}
+
+                <div className="project-cta">
+                  <button type="button" className="cta-button">
+                    {project.cta}
+                  </button>
                 </div>
-              )}
-
-              <div className="project-route">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="currentColor"/>
-                </svg>
-                <span>{project.route}</span>
-              </div>
-
-              <div className="project-cta">
-                <button className="cta-button">
-                  {project.cta}
-                </button>
               </div>
             </article>
           ))}
         </div>
       </div>
-      
+
       <Geography />
+
+      <section className="projects-final-cta">
+        <div className="container">
+          <h3 className="projects-final-cta-title">
+            {language === 'ru' ? 'Готовы обсудить ваш проект?' : '准备好讨论您的项目了吗？'}
+          </h3>
+          <p className="projects-final-cta-text">
+            {language === 'ru'
+              ? 'Мы подключаемся на любом этапе логистической цепочки'
+              : '我们可在物流链的任何阶段加入'}
+          </p>
+          <Link to="/#application-form" className="cta-button">
+            {language === 'ru' ? 'Обсудить проект' : '讨论项目'}
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }

@@ -87,22 +87,20 @@ const Geography = () => {
   )
 
   return (
-    <section className="geo-global-section" ref={sectionRef}>
+    <section className="geo-global-section projects-geography" ref={sectionRef}>
       <div className="container">
-        <div className="geo-header">
-          <h2 className="section-title">
-            {language === 'ru' ? 'Инфраструктура и география XGL' : 'XGL 基础设施与地理'}
-          </h2>
-          <p className="geo-subtitle">
-            {language === 'ru' 
-              ? 'Собственные логистические узлы и отработанные маршруты через ключевые порты и погранпереходы.'
-              : '在关键港口和边境口岸拥有自己的物流节点和成熟路线。'}
-          </p>
-        </div>
+        <h2 className="section-title">
+          {language === 'ru' ? 'Инфраструктура и география XGL' : 'XGL 基础设施与地理'}
+        </h2>
+        <p className="geo-subtitle">
+          {language === 'ru'
+            ? 'Реальные маршруты, узлы и точки присутствия'
+            : '实际路线、节点与驻点'}
+        </p>
 
         <div className={`map-wrapper-large ${isVisible ? 'animate' : ''}`}>
-          <div className="map-physical-bg"></div>
-          <svg viewBox="0 0 1200 800" className="world-map-svg-large">
+          <div className="map-background map-physical-bg" aria-hidden="true"></div>
+          <svg viewBox="0 0 1200 800" className="map-routes world-map-svg-large">
             <defs>
               <filter id="glow">
                 <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
@@ -156,17 +154,19 @@ const Geography = () => {
             </g>
 
             {/* --- ОТРИСОВКА ТОЧЕК --- */}
-            {Object.entries(nodes).map(([key, node]) => (
-              <g key={key} className={`node-group-v2 ${node.type}`}>
-                <circle cx={node.x} cy={node.y} r={node.type.includes('port') ? 6 : 4} className="node-dot-v2" />
-                <text x={node.x + 12} y={node.y + 4} className="node-text-v2">{node.label}</text>
-                {node.type === 'border' && <text x={node.x - 12} y={node.y - 12} fontSize="16">🛂</text>}
-                {node.type.includes('port') && <text x={node.x - 12} y={node.y - 12} fontSize="16">⚓</text>}
-              </g>
-            ))}
+            <g className="map-points">
+              {Object.entries(nodes).map(([key, node]) => (
+                <g key={key} className={`node-group-v2 ${node.type}`}>
+                  <circle cx={node.x} cy={node.y} r={node.type.includes('port') ? 6 : 4} className="node-dot-v2" />
+                  <text x={node.x + 12} y={node.y + 4} className="node-text-v2">{node.label}</text>
+                  {node.type === 'border' && <text x={node.x - 12} y={node.y - 12} fontSize="16">🛂</text>}
+                  {node.type.includes('port') && <text x={node.x - 12} y={node.y - 12} fontSize="16">⚓</text>}
+                </g>
+              ))}
+            </g>
           </svg>
-          
-          <div className="map-legend-v4">
+
+          <div className="map-legend map-legend-v4">
             <div className="legend-group">
               <h4>{language === 'ru' ? 'Условные обозначения' : '图例'}</h4>
               <div className="legend-item"><span className="dot port-ru"></span> {language === 'ru' ? 'Порты РФ' : '俄罗斯港口'}</div>
