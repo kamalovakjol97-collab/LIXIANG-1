@@ -1,0 +1,167 @@
+/* Концепция «В движении» — параллакс-путешествие по истории */
+
+.parallax-journey {
+  position: relative;
+  width: 100%;
+}
+
+.parallax-journey-spacer {
+  display: block;
+}
+
+.parallax-journey-viewport {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Фоновые слои */
+.parallax-journey-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.parallax-journey-bg-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 0.6s ease;
+}
+
+.parallax-journey-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 42, 94, 0.75) 0%,
+    rgba(10, 42, 94, 0.5) 40%,
+    rgba(10, 42, 94, 0.4) 100%
+  );
+  z-index: 1;
+}
+
+/* Грузовик в движении */
+.parallax-journey-truck {
+  position: absolute;
+  bottom: 18%;
+  transform: translateX(-50%);
+  z-index: 5;
+  transition: left 0.15s ease-out;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4));
+}
+
+.parallax-journey-truck-svg {
+  width: 140px;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .parallax-journey-truck-svg {
+    width: 180px;
+  }
+}
+
+/* Текстовые карточки на остановках */
+.parallax-journey-card {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 320px;
+  padding: 24px 28px;
+  background: rgba(26, 29, 35, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: #e2e8f0;
+  z-index: 10;
+  transition: opacity 0.4s ease;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+}
+
+.parallax-journey-card-year {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin-bottom: 8px;
+}
+
+.parallax-journey-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.parallax-journey-card-desc {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #a0aec0;
+  margin: 0;
+}
+
+/* Подсказка в начале */
+.parallax-journey-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  z-index: 10;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.parallax-journey-hint::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 8px auto 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(255,255,255,0.8)'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 14l-7 7m0 0l-7-7m7 7V3'/%3E%3C/svg%3E") center/contain no-repeat;
+  animation: parallax-journey-bounce 2s ease-in-out infinite;
+}
+
+@keyframes parallax-journey-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@media (max-width: 768px) {
+  .parallax-journey-card {
+    right: 5%;
+    left: 5%;
+    max-width: none;
+    padding: 20px 22px;
+  }
+
+  .parallax-journey-card-title {
+    font-size: 1.125rem;
+  }
+
+  .parallax-journey-card-desc {
+    font-size: 0.875rem;
+  }
+
+  .parallax-journey-truck {
+    bottom: 14%;
+  }
+
+  .parallax-journey-truck-svg {
+    width: 120px;
+  }
+}

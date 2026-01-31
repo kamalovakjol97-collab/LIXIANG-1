@@ -38,6 +38,16 @@
   z-index: 1;
 }
 
+.history-hero-subtitle {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  margin: 0.75rem 0 0;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .timeline-container {
   position: relative;
   padding: var(--spacing-2xl) 0;
