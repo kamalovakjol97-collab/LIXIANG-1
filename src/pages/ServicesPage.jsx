@@ -183,6 +183,7 @@ const ServicesPage = () => {
       {currentServices.map((service, index) => (
         <Fragment key={service.id}>
           {index > 0 && <hr className="section-divider" />}
+          {service.id === '06' && <hr className="section-divider" />}
           <section className="sticky-section-dark">
           <div className="container">
             <div className="sticky-layout">
