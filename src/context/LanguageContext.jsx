@@ -10,6 +10,7 @@ export const LanguageProvider = ({ children }) => {
   const translations = {
     ru: {
       services: 'Услуги',
+      partners: 'Партнёры',
       news: 'Новости',
       contacts: 'Контакты',
       calculate: 'Рассчитать',
@@ -19,6 +20,7 @@ export const LanguageProvider = ({ children }) => {
     },
     zh: {
       services: '服务',
+      partners: '合作伙伴',
       news: '新闻',
       contacts: '联系方式',
       calculate: '计算',

@@ -15,7 +15,7 @@ import PrivacyPolicy from './components/PrivacyPolicy'
 import ServicesPage from './pages/ServicesPage'
 import NewsPage from './pages/NewsPage'
 import ContactsPage from './pages/ContactsPage'
-import ProjectsPage from './pages/ProjectsPage'
+import PartnersPage from './pages/PartnersPage'
 import HistoryPage from './pages/HistoryPage'
 import CabinetPage from './pages/CabinetPage'
 import './App.css'
@@ -65,11 +65,11 @@ function App() {
                 <Footer />
               </>
             } />
-            <Route path="/projects" element={
+            <Route path="/partners" element={
               <>
                 <TopBar />
                 <Header />
-                <ProjectsPage />
+                <PartnersPage />
                 <Footer />
               </>
             } />

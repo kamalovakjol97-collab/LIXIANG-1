@@ -32,7 +32,7 @@ const Header = () => {
           
           <nav className="header-nav">
             <Link to="/services" className="nav-link">{t('services')}</Link>
-            <Link to="/projects" className="nav-link">{language === 'ru' ? 'Проекты' : '项目'}</Link>
+            <Link to="/partners" className="nav-link">{t('partners')}</Link>
             <Link to="/news" className="nav-link">{t('news')}</Link>
             <Link to="/history" className="nav-link">{language === 'ru' ? 'История' : '历史'}</Link>
             <Link to="/contacts" className="nav-link">{t('contacts')}</Link>
