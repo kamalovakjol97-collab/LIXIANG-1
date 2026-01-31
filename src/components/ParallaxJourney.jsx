@@ -57,12 +57,12 @@ const TIMELINE_YEARS = [
   { year: '2026', progress: 0.88 },
 ]
 
-function useScrollProgress(sectionRef, paused, onPauseProgress) {
+function useScrollProgress(sectionRef, paused) {
   const [progress, setProgress] = useState(0)
-  const frozenRef = useRef(0)
 
   useEffect(() => {
     const handleScroll = () => {
+      if (paused) return
       if (!sectionRef.current) return
       const el = sectionRef.current
       const sectionTop = el.offsetTop
@@ -70,18 +70,12 @@ function useScrollProgress(sectionRef, paused, onPauseProgress) {
       const viewportHeight = window.innerHeight
       const scrollable = sectionHeight - viewportHeight
       if (scrollable <= 0) {
-        const p = window.scrollY >= sectionTop ? 1 : 0
-        if (!paused) setProgress(p)
+        setProgress(window.scrollY >= sectionTop ? 1 : 0)
         return
       }
       const scrolled = window.scrollY - sectionTop
       const p = Math.max(0, Math.min(1, scrolled / scrollable))
-      if (paused) {
-        frozenRef.current = p
-        onPauseProgress?.(p)
-      } else {
-        setProgress(p)
-      }
+      setProgress(p)
     }
 
     handleScroll()
@@ -91,13 +85,9 @@ function useScrollProgress(sectionRef, paused, onPauseProgress) {
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', handleScroll)
     }
-  }, [sectionRef, paused, onPauseProgress])
+  }, [sectionRef, paused])
 
-  useEffect(() => {
-    if (paused) setProgress((prev) => prev)
-  }, [paused])
-
-  return paused ? frozenRef.current : progress
+  return progress
 }
 
 function getSceneOpacity(scene, progress) {
@@ -149,8 +139,7 @@ const ParallaxJourney = ({ id = 'history-journey' }) => {
       ref={sectionRef}
       aria-label={language === 'ru' ? 'Путешествие по истории компании' : '公司历史之旅'}
     >
-      <div className="parallax-journey-spacer" style={{ height: `${SCROLL_HEIGHT_VH}vh` }} aria-hidden="true" />
-
+      {/* Viewport первым — чтобы экран с анимацией был виден с начала скролла; spacer создаёт «путь» под ним */}
       <div className="parallax-journey-viewport">
         {/* Фоны сцен */}
         <div className="parallax-journey-bg">
@@ -270,6 +259,8 @@ const ParallaxJourney = ({ id = 'history-journey' }) => {
           </button>
         </div>
       </div>
+
+      <div className="parallax-journey-spacer" style={{ height: `${SCROLL_HEIGHT_VH}vh` }} aria-hidden="true" />
     </section>
   )
 }
