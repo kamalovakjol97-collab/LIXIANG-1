@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { Link } from 'react-router-dom'
-import Geography from '../components/Geography'
+import LogisticsMap from '../components/LogisticsMap'
 import './ProjectsPage.css'
 
 const ProjectsPage = () => {
@@ -221,7 +221,7 @@ const ProjectsPage = () => {
         </div>
       </div>
 
-      <Geography />
+      <LogisticsMap />
 
       <section className="projects-final-cta">
         <div className="container">

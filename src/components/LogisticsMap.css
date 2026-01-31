@@ -1,0 +1,414 @@
+/* ——— Секция ——— */
+.logistics-map {
+  padding: 80px 0 100px;
+  background-color: var(--color-bg-light);
+}
+
+.logistics-map-container {
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.logistics-map-container.logistics-map-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ——— Фильтры ——— */
+.logistics-map-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 24px;
+  align-items: center;
+}
+
+.logistics-map-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-main);
+  user-select: none;
+}
+
+.logistics-map-filter input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.logistics-map-filter-line {
+  display: inline-block;
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.logistics-map-filter-line.rail { background: #c53030; }
+.logistics-map-filter-line.sea { background: #2b6cb0; }
+.logistics-map-filter-line.auto { background: #276749; }
+
+.logistics-map-filter input:checked + .logistics-map-filter-line {
+  opacity: 1;
+}
+
+.logistics-map-filter input:not(:checked) + .logistics-map-filter-line {
+  opacity: 0.35;
+}
+
+/* ——— Контейнер карты ——— */
+.logistics-map-wrapper {
+  position: relative;
+  background: #1a1d23;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 520px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+}
+
+.logistics-map-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/f3/Map_of_Eurasia.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.12;
+  filter: grayscale(100%) brightness(0.4);
+  z-index: 0;
+}
+
+.logistics-map-svg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  min-height: 480px;
+  display: block;
+}
+
+/* ——— Слои маршрутов ——— */
+.logistics-map-layer {
+  transition: opacity 0.4s ease;
+}
+
+.logistics-map-layer.off {
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.logistics-map-layer.on {
+  opacity: 1;
+}
+
+/* Пути (невидимый хит-область) */
+.logistics-map-route-path {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 20;
+  cursor: pointer;
+}
+
+.logistics-map-route-path.rail { stroke: #c53030; }
+.logistics-map-route-path.sea { stroke: #2b6cb0; }
+.logistics-map-route-path.auto { stroke: #276749; }
+
+/* Видимая линия маршрута */
+.logistics-map-route-dash {
+  fill: none;
+  stroke-width: 2.5;
+  pointer-events: none;
+}
+
+.logistics-map-route-dash.rail {
+  stroke: #c53030;
+  stroke-dasharray: none;
+  stroke-linecap: round;
+}
+
+.logistics-map-route-dash.sea {
+  stroke: #2b6cb0;
+  stroke-dasharray: 12 8;
+  stroke-linecap: round;
+  animation: logistics-map-dash-flow 25s linear infinite;
+}
+
+.logistics-map-route-dash.auto {
+  stroke: #276749;
+  stroke-dasharray: 8 6;
+  stroke-linecap: round;
+  animation: logistics-map-dash-flow 20s linear infinite;
+}
+
+@keyframes logistics-map-dash-flow {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -80; }
+}
+
+/* ——— Узлы ——— */
+.logistics-map-node {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.logistics-map-node:hover {
+  transform: translate(var(--tx, 0), var(--ty, 0)) scale(1.15);
+}
+
+.logistics-map-node-dot {
+  fill: #fff;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+  transition: fill 0.2s ease;
+}
+
+.logistics-map-node.port-ru .logistics-map-node-dot { fill: #3182ce; }
+.logistics-map-node.port-cn .logistics-map-node-dot { fill: #e53e3e; }
+.logistics-map-node.city-ru .logistics-map-node-dot,
+.logistics-map-node.city-cn .logistics-map-node-dot { fill: #fff; }
+.logistics-map-node.border .logistics-map-node-dot { fill: #d69e2e; }
+
+.logistics-map-node:hover .logistics-map-node-dot {
+  fill: #e2e8f0;
+}
+
+.logistics-map-node-label {
+  fill: #e2e8f0;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+/* ——— Tooltip ——— */
+.logistics-map-tooltip {
+  position: absolute;
+  z-index: 10;
+  max-width: 260px;
+  padding: 14px 16px;
+  background: rgba(26, 29, 35, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #e2e8f0;
+  font-size: 13px;
+  line-height: 1.5;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  animation: logistics-map-tooltip-in 0.2s ease;
+}
+
+@keyframes logistics-map-tooltip-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logistics-map-tooltip-row {
+  margin-bottom: 6px;
+}
+
+.logistics-map-tooltip-row:last-child {
+  margin-bottom: 0;
+}
+
+.logistics-map-tooltip-row strong {
+  color: #a0aec0;
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+.logistics-map-tooltip-title {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #fff;
+}
+
+.logistics-map-tooltip-subtitle {
+  font-size: 12px;
+  color: #a0aec0;
+  margin-bottom: 8px;
+}
+
+.logistics-map-tooltip-list {
+  margin: 0;
+  padding-left: 16px;
+  color: #cbd5e0;
+}
+
+.logistics-map-tooltip-list li {
+  margin-bottom: 2px;
+}
+
+/* ——— Легенда ——— */
+.logistics-map-legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 5;
+  padding: 16px 20px;
+  background: rgba(26, 29, 35, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 12px;
+  color: #e2e8f0;
+  min-width: 160px;
+}
+
+.logistics-map-legend-title,
+.logistics-map-legend-routes-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #a0aec0;
+  margin-bottom: 10px;
+}
+
+.logistics-map-legend-routes-title {
+  margin-top: 14px;
+  margin-bottom: 8px;
+}
+
+.logistics-map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.logistics-map-legend-item:last-child {
+  margin-bottom: 0;
+}
+
+.logistics-map-legend .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.logistics-map-legend .dot.port-ru { background: #3182ce; }
+.logistics-map-legend .dot.port-cn { background: #e53e3e; }
+.logistics-map-legend .dot.border { background: #d69e2e; }
+
+.logistics-map-legend .line {
+  width: 20px;
+  height: 3px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.logistics-map-legend .line.rail { background: #c53030; }
+.logistics-map-legend .line.sea { background: #2b6cb0; }
+.logistics-map-legend .line.auto { background: #276749; }
+
+/* ——— CTA ——— */
+.logistics-map-cta {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  background: rgba(26, 29, 35, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.logistics-map-cta-text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+.logistics-map-cta-btn {
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  color: #fff;
+  background: var(--color-accent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.logistics-map-cta-btn:hover {
+  background: var(--color-accent-hover);
+}
+
+.logistics-map-cta-btn:active {
+  transform: scale(0.98);
+}
+
+/* ——— Адаптив ——— */
+@media (max-width: 992px) {
+  .logistics-map {
+    padding: 60px 0 80px;
+  }
+
+  .logistics-map-wrapper {
+    min-height: 420px;
+  }
+
+  .logistics-map-svg {
+    min-height: 400px;
+  }
+
+  .logistics-map-legend {
+    bottom: 12px;
+    right: 12px;
+    padding: 12px 14px;
+    font-size: 11px;
+  }
+
+  .logistics-map-cta {
+    bottom: 12px;
+    left: 12px;
+    padding: 12px 16px;
+  }
+
+  .logistics-map-cta-text {
+    font-size: 13px;
+  }
+
+  .logistics-map-node-label {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logistics-map-filters {
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .logistics-map-filter {
+    font-size: 13px;
+  }
+
+  .logistics-map-legend {
+    min-width: 140px;
+  }
+
+  .logistics-map-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
