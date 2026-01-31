@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { Link } from 'react-router-dom'
 import './ServicesPage.css'
@@ -177,8 +178,12 @@ const ServicesPage = () => {
         </div>
       </div>
 
+      <hr className="section-divider" />
+
       {currentServices.map((service, index) => (
-        <section key={service.id} className="sticky-section-dark">
+        <Fragment key={service.id}>
+          {index > 0 && <hr className="section-divider" />}
+          <section className="sticky-section-dark">
           <div className="container">
             <div className="sticky-layout">
               <div className="sticky-left">
@@ -210,7 +215,10 @@ const ServicesPage = () => {
             </div>
           </div>
         </section>
+        </Fragment>
       ))}
+
+      <hr className="section-divider" />
 
       <div className="container">
         <div className="services-bottom-cta">
