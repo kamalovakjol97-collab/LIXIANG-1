@@ -41,14 +41,9 @@ const Hero = () => {
               : '组织从中国到俄罗斯的复杂供应链。货运代理、海关和门到门配送。'}
           </p>
           <div className="hero-actions">
-            <button className="hero-cta-btn" onClick={scrollToForm}>
-              <span className="hero-cta-text" data-default>
-                {t('heroCta')}
-              </span>
-              <span className="hero-cta-text" data-hover>
-                {t('heroCtaHover')}
-              </span>
-              <span className="hero-cta-icon" aria-hidden="true">→</span>
+            <button className="btn-primary" onClick={scrollToForm}>
+              {language === 'ru' ? 'Рассчитать стоимость' : '计算费用'}
+              <span className="btn-icon">→</span>
             </button>
           </div>
         </div>

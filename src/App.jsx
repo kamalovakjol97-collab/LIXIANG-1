@@ -7,7 +7,6 @@ import Statistics from './components/Statistics'
 import ServicesCarousel from './components/ServicesCarousel'
 import HowWeWork from './components/HowWeWork'
 import WhyXGLOG from './components/WhyXGLOG'
-import Geography from './components/Geography'
 import ApplicationForm from './components/ApplicationForm'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
@@ -28,8 +27,6 @@ function HomePage() {
       <main>
         <Hero />
         <Statistics />
-        <hr className="section-divider" />
-        <Geography />
         <hr className="section-divider" />
         <ServicesCarousel />
         <hr className="section-divider" />

@@ -50,14 +50,13 @@ const StatItem = ({ stat, isVisible }) => {
     if (!isVisible) return
     let start = 0
     const end = stat.target
-    const duration = 1200
+    const duration = 2000
     let startTime = null
 
     const animate = (timestamp) => {
       if (!startTime) startTime = timestamp
       const progress = Math.min((timestamp - startTime) / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 2)
-      setCount(Math.floor(eased * (end - start) + start))
+      setCount(Math.floor(progress * (end - start) + start))
       if (progress < 1) requestAnimationFrame(animate)
     }
     requestAnimationFrame(animate)

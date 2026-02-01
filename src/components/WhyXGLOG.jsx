@@ -89,7 +89,7 @@ const WhyXGLOG = () => {
   ]
 
   return (
-    <section className="why-sticky-section" ref={sectionRef}>
+    <section className="why-sticky-section">
       <div className="container">
         <div className="why-sticky-layout">
           <div className="why-sticky-left">
@@ -111,13 +111,8 @@ const WhyXGLOG = () => {
           </div>
           
           <div className="why-scroll-right">
-            {advantages.map((adv, i) => (
-              <div
-                key={adv.id}
-                ref={(el) => (cardRefs.current[i] = el)}
-                className="why-scroll-card"
-                style={{ transitionDelay: `${i * 80}ms` }}
-              >
+            {advantages.map((adv) => (
+              <div key={adv.id} className="why-scroll-card">
                 <div className="card-number">{adv.id}</div>
                 <div className="card-body">
                   <h3>{adv.title}</h3>
