@@ -16,7 +16,8 @@ export const LanguageProvider = ({ children }) => {
       calculate: 'Рассчитать',
       workingHours: 'Пн-Пт 10:00 - 19:00',
       topBarSchedule: 'График работы: пн.-пт. с 10.00 до 19.00',
-      heroSubtitle: 'Международная логистика полного цикла'
+      heroSubtitle: 'Международная логистика полного цикла',
+      backToTop: 'Наверх'
     },
     zh: {
       services: '服务',
@@ -26,7 +27,8 @@ export const LanguageProvider = ({ children }) => {
       calculate: '计算',
       workingHours: '周一至周五 10:00 - 19:00',
       topBarSchedule: '工作时间：周一至周五 10:00 - 19:00',
-      heroSubtitle: '全周期国际物流'
+      heroSubtitle: '全周期国际物流',
+      backToTop: '回到顶部'
     }
   }
 
