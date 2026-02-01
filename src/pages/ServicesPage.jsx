@@ -217,18 +217,23 @@ const ServicesPage = () => {
                   </div>
                 </div>
                 <div className="scroll-list-right">
-                  {service.cards.map((card, cardIndex) => (
-                    <div
-                      key={cardIndex}
-                      className="scroll-card-modern"
-                      onClick={scrollToForm}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      <div className="scroll-card-id">{String(cardIndex + 1).padStart(2, '0')}</div>
-                      <div className="scroll-card-body">
-                        <p>{card}</p>
+                  {service.cards.map((card, cardIndex) => {
+                    const globalIndex = currentServices
+                      .slice(0, index)
+                      .reduce((acc, s) => acc + s.cards.length, 0) + cardIndex
+                    return (
+                      <div
+                        key={cardIndex}
+                        ref={(el) => (cardRefs.current[globalIndex] = el)}
+                        className="scroll-card-modern"
+                        onClick={scrollToForm}
+                        style={{ cursor: 'pointer', transitionDelay: `${cardIndex * 80}ms` }}
+                      >
+                        <div className="scroll-card-id">{String(cardIndex + 1).padStart(2, '0')}</div>
+                        <div className="scroll-card-body">
+                          <p>{card}</p>
+                        </div>
                       </div>
-                    </div>
                     )
                   })}
                 </div>
