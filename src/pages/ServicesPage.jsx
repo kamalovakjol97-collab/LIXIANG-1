@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef } from 'react'
+import { Fragment } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { Link } from 'react-router-dom'
 import './ServicesPage.css'
@@ -6,24 +6,6 @@ import '../components/StickyStyles.css'
 
 const ServicesPage = () => {
   const { language } = useLanguage()
-  const cardRefs = useRef([])
-
-  useEffect(() => {
-    const cards = cardRefs.current.filter(Boolean)
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in')
-            obs.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
-    )
-    cards.forEach((el) => obs.observe(el))
-    return () => obs.disconnect()
-  }, [])
 
   const scrollToForm = () => {
     const formElement = document.getElementById('application-form')
@@ -217,25 +199,19 @@ const ServicesPage = () => {
                   </div>
                 </div>
                 <div className="scroll-list-right">
-                  {service.cards.map((card, cardIndex) => {
-                    const globalIndex = currentServices
-                      .slice(0, index)
-                      .reduce((acc, s) => acc + s.cards.length, 0) + cardIndex
-                    return (
-                      <div
-                        key={cardIndex}
-                        ref={(el) => (cardRefs.current[globalIndex] = el)}
-                        className="scroll-card-modern"
-                        onClick={scrollToForm}
-                        style={{ cursor: 'pointer', transitionDelay: `${cardIndex * 80}ms` }}
-                      >
-                        <div className="scroll-card-id">{String(cardIndex + 1).padStart(2, '0')}</div>
-                        <div className="scroll-card-body">
-                          <p>{card}</p>
-                        </div>
+                  {service.cards.map((card, cardIndex) => (
+                    <div
+                      key={cardIndex}
+                      className="scroll-card-modern"
+                      onClick={scrollToForm}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <div className="scroll-card-id">{String(cardIndex + 1).padStart(2, '0')}</div>
+                      <div className="scroll-card-body">
+                        <p>{card}</p>
                       </div>
-                    )
-                  })}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
