@@ -7,13 +7,16 @@ const SCROLL_HEIGHT_VH = 620
 
 // Сцены: фон по диапазону progress [from, to]
 const SCENES = [
-  { from: 0, to: 0.14, image: 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=1920&q=80', label: 'office' },
-  { from: 0.10, to: 0.28, image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80', label: 'warehouses' },
-  { from: 0.24, to: 0.42, image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=80', label: 'border' },
-  { from: 0.38, to: 0.56, image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80', label: 'city' },
-  { from: 0.52, to: 0.68, image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=80', label: 'port' },
-  { from: 0.64, to: 0.80, image: 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=1920&q=80', label: 'highway' },
-  { from: 0.76, to: 1.02, image: 'https://images.unsplash.com/photo-1605745341112-85968b19335f?w=1920&q=80', label: 'hub' },
+  { from: 0, to: 0.14, image: '/images/parallax/scene-01.png', label: 'office' },
+  { from: 0.10, to: 0.28, image: '/images/parallax/scene-02.png', label: 'warehouses' },
+  { from: 0.24, to: 0.42, image: '/images/parallax/scene-03.png', label: 'border' },
+  { from: 0.38, to: 0.56, image: '/images/parallax/scene-04.png', label: 'city' },
+  { from: 0.52, to: 0.68, image: '/images/parallax/scene-05.png', label: 'port' },
+  { from: 0.58, to: 0.74, image: '/images/parallax/scene-08.png', label: 'terminal' },
+  { from: 0.64, to: 0.80, image: '/images/parallax/scene-06.png', label: 'highway' },
+  { from: 0.70, to: 0.86, image: '/images/parallax/scene-09.png', label: 'logistics' },
+  { from: 0.74, to: 0.92, image: '/images/parallax/scene-10.png', label: 'partnership' },
+  { from: 0.76, to: 1.02, image: '/images/parallax/scene-07.png', label: 'hub' },
 ]
 
 // Карточки по сценам (CMR/накладная стилистика для первой, далее — единый стиль)
