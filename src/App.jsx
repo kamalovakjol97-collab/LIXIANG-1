@@ -29,6 +29,8 @@ function HomePage() {
         <Hero />
         <Statistics />
         <hr className="section-divider" />
+        <Geography />
+        <hr className="section-divider" />
         <ServicesCarousel />
         <hr className="section-divider" />
         <HowWeWork />

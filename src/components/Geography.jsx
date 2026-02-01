@@ -5,7 +5,9 @@ import './Geography.css'
 const Geography = () => {
   const { language } = useLanguage()
   const [isVisible, setIsVisible] = useState(false)
+  const [inView, setInView] = useState(true)
   const sectionRef = useRef(null)
+  const svgRef = useRef(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -13,6 +15,15 @@ const Geography = () => {
     }, { threshold: 0.1 })
     if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.1, rootMargin: '50px' }
+    )
+    if (sectionRef.current) obs.observe(sectionRef.current)
+    return () => obs.disconnect()
   }, [])
 
   // Координаты точек для Европы и Азии (viewBox="0 0 1200 800")
@@ -98,7 +109,7 @@ const Geography = () => {
             : '实际路线、节点与驻点'}
         </p>
 
-        <div className={`map-wrapper-large ${isVisible ? 'animate' : ''}`}>
+        <div className={`map-wrapper-large ${isVisible ? 'animate' : ''} ${!inView ? 'animations-paused' : ''}`}>
           <div className="map-background map-physical-bg" aria-hidden="true"></div>
           <svg viewBox="0 0 1200 800" className="map-routes world-map-svg-large">
             <defs>

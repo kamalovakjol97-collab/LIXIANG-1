@@ -133,6 +133,11 @@
   filter: drop-shadow(0 0 8px rgba(255, 122, 0, 0.6));
 }
 
+.map-wrapper-large.animations-paused .moving-unit {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .moving-unit g {
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
@@ -211,4 +216,8 @@
   .map-wrapper-large { border-radius: 0; margin: 0 -20px; }
   .node-text-v2 { display: none; } /* Скрываем текст на мобилках для чистоты */
   .map-legend-v4 { position: relative; bottom: 0; right: 0; margin-top: 30px; width: 100%; }
+  /* Отключаем анимацию транспорта на мобильных для производительности */
+  .moving-unit {
+    display: none;
+  }
 }

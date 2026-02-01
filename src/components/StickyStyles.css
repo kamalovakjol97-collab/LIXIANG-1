@@ -75,12 +75,23 @@
   padding: 50px;
   display: flex;
   gap: 35px;
-  transition: var(--transition);
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s ease,
+    border-color 0.3s ease;
 }
 
-.scroll-card-modern:hover {
+.scroll-card-modern.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-card-modern.animate-in:hover {
   background: rgba(255, 255, 255, 0.05);
   border-color: var(--color-accent);
+  transform: translateX(4px);
 }
 
 .scroll-card-id {

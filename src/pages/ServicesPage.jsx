@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { Link } from 'react-router-dom'
 import './ServicesPage.css'
@@ -6,6 +6,24 @@ import '../components/StickyStyles.css'
 
 const ServicesPage = () => {
   const { language } = useLanguage()
+  const cardRefs = useRef([])
+
+  useEffect(() => {
+    const cards = cardRefs.current.filter(Boolean)
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in')
+            obs.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    )
+    cards.forEach((el) => obs.observe(el))
+    return () => obs.disconnect()
+  }, [])
 
   const scrollToForm = () => {
     const formElement = document.getElementById('application-form')
@@ -211,7 +229,8 @@ const ServicesPage = () => {
                         <p>{card}</p>
                       </div>
                     </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             </div>

@@ -5,6 +5,24 @@ import './WhyXGLOG.css'
 const WhyXGLOG = () => {
   const { language } = useLanguage()
   const sectionRef = useRef(null)
+  const cardRefs = useRef([])
+
+  useEffect(() => {
+    const cards = cardRefs.current.filter(Boolean)
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in')
+            obs.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    )
+    cards.forEach((el) => obs.observe(el))
+    return () => obs.disconnect()
+  }, [])
   
   const advantages = language === 'ru' ? [
     {
@@ -93,8 +111,13 @@ const WhyXGLOG = () => {
           </div>
           
           <div className="why-scroll-right">
-            {advantages.map((adv) => (
-              <div key={adv.id} className="why-scroll-card">
+            {advantages.map((adv, i) => (
+              <div
+                key={adv.id}
+                ref={(el) => (cardRefs.current[i] = el)}
+                className="why-scroll-card"
+                style={{ transitionDelay: `${i * 80}ms` }}
+              >
                 <div className="card-number">{adv.id}</div>
                 <div className="card-body">
                   <h3>{adv.title}</h3>

@@ -1,8 +1,27 @@
+import { useEffect, useRef } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import './StickyStyles.css'
 
 const HowWeWork = () => {
   const { language } = useLanguage()
+  const stepRefs = useRef([])
+
+  useEffect(() => {
+    const steps = stepRefs.current.filter(Boolean)
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in')
+            obs.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -30px 0px' }
+    )
+    steps.forEach((el) => obs.observe(el))
+    return () => obs.disconnect()
+  }, [])
   
   const steps = language === 'ru' ? [
     { id: '01', title: 'Онлайн-заявка', text: 'Заполните форму на сайте с параметрами груза. Ваш запрос мгновенно попадает к нашему логисту.' },
@@ -36,8 +55,13 @@ const HowWeWork = () => {
             </div>
           </div>
           <div className="scroll-list-right">
-            {steps.map((step) => (
-              <div key={step.id} className="scroll-card-modern">
+            {steps.map((step, i) => (
+              <div
+                key={step.id}
+                ref={(el) => (stepRefs.current[i] = el)}
+                className="scroll-card-modern"
+                style={{ transitionDelay: `${i * 100}ms` }}
+              >
                 <div className="scroll-card-id">{step.id}</div>
                 <div className="scroll-card-body">
                   <h3>{step.title}</h3>
