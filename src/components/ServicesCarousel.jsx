@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext'
 import './StickyStyles.css'
@@ -7,22 +7,18 @@ import './ServicesCarousel.css'
 const ServicesCarousel = () => {
   const { t, language } = useLanguage()
   const navigate = useNavigate()
-  const cardRefs = useRef([])
+  const sectionRef = useRef(null)
+  const [sectionInView, setSectionInView] = useState(false)
 
   useEffect(() => {
-    const cards = cardRefs.current.filter(Boolean)
+    if (!sectionRef.current) return
     const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('service-card-unfolded')
-            obs.unobserve(entry.target)
-          }
-        })
+      ([entry]) => {
+        if (entry.isIntersecting) setSectionInView(true)
       },
-      { threshold: 0.2, rootMargin: '0px 0px -30px 0px' }
+      { threshold: 0.1 }
     )
-    cards.forEach((el) => obs.observe(el))
+    obs.observe(sectionRef.current)
     return () => obs.disconnect()
   }, [])
 
@@ -89,7 +85,6 @@ const ServicesCarousel = () => {
             {services.map((service, i) => (
               <div
                 key={service.id}
-                ref={(el) => (cardRefs.current[i] = el)}
                 className="scroll-card-modern service-card"
                 onClick={() => navigate('/services')}
               >

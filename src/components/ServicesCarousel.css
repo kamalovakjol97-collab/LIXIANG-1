@@ -231,14 +231,10 @@
   .service-learn-more { opacity: 1; transform: translateY(0); }
 }
 
-/* Блок «Услуги»: разворот карточки как свиток + иконка прорисовывается по hover */
+/* Блок «Услуги»: контент всегда виден; при появлении секции — анимация разворота; иконка прорисовывается по hover */
 .services-carousel-section .service-card {
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.services-carousel-section .service-card.service-card-unfolded {
   clip-path: inset(0 0% 0 0);
+  transition: clip-path 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .service-card-icon-wrap {
@@ -261,10 +257,4 @@
 
 .service-card:hover .service-icon-path {
   stroke-dashoffset: 0;
-}
-
-@media (max-width: 768px) {
-  .services-carousel-section .service-card {
-    clip-path: inset(0 0% 0 0);
-  }
 }
