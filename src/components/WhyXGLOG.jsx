@@ -111,8 +111,8 @@ const WhyXGLOG = () => {
           </div>
           
           <div className="why-scroll-right">
-            {advantages.map((adv) => (
-              <div key={adv.id} className="why-scroll-card">
+            {advantages.map((adv, i) => (
+              <div key={adv.id} ref={(el) => (cardRefs.current[i] = el)} className="why-scroll-card">
                 <div className="card-number">{adv.id}</div>
                 <div className="card-body">
                   <h3>{adv.title}</h3>

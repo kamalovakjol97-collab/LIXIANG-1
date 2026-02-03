@@ -98,3 +98,65 @@
     padding-top: 30px;
   }
 }
+
+/* Вертикальная линия «маршрута» с прорисовкой и точкой */
+.how-we-work-steps {
+  position: relative;
+  padding-left: 50px;
+}
+
+.how-we-work-line-wrap {
+  position: absolute;
+  left: 30px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  color: rgba(255, 122, 0, 0.4);
+  pointer-events: none;
+}
+
+.how-we-work-line-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+}
+
+.how-we-work-line-path {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.how-we-work-line-path.how-we-work-line-drawn {
+  stroke-dashoffset: 0;
+}
+
+.how-we-work-line-dot {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0;
+  animation: none;
+}
+
+.how-we-work-line-dot.how-we-work-line-dot-run {
+  opacity: 1;
+  animation: how-we-work-dot-down 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+}
+
+@keyframes how-we-work-dot-down {
+  from { top: 0; }
+  to { top: 100%; }
+}
+
+@media (max-width: 768px) {
+  .how-we-work-line-wrap { display: none; }
+}

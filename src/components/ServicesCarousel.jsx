@@ -1,11 +1,31 @@
+import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext'
 import './StickyStyles.css'
+import './ServicesCarousel.css'
 
 const ServicesCarousel = () => {
   const { t, language } = useLanguage()
   const navigate = useNavigate()
-  
+  const cardRefs = useRef([])
+
+  useEffect(() => {
+    const cards = cardRefs.current.filter(Boolean)
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('service-card-unfolded')
+            obs.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -30px 0px' }
+    )
+    cards.forEach((el) => obs.observe(el))
+    return () => obs.disconnect()
+  }, [])
+
   const services = [
     {
       id: '01',
@@ -37,8 +57,19 @@ const ServicesCarousel = () => {
     }
   ]
 
+  const icons = [
+    /* Truck */
+    <svg key="truck" className="service-card-icon" viewBox="0 0 48 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path className="service-icon-path" d="M4 20h8v-8H4v8zm10 0h18V8H14v12zm20-6h6l-4-6h-2v6zM6 24h36" /></svg>,
+    /* Ship */
+    <svg key="ship" className="service-card-icon" viewBox="0 0 48 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path className="service-icon-path" d="M4 22h40l-4-8H8L4 22zm8-6h8m-8 4h8m16-4h4m-4 4h4M2 26h44" /></svg>,
+    /* Train / export */
+    <svg key="train" className="service-card-icon" viewBox="0 0 48 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path className="service-icon-path" d="M8 20V12h12v8H8zm20 0V12h12v8H28zM8 24h32M14 12h4m16 0h4" /></svg>,
+    /* Customs / document */
+    <svg key="doc" className="service-card-icon" viewBox="0 0 48 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path className="service-icon-path" d="M12 4h20v24H12V4zm8 8h4m-4 4h4m-4 4h8" /></svg>
+  ]
+
   return (
-    <section className="sticky-section-dark">
+    <section className="sticky-section-dark services-carousel-section">
       <div className="container">
         <div className="sticky-layout">
           <div className="sticky-left">
@@ -55,8 +86,14 @@ const ServicesCarousel = () => {
             </div>
           </div>
           <div className="scroll-list-right">
-            {services.map((service) => (
-              <div key={service.id} className="scroll-card-modern" onClick={() => navigate('/services')}>
+            {services.map((service, i) => (
+              <div
+                key={service.id}
+                ref={(el) => (cardRefs.current[i] = el)}
+                className="scroll-card-modern service-card"
+                onClick={() => navigate('/services')}
+              >
+                <div className="service-card-icon-wrap">{icons[i]}</div>
                 <div className="scroll-card-id">{service.id}</div>
                 <div className="scroll-card-body">
                   <h3>{service.title}</h3>

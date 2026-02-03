@@ -230,3 +230,41 @@
   .sub-services-list { max-height: 200px; opacity: 1; }
   .service-learn-more { opacity: 1; transform: translateY(0); }
 }
+
+/* Блок «Услуги»: разворот карточки как свиток + иконка прорисовывается по hover */
+.services-carousel-section .service-card {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.services-carousel-section .service-card.service-card-unfolded {
+  clip-path: inset(0 0% 0 0);
+}
+
+.service-card-icon-wrap {
+  flex-shrink: 0;
+  width: 48px;
+  height: 32px;
+  color: var(--color-accent);
+}
+
+.service-card-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.service-card-icon .service-icon-path {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover .service-icon-path {
+  stroke-dashoffset: 0;
+}
+
+@media (max-width: 768px) {
+  .services-carousel-section .service-card {
+    clip-path: inset(0 0% 0 0);
+  }
+}

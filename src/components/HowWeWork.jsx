@@ -1,8 +1,23 @@
+import { useEffect, useRef, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import './StickyStyles.css'
+import './HowWeWork.css'
 
 const HowWeWork = () => {
   const { language } = useLanguage()
+  const sectionRef = useRef(null)
+  const lineRef = useRef(null)
+  const [lineVisible, setLineVisible] = useState(false)
+
+  useEffect(() => {
+    if (!sectionRef.current) return
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setLineVisible(true) },
+      { threshold: 0.2 }
+    )
+    obs.observe(sectionRef.current)
+    return () => obs.disconnect()
+  }, [])
 
   const steps = language === 'ru' ? [
     { id: '01', title: 'Онлайн-заявка', text: 'Заполните форму на сайте с параметрами груза. Ваш запрос мгновенно попадает к нашему логисту.' },
@@ -35,7 +50,13 @@ const HowWeWork = () => {
               <span>{language === 'ru' ? 'минут на ответ' : '分钟响应'}</span>
             </div>
           </div>
-          <div className="scroll-list-right">
+          <div className="scroll-list-right how-we-work-steps">
+            <div className="how-we-work-line-wrap" aria-hidden="true">
+              <svg ref={lineRef} className="how-we-work-line-svg" viewBox="0 0 4 400" preserveAspectRatio="none">
+                <path className={`how-we-work-line-path ${lineVisible ? 'how-we-work-line-drawn' : ''}`} d="M2 0 L2 400" stroke="currentColor" strokeWidth="2" fill="none" />
+              </svg>
+              <div className={`how-we-work-line-dot ${lineVisible ? 'how-we-work-line-dot-run' : ''}`} />
+            </div>
             {steps.map((step) => (
               <div key={step.id} className="scroll-card-modern">
                 <div className="scroll-card-id">{step.id}</div>

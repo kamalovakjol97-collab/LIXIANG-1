@@ -21,8 +21,19 @@ const Hero = () => {
   return (
     <section className="hero" ref={sectionRef}>
       <div className="hero-video-bg">
-        {/* Можно использовать атмосферное видео или качественное фото */}
         <div className="hero-overlay"></div>
+      </div>
+      {/* Фоновые текстуры в стиле туши/гор (китайская живопись) */}
+      <div className="hero-ink-bg" aria-hidden="true">
+        <svg className="hero-ink-layer hero-ink-layer-1" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 400 Q200 200 400 350 T800 300" stroke="currentColor" strokeWidth="80" strokeLinecap="round" opacity="0.04" />
+        </svg>
+        <svg className="hero-ink-layer hero-ink-layer-2" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 500 Q400 100 700 400" stroke="currentColor" strokeWidth="120" strokeLinecap="round" opacity="0.03" />
+        </svg>
+        <svg className="hero-ink-layer hero-ink-layer-3" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="500" cy="200" rx="200" ry="120" opacity="0.025" fill="currentColor" />
+        </svg>
       </div>
       
       <div className="container">
