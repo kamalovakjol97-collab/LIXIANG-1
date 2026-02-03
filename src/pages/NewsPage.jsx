@@ -112,7 +112,8 @@ const NewsPage = () => {
         tag: '#公司活动',
         title: '2026新年快乐！ООО ГК ХЖЛ感谢合作伙伴。',
         excerpt: '公司团队向所有客户和同事表示祝贺。我们总结增长的一年，并为未来制定计划。',
-        icon: '🎉'
+        icon: '🎉',
+        image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80'
       },
       {
         id: 2,
@@ -120,7 +121,8 @@ const NewsPage = () => {
         tag: '#合作伙伴关系 #汽车运输',
         title: '战略联盟：与承运商ООО «К2»签署协议。',
         excerpt: '我们正在加强地面物流能力，为客户提供灵活的服务。',
-        icon: '🤝'
+        icon: '🤝',
+        image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80'
       },
       {
         id: 3,
@@ -128,7 +130,8 @@ const NewsPage = () => {
         tag: '#记录 #项目物流',
         title: '创下从布龙卡港运出记录 — CC7项目401项。',
         excerpt: '公司最大规模的一次性操作证实了在处理复杂货物方面的领导地位。',
-        icon: '🏆'
+        icon: '🏆',
+        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80'
       },
       {
         id: 4,
@@ -136,49 +139,127 @@ const NewsPage = () => {
         tag: '#发展',
         title: '完成合并为统一结构 — ООО «Группа компаний ХЖЛ»。',
         excerpt: '优化流程和提高服务质量的新阶段。',
-        icon: '🏢'
+        icon: '🏢',
+        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80'
+      },
+      {
+        id: 5,
+        date: '2025年10月',
+        tag: '#扩展 #汽车运输',
+        title: 'CC7项目启动定期汽车运输。',
+        excerpt: '扩大物流能力：现可稳定运输大型设备。',
+        icon: '🚛',
+        image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80'
+      },
+      {
+        id: 6,
+        date: '2025年9月',
+        tag: '#基础设施',
+        title: '圣彼得堡新物流枢纽启用。',
+        excerpt: '新中心战略位置优化路线、缩短交付时间。',
+        icon: '📍',
+        image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80'
+      },
+      {
+        id: 7,
+        date: '2025年8月',
+        tag: '#技术 #创新',
+        title: '推出货物实时追踪系统。',
+        excerpt: '客户现可通过移动端与网页全天候查询货物状态。',
+        icon: '💻',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80'
+      },
+      {
+        id: 8,
+        date: '2025年7月',
+        tag: '#认证',
+        title: '获ISO 9001:2015国际认证。',
+        excerpt: '确认服务质量及国际管理标准合规。',
+        icon: '✅',
+        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80'
       }
     ]
   }
 
   const currentNews = news[language]
+  const featured = currentNews[0]
+  const restNews = currentNews.slice(1)
+  const readMoreText = language === 'ru' ? 'Читать далее' : '阅读更多'
 
   return (
     <div className="news-page">
-      <div className="news-hero">
+      <header className="news-hero">
         <div className="container">
-          <div className="breadcrumbs">
+          <nav className="breadcrumbs" aria-label="Breadcrumb">
             <Link to="/">{language === 'ru' ? 'Главная' : '首页'}</Link>
             <span>/</span>
             <span>{language === 'ru' ? 'Новости' : '新闻'}</span>
-          </div>
+          </nav>
           <h1 className="news-page-title">
-            {language === 'ru' ? 'Последние новости' : '最新新闻'}
+            {language === 'ru' ? 'Новости компании' : '公司新闻'}
           </h1>
+          <p className="news-hero-subtitle">
+            {language === 'ru'
+              ? 'События, партнёрства и достижения XGL — всегда актуальная информация для клиентов и партнёров.'
+              : 'XGL 的动态、合作与成就 — 为客户与合作伙伴提供最新资讯。'}
+          </p>
+        </div>
+      </header>
+
+      <div className="news-intro">
+        <div className="container">
+          <p className="news-intro-text">
+            {language === 'ru'
+              ? 'Мы развиваем логистическую инфраструктуру и укрепляем отношения с партнёрами. В этом разделе — ключевые события и анонсы.'
+              : '我们持续发展物流基础设施并深化与合作伙伴的关系。此处为重要动态与公告。'}
+          </p>
         </div>
       </div>
-      <div className="container" ref={sectionRef}>
+
+      <div className="container news-content" ref={sectionRef}>
+        {featured && (
+          <article
+            className={`news-card news-card-featured ${isVisible ? 'fade-in' : ''}`}
+            style={{ animationDelay: '0s' }}
+          >
+            {featured.image && (
+              <div className="news-card-image-wrap">
+                <img src={featured.image} alt={featured.title} />
+                <div className="news-card-overlay">
+                  <span className="news-date">{featured.date}</span>
+                  <span className="news-tag">{featured.tag}</span>
+                </div>
+              </div>
+            )}
+            <div className="news-card-body">
+              <h2 className="news-title news-title-featured">{featured.title}</h2>
+              <p className="news-excerpt">{featured.excerpt}</p>
+              <span className="news-link">{readMoreText} →</span>
+            </div>
+          </article>
+        )}
+
         <div className="news-list">
-          {currentNews.map((item, index) => (
-            <article 
-              key={item.id} 
-              className={`news-card card ${isVisible ? 'fade-in' : ''}`}
-              style={{ animationDelay: `${index * 0.1}s` }}
+          {restNews.map((item, index) => (
+            <article
+              key={item.id}
+              className={`news-card news-card-standard ${isVisible ? 'fade-in' : ''}`}
+              style={{ animationDelay: `${(index + 1) * 0.08}s` }}
             >
               {item.image && (
-                <div className="news-image">
+                <div className="news-card-image-wrap">
                   <img src={item.image} alt={item.title} />
+                  <div className="news-card-overlay">
+                    <span className="news-date">{item.date}</span>
+                  </div>
                 </div>
               )}
-              <div className="news-header">
-                <div className="news-meta">
-                  <span className="news-date">{item.date}</span>
-                  <span className="news-tag">{item.tag}</span>
-                </div>
-                <div className="news-icon">{item.icon}</div>
+              <div className="news-card-body">
+                <span className="news-tag news-tag-inline">{item.tag}</span>
+                <h2 className="news-title">{item.title}</h2>
+                <p className="news-excerpt">{item.excerpt}</p>
+                <span className="news-link">{readMoreText} →</span>
               </div>
-              <h2 className="news-title">{item.title}</h2>
-              <p className="news-excerpt">{item.excerpt}</p>
             </article>
           ))}
         </div>

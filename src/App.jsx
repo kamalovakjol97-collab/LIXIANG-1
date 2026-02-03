@@ -8,6 +8,7 @@ import ServicesCarousel from './components/ServicesCarousel'
 import HowWeWork from './components/HowWeWork'
 import WhyXGLOG from './components/WhyXGLOG'
 import ApplicationForm from './components/ApplicationForm'
+import NewsSection from './components/NewsSection'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import PrivacyPolicy from './components/PrivacyPolicy'
@@ -33,6 +34,8 @@ function HomePage() {
         <HowWeWork />
         <hr className="section-divider" />
         <WhyXGLOG />
+        <hr className="section-divider" />
+        <NewsSection />
         <hr className="section-divider" />
         <ApplicationForm />
       </main>
