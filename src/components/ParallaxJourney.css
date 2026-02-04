@@ -34,7 +34,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.25s ease;
 }
 
 .parallax-journey-bg-overlay {
@@ -49,23 +49,31 @@
   z-index: 1;
 }
 
-/* Грузовик в движении */
-.parallax-journey-truck {
+/* Контейнеровоз в движении */
+.parallax-journey-ship {
   position: absolute;
-  bottom: 18%;
+  bottom: 16%;
   transform: translateX(-50%);
   z-index: 5;
   transition: left 0.15s ease-out;
   filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4));
 }
 
-.parallax-journey-truck-svg {
-  width: 140px;
+.parallax-journey-ship-svg {
+  width: 160px;
   height: auto;
 }
 
+.parallax-journey-ship.ship-2 .parallax-journey-ship-svg {
+  width: 140px;
+  opacity: 0.9;
+}
+
 @media (min-width: 768px) {
-  .parallax-journey-truck-svg {
+  .parallax-journey-ship-svg {
+    width: 200px;
+  }
+  .parallax-journey-ship.ship-2 .parallax-journey-ship-svg {
     width: 180px;
   }
 }

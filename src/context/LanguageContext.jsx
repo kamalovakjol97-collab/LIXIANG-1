@@ -10,9 +10,8 @@ export const LanguageProvider = ({ children }) => {
   const translations = {
     ru: {
       services: 'Услуги',
-      partners: 'Партнёры',
-      news: 'Новости',
       contacts: 'Контакты',
+      faq: 'FAQ',
       calculate: 'Рассчитать',
       workingHours: 'Пн-Пт 10:00 - 19:00',
       topBarSchedule: 'График работы: пн.-пт. с 10.00 до 19.00',
@@ -21,9 +20,8 @@ export const LanguageProvider = ({ children }) => {
     },
     zh: {
       services: '服务',
-      partners: '合作伙伴',
-      news: '新闻',
       contacts: '联系方式',
+      faq: '常见问题',
       calculate: '计算',
       workingHours: '周一至周五 10:00 - 19:00',
       topBarSchedule: '工作时间：周一至周五 10:00 - 19:00',

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Logo from './Logo'
 import { useLanguage } from '../context/LanguageContext'
 import './Header.css'
@@ -8,7 +8,6 @@ const Header = () => {
   const { t, language } = useLanguage()
   const [isScrolled, setIsScrolled] = useState(false)
   const location = useLocation()
-  const navigate = useNavigate()
   
   useEffect(() => {
     const handleScroll = () => {
@@ -17,10 +16,6 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  const handleCabinetClick = () => {
-    navigate('/lk')
-  }
 
   const isHome = location.pathname === '/'
 
@@ -32,14 +27,13 @@ const Header = () => {
           
           <nav className="header-nav">
             <Link to="/services" className="nav-link">{t('services')}</Link>
-            <Link to="/news" className="nav-link">{t('news')}</Link>
             <Link to="/history" className="nav-link">{language === 'ru' ? 'История' : '历史'}</Link>
             <Link to="/contacts" className="nav-link">{t('contacts')}</Link>
-            <Link to="/partners" className="nav-link">{t('partners')}</Link>
+            <Link to="/faq" className="nav-link">{t('faq')}</Link>
           </nav>
           
           <div className="header-right">
-            <button type="button" className="header-cta" onClick={handleCabinetClick}>
+            <a href="https://lkxgl.netlify.app/login" className="header-cta" target="_blank" rel="noopener noreferrer">
               <span className="header-cta-icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="12" cy="8" r="3.5" stroke="currentColor" strokeWidth="2" />
@@ -49,7 +43,7 @@ const Header = () => {
               <span className="header-cta-text">
                 {language === 'ru' ? 'Личный кабинет XGL' : 'XGL 个人账户'}
               </span>
-            </button>
+            </a>
           </div>
         </div>
       </div>

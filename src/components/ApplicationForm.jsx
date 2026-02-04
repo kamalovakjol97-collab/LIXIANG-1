@@ -16,6 +16,15 @@ const ApplicationForm = () => {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    if (window.location.hash === '#application-form' && sectionRef.current) {
+      const t = setTimeout(() => {
+        sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 100)
+      return () => clearTimeout(t)
+    }
+  }, [])
+
   const [formData, setFormData] = useState({
     cargoType: '',
     from: '',

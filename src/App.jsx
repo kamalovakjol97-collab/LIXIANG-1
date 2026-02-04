@@ -8,16 +8,12 @@ import ServicesCarousel from './components/ServicesCarousel'
 import HowWeWork from './components/HowWeWork'
 import WhyXGLOG from './components/WhyXGLOG'
 import ApplicationForm from './components/ApplicationForm'
-import NewsSection from './components/NewsSection'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import ServicesPage from './pages/ServicesPage'
-import NewsPage from './pages/NewsPage'
 import ContactsPage from './pages/ContactsPage'
-import PartnersPage from './pages/PartnersPage'
 import HistoryPage from './pages/HistoryPage'
-import CabinetPage from './pages/CabinetPage'
 import './App.css'
 
 function HomePage() {
@@ -34,8 +30,6 @@ function HomePage() {
         <HowWeWork />
         <hr className="section-divider" />
         <WhyXGLOG />
-        <hr className="section-divider" />
-        <NewsSection />
         <hr className="section-divider" />
         <ApplicationForm />
       </main>
@@ -56,22 +50,6 @@ function App() {
                 <TopBar />
                 <Header />
                 <ServicesPage />
-                <Footer />
-              </>
-            } />
-            <Route path="/news" element={
-              <>
-                <TopBar />
-                <Header />
-                <NewsPage />
-                <Footer />
-              </>
-            } />
-            <Route path="/partners" element={
-              <>
-                <TopBar />
-                <Header />
-                <PartnersPage />
                 <Footer />
               </>
             } />
@@ -104,14 +82,6 @@ function App() {
                 <TopBar />
                 <Header />
                 <PrivacyPolicy />
-                <Footer />
-              </>
-            } />
-            <Route path="/lk" element={
-              <>
-                <TopBar />
-                <Header />
-                <CabinetPage />
                 <Footer />
               </>
             } />

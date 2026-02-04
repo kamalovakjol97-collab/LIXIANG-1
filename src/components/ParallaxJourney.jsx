@@ -7,16 +7,16 @@ const SCROLL_HEIGHT_VH = 620
 
 // Сцены: фон по диапазону progress [from, to]
 const SCENES = [
-  { from: 0, to: 0.14, image: '/images/parallax/scene-01.png', label: 'office' },
-  { from: 0.10, to: 0.28, image: '/images/parallax/scene-02.png', label: 'warehouses' },
-  { from: 0.24, to: 0.42, image: '/images/parallax/scene-03.png', label: 'border' },
-  { from: 0.38, to: 0.56, image: '/images/parallax/scene-04.png', label: 'city' },
-  { from: 0.52, to: 0.68, image: '/images/parallax/scene-05.png', label: 'port' },
-  { from: 0.58, to: 0.74, image: '/images/parallax/scene-08.png', label: 'terminal' },
-  { from: 0.64, to: 0.80, image: '/images/parallax/scene-06.png', label: 'highway' },
-  { from: 0.70, to: 0.86, image: '/images/parallax/scene-09.png', label: 'logistics' },
-  { from: 0.74, to: 0.92, image: '/images/parallax/scene-10.png', label: 'partnership' },
-  { from: 0.76, to: 1.02, image: '/images/parallax/scene-07.png', label: 'hub' },
+  { from: 0, to: 0.16, image: '/images/parallax/scene-01.png', label: 'office' },
+  { from: 0.06, to: 0.30, image: '/images/parallax/scene-02.png', label: 'warehouses' },
+  { from: 0.20, to: 0.44, image: '/images/parallax/scene-03.png', label: 'border' },
+  { from: 0.34, to: 0.58, image: '/images/parallax/scene-04.png', label: 'city' },
+  { from: 0.48, to: 0.70, image: '/images/parallax/scene-05.png', label: 'port' },
+  { from: 0.54, to: 0.76, image: '/images/parallax/scene-08.png', label: 'terminal' },
+  { from: 0.60, to: 0.82, image: '/images/parallax/scene-06.png', label: 'highway' },
+  { from: 0.66, to: 0.88, image: '/images/parallax/scene-09.png', label: 'logistics' },
+  { from: 0.70, to: 0.94, image: '/images/parallax/scene-10.png', label: 'partnership' },
+  { from: 0.72, to: 1.02, image: '/images/parallax/scene-07.png', label: 'hub' },
 ]
 
 // Карточки по сценам (CMR/накладная стилистика для первой, далее — единый стиль)
@@ -95,7 +95,7 @@ function useScrollProgress(sectionRef, paused) {
 
 function getSceneOpacity(scene, progress) {
   const { from, to } = scene
-  const fade = 0.10
+  const fade = 0.05
   if (progress <= from - fade) return 0
   if (progress >= to + fade) return 0
   if (progress >= from && progress <= to) return 1
@@ -119,9 +119,9 @@ const ParallaxJourney = ({ id = 'history-journey' }) => {
   const effectiveProgress = progress
   const cards = getCards(language)
 
-  const truckPosition = effectiveProgress >= 0.82 ? 75 : 10 + effectiveProgress * 78
-  const truckStopped = effectiveProgress >= 0.82
-  const showMultipleTrucks = effectiveProgress >= 0.58 && effectiveProgress <= 0.78
+  const shipPosition = effectiveProgress >= 0.82 ? 75 : 10 + effectiveProgress * 78
+  const shipStopped = effectiveProgress >= 0.82
+  const showSecondShip = effectiveProgress >= 0.58 && effectiveProgress <= 0.78
   const showFinalCTA = effectiveProgress >= 0.86
 
   const scrollToProgress = (p) => {
@@ -159,34 +159,49 @@ const ParallaxJourney = ({ id = 'history-journey' }) => {
           <div className="parallax-journey-bg-overlay" />
         </div>
 
-        {/* Грузовик(и) */}
+        {/* Контейнеровоз с надписью XGL */}
         <div
-          className={`parallax-journey-truck ${truckStopped ? 'stopped' : ''}`}
-          style={{ left: `${truckPosition}%` }}
+          className={`parallax-journey-ship ${shipStopped ? 'stopped' : ''}`}
+          style={{ left: `${shipPosition}%` }}
           aria-hidden="true"
         >
-          <svg viewBox="0 0 120 60" className="parallax-journey-truck-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="18" width="55" height="28" rx="3" fill="var(--color-primary)" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-            <rect x="60" y="22" width="45" height="24" rx="2" fill="var(--color-primary)" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-            <circle cx="25" cy="50" r="6" fill="#333" stroke="#555" strokeWidth="1" />
-            <circle cx="95" cy="50" r="6" fill="#333" stroke="#555" strokeWidth="1" />
-            <rect x="12" y="24" width="12" height="8" fill="rgba(255,255,255,0.2)" rx="1" />
-            <path d="M58 28 L62 28 L62 46 L58 46 Z" fill="var(--color-accent)" opacity="0.9" />
-            {truckStopped && <circle cx="18" cy="22" r="2" fill="var(--color-accent)" opacity="0.9" />}
+          <svg viewBox="0 0 200 70" className="parallax-journey-ship-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="ship-hull" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#1e3a5f" />
+                <stop offset="100%" stopColor="#0a2a4e" />
+              </linearGradient>
+            </defs>
+            <path d="M8 50 L8 42 L25 38 L170 38 L192 42 L192 50 L8 50 Z" fill="url(#ship-hull)" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
+            <path d="M25 38 L25 22 L45 22 L45 38 Z" fill="var(--color-primary)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+            <path d="M50 38 L50 18 L75 18 L75 38 Z" fill="var(--color-primary)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+            <path d="M80 38 L80 18 L105 18 L105 38 Z" fill="var(--color-primary)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+            <path d="M110 38 L110 18 L135 18 L135 38 Z" fill="var(--color-primary)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+            <path d="M140 38 L140 18 L165 18 L165 38 Z" fill="var(--color-primary)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+            <path d="M30 50 L170 50 L170 54 L30 54 Z" fill="#0d2137" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+            <rect x="175" y="35" width="18" height="22" rx="2" fill="var(--color-primary)" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
+            <text x="100" y="48" textAnchor="middle" fill="var(--color-accent)" fontWeight="800" fontSize="14" fontFamily="var(--font-heading), sans-serif">XGL</text>
           </svg>
         </div>
-        {showMultipleTrucks && (
-          <>
-            <div className="parallax-journey-truck truck-2" style={{ left: `${Math.min(92, truckPosition + 12)}%` }} aria-hidden="true">
-              <svg viewBox="0 0 120 60" className="parallax-journey-truck-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="5" y="18" width="55" height="28" rx="3" fill="var(--color-primary)" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
-                <rect x="60" y="22" width="45" height="24" rx="2" fill="var(--color-primary)" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
-                <circle cx="25" cy="50" r="6" fill="#333" />
-                <circle cx="95" cy="50" r="6" fill="#333" />
-                <path d="M58 28 L62 28 L62 46 L58 46 Z" fill="var(--color-accent)" opacity="0.8" />
-              </svg>
-            </div>
-          </>
+        {showSecondShip && (
+          <div className="parallax-journey-ship ship-2" style={{ left: `${Math.min(92, shipPosition + 12)}%` }} aria-hidden="true">
+            <svg viewBox="0 0 200 70" className="parallax-journey-ship-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="ship-hull-2" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#1e3a5f" />
+                  <stop offset="100%" stopColor="#0a2a4e" />
+                </linearGradient>
+              </defs>
+              <path d="M8 50 L8 42 L25 38 L170 38 L192 42 L192 50 L8 50 Z" fill="url(#ship-hull-2)" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />
+              <path d="M25 38 L25 22 L45 22 L45 38 Z" fill="var(--color-primary)" opacity="0.9" />
+              <path d="M50 38 L50 18 L75 18 L75 38 Z" fill="var(--color-primary)" opacity="0.9" />
+              <path d="M80 38 L80 18 L105 18 L105 38 Z" fill="var(--color-primary)" opacity="0.9" />
+              <path d="M110 38 L110 18 L135 18 L135 38 Z" fill="var(--color-primary)" opacity="0.9" />
+              <path d="M140 38 L140 18 L165 18 L165 38 Z" fill="var(--color-primary)" opacity="0.9" />
+              <rect x="175" y="35" width="18" height="22" rx="2" fill="var(--color-primary)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
+              <text x="100" y="48" textAnchor="middle" fill="var(--color-accent)" fontWeight="800" fontSize="14" fontFamily="var(--font-heading), sans-serif" opacity="0.9">XGL</text>
+            </svg>
+          </div>
         )}
 
         {/* Карточки */}

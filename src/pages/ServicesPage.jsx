@@ -7,12 +7,7 @@ import '../components/StickyStyles.css'
 const ServicesPage = () => {
   const { language } = useLanguage()
 
-  const scrollToForm = () => {
-    const formElement = document.getElementById('application-form')
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+  const formUrl = '/#application-form'
 
   const servicesData = {
     ru: [
@@ -200,17 +195,17 @@ const ServicesPage = () => {
                 </div>
                 <div className="scroll-list-right">
                   {service.cards.map((card, cardIndex) => (
-                    <div
+                    <Link
                       key={cardIndex}
+                      to={formUrl}
                       className="scroll-card-modern"
-                      onClick={scrollToForm}
-                      style={{ cursor: 'pointer' }}
+                      style={{ cursor: 'pointer', textDecoration: 'none', color: 'inherit' }}
                     >
                       <div className="scroll-card-id">{String(cardIndex + 1).padStart(2, '0')}</div>
                       <div className="scroll-card-body">
                         <p>{card}</p>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -226,9 +221,9 @@ const ServicesPage = () => {
           <h2 className="bottom-cta-title">
             {language === 'ru' ? 'Мы доставляем не просто грузы, а возможности для бизнеса' : '我们不仅运送货物，还为您的业务带来机遇'}
           </h2>
-          <button className="btn-primary" onClick={scrollToForm}>
+          <Link to={formUrl} className="btn-primary" style={{ display: 'inline-block', textDecoration: 'none', color: 'inherit' }}>
             {language === 'ru' ? 'Рассчитать стоимость' : '计算费用'}
-          </button>
+          </Link>
         </div>
       </div>
     </div>
