@@ -185,22 +185,31 @@ const NewsPage = () => {
   const featured = currentNews[0]
   const restNews = currentNews.slice(1)
   const readMoreText = language === 'ru' ? 'Читать далее' : '阅读更多'
+  const featuredLabel = language === 'ru' ? 'Главная новость' : '头条'
+  const archiveLabel = language === 'ru' ? 'Все материалы' : '全部动态'
+  const ctaTitle = language === 'ru' ? 'Оставаться в курсе' : '获取最新资讯'
+  const ctaText = language === 'ru'
+    ? 'Подпишитесь на рассылку или свяжитесь с нами для персональных консультаций.'
+    : '订阅我们的动态或联系我们获取专属咨询。'
+  const ctaButton = language === 'ru' ? 'Связаться с нами' : '联系我们'
 
   return (
     <div className="news-page">
       <header className="news-hero">
+        <div className="news-hero-pattern" aria-hidden="true" />
         <div className="container">
           <nav className="breadcrumbs" aria-label="Breadcrumb">
             <Link to="/">{language === 'ru' ? 'Главная' : '首页'}</Link>
             <span>/</span>
             <span>{language === 'ru' ? 'Новости' : '新闻'}</span>
           </nav>
+          <p className="news-hero-label">{language === 'ru' ? 'Пресс-центр' : '新闻中心'}</p>
           <h1 className="news-page-title">
             {language === 'ru' ? 'Новости компании' : '公司新闻'}
           </h1>
           <p className="news-hero-subtitle">
             {language === 'ru'
-              ? 'События, партнёрства и достижения XGL — всегда актуальная информация для клиентов и партнёров.'
+              ? 'События, партнёрства и достижения XGL — актуальная информация для клиентов и партнёров.'
               : 'XGL 的动态、合作与成就 — 为客户与合作伙伴提供最新资讯。'}
           </p>
         </div>
@@ -210,35 +219,46 @@ const NewsPage = () => {
         <div className="container">
           <p className="news-intro-text">
             {language === 'ru'
-              ? 'Мы развиваем логистическую инфраструктуру и укрепляем отношения с партнёрами. В этом разделе — ключевые события и анонсы.'
-              : '我们持续发展物流基础设施并深化与合作伙伴的关系。此处为重要动态与公告。'}
+              ? 'Мы развиваем логистическую инфраструктуру и укрепляем отношения с партнёрами. Ниже — ключевые события и анонсы.'
+              : '我们持续发展物流基础设施并深化与合作伙伴的关系。以下为重要动态与公告。'}
           </p>
         </div>
       </div>
 
       <div className="container news-content" ref={sectionRef}>
         {featured && (
-          <article
-            className={`news-card news-card-featured ${isVisible ? 'fade-in' : ''}`}
-            style={{ animationDelay: '0s' }}
-          >
-            {featured.image && (
-              <div className="news-card-image-wrap">
-                <img src={featured.image} alt={featured.title} />
-                <div className="news-card-overlay">
-                  <span className="news-date">{featured.date}</span>
-                  <span className="news-tag">{featured.tag}</span>
-                </div>
-              </div>
-            )}
-            <div className="news-card-body">
-              <h2 className="news-title news-title-featured">{featured.title}</h2>
-              <p className="news-excerpt">{featured.excerpt}</p>
-              <span className="news-link">{readMoreText} →</span>
+          <>
+            <div className="news-section-head">
+              <span className="news-section-head-line" />
+              <h2 className="news-section-head-title">{featuredLabel}</h2>
             </div>
-          </article>
+            <article
+              className={`news-card news-card-featured ${isVisible ? 'fade-in' : ''}`}
+              style={{ animationDelay: '0s' }}
+            >
+              {featured.image && (
+                <div className="news-card-image-wrap">
+                  <img src={featured.image} alt={featured.title} />
+                  <div className="news-card-overlay">
+                    <span className="news-date">{featured.date}</span>
+                    <span className="news-tag-pill">{featured.tag}</span>
+                  </div>
+                  <span className="news-card-badge">{featuredLabel}</span>
+                </div>
+              )}
+              <div className="news-card-body">
+                <h2 className="news-title news-title-featured">{featured.title}</h2>
+                <p className="news-excerpt">{featured.excerpt}</p>
+                <span className="news-link">{readMoreText} →</span>
+              </div>
+            </article>
+          </>
         )}
 
+        <div className="news-section-head">
+          <span className="news-section-head-line" />
+          <h2 className="news-section-head-title">{archiveLabel}</h2>
+        </div>
         <div className="news-list">
           {restNews.map((item, index) => (
             <article
@@ -246,6 +266,9 @@ const NewsPage = () => {
               className={`news-card news-card-standard ${isVisible ? 'fade-in' : ''}`}
               style={{ animationDelay: `${(index + 1) * 0.08}s` }}
             >
+              <span className="news-card-index" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </span>
               {item.image && (
                 <div className="news-card-image-wrap">
                   <img src={item.image} alt={item.title} />
@@ -255,7 +278,7 @@ const NewsPage = () => {
                 </div>
               )}
               <div className="news-card-body">
-                <span className="news-tag news-tag-inline">{item.tag}</span>
+                <span className="news-tag-pill news-tag-inline">{item.tag}</span>
                 <h2 className="news-title">{item.title}</h2>
                 <p className="news-excerpt">{item.excerpt}</p>
                 <span className="news-link">{readMoreText} →</span>
@@ -263,6 +286,14 @@ const NewsPage = () => {
             </article>
           ))}
         </div>
+
+        <section className="news-cta-block">
+          <div className="news-cta-block-inner">
+            <h2 className="news-cta-block-title">{ctaTitle}</h2>
+            <p className="news-cta-block-text">{ctaText}</p>
+            <Link to="/contacts" className="news-cta-block-btn">{ctaButton}</Link>
+          </div>
+        </section>
       </div>
     </div>
   )
