@@ -1,13 +1,16 @@
 .privacy-policy {
   padding: 100px 0;
-  background-color: var(--color-white);
+  background-color: var(--color-bg-light);
+  color: var(--color-text-main);
+  font-family: var(--font-body);
   min-height: 80vh;
 }
 
 .privacy-policy h1 {
   font-size: 40px;
   font-weight: 700;
-  color: var(--color-dark-blue);
+  font-family: var(--font-heading);
+  color: var(--color-primary);
   margin-bottom: 40px;
   text-align: center;
 }
@@ -58,7 +61,7 @@
 
 .privacy-date {
   font-size: 14px;
-  color: var(--color-gray);
+  color: var(--color-text-muted);
   font-style: italic;
 }
 

@@ -1,6 +1,8 @@
 .faq {
   padding: 100px 0;
-  background-color: var(--color-white);
+  background-color: var(--color-bg-light);
+  color: var(--color-text-main);
+  font-family: var(--font-body);
 }
 
 .faq-list {
@@ -23,12 +25,13 @@
 .faq-question {
   width: 100%;
   padding: 20px 24px;
-  background-color: #f7fafc;
+  background-color: var(--color-white);
   border: none;
   text-align: left;
   font-size: 18px;
   font-weight: 600;
-  color: var(--color-black);
+  font-family: var(--font-heading);
+  color: var(--color-text-main);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -37,13 +40,13 @@
 }
 
 .faq-question:hover {
-  background-color: #edf2f7;
+  background-color: var(--color-light-gray);
 }
 
 .faq-icon {
   font-size: 24px;
   font-weight: 300;
-  color: var(--color-black);
+  color: var(--color-text-main);
   flex-shrink: 0;
   margin-left: 16px;
 }
@@ -62,7 +65,8 @@
 .faq-answer p {
   font-size: 16px;
   line-height: 1.6;
-  color: var(--color-graphite);
+  font-family: var(--font-body);
+  color: var(--color-text-main);
   margin: 0;
 }
 

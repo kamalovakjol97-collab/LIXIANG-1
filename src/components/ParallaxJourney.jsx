@@ -95,7 +95,7 @@ function useScrollProgress(sectionRef, paused) {
 
 function getSceneOpacity(scene, progress) {
   const { from, to } = scene
-  const fade = 0.05
+  const fade = 0.015
   if (progress <= from - fade) return 0
   if (progress >= to + fade) return 0
   if (progress >= from && progress <= to) return 1

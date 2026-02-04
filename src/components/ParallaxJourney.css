@@ -34,7 +34,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.08s ease-out;
 }
 
 .parallax-journey-bg-overlay {

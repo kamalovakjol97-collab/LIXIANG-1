@@ -14,13 +14,30 @@
   color: var(--color-white);
   text-align: center;
   overflow: hidden;
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-dark);
   border-bottom: 1px solid var(--color-border);
 }
 
+.contacts-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(10, 42, 94, 0.92) 0%, rgba(10, 42, 94, 0.5) 50%, transparent 100%);
+  z-index: 0;
+}
+
+.contacts-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
 .contacts-page-title {
-  font-size: 48px;
+  font-size: var(--font-size-h2);
   font-weight: 700;
+  font-family: var(--font-heading);
   margin: 0;
   color: var(--color-white);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -98,14 +115,16 @@
 .contact-label {
   font-size: 32px;
   font-weight: 700;
-  color: var(--color-dark-blue);
+  font-family: var(--font-heading);
+  color: var(--color-primary);
   margin: 0 0 24px 0;
 }
 
 .contact-type {
   font-size: 16px;
   font-weight: 600;
-  color: var(--color-gray);
+  font-family: var(--font-body);
+  color: var(--color-text-muted);
   margin: 0 0 8px 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -113,14 +132,15 @@
 
 .contact-value {
   font-size: 20px;
-  color: var(--color-graphite);
+  font-family: var(--font-body);
+  color: var(--color-text-main);
   margin: 0;
   text-decoration: none;
   display: block;
 }
 
 .contact-value:hover {
-  color: var(--color-dark-blue);
+  color: var(--color-primary);
 }
 
 @media (max-width: 768px) {
