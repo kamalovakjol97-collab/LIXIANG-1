@@ -1,4 +1,5 @@
 import { useLanguage } from '../context/LanguageContext'
+import { contacts } from '../config/contacts'
 import './TopBar.css'
 
 const GlobeIcon = () => (
@@ -14,25 +15,19 @@ const CaretDown = () => (
   </svg>
 )
 
-const PaperPlaneIcon = () => (
+const TelegramIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-)
-
-const GridIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
-    <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
-    <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
-    <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
+    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M8 12l3 3 5-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M9 15l2-1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 
 const WhatsAppIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M17.5 14.5a9.5 9.5 0 1 1-2.5-18.5 9.5 9.5 0 0 1 2.5 18.5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M9 10a1 1 0 0 0 1 1h1a3 3 0 0 1 3 3v0a1 1 0 0 1-1 1H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M8 10c0 .5.02 1 .06 1.49a4.5 4.5 0 0 0 2.95 3.45l.5.2.5-.3a5.5 5.5 0 0 1 2.98-1.02c.5 0 1 .02 1.48.06" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M9 15c-1.5-.7-2.6-1.8-3.3-3.3A5.98 5.98 0 0 1 6 8a6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-1.7 4.2L9 15z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 
@@ -69,15 +64,12 @@ const TopBar = () => {
           </div>
 
           <div className="top-bar-right">
-            <a href="tel:+79315084299" className="top-bar-phone">+ 7 931 508 4299</a>
+            <a href={contacts.phoneTel} className="top-bar-phone">{contacts.phoneDisplay}</a>
             <div className="top-bar-socials">
-              <a href="#" className="top-bar-social" aria-label="Telegram">
-                <PaperPlaneIcon />
+              <a href={contacts.telegramUrl} className="top-bar-social" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                <TelegramIcon />
               </a>
-              <a href="#" className="top-bar-social" aria-label="Ссылка">
-                <GridIcon />
-              </a>
-              <a href="#" className="top-bar-social" aria-label="WhatsApp">
+              <a href={contacts.whatsappUrl} className="top-bar-social" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                 <WhatsAppIcon />
               </a>
             </div>

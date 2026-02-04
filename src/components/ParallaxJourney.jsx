@@ -159,47 +159,60 @@ const ParallaxJourney = ({ id = 'history-journey' }) => {
           <div className="parallax-journey-bg-overlay" />
         </div>
 
-        {/* Контейнеровоз с надписью XGL */}
+        {/* Контейнеровоз как на референсе: тёмный корпус, красно-оранжевая ватерлиния, контейнеры синие/красные, белая надстройка, оранжевая труба, XGL на борту */}
         <div
           className={`parallax-journey-ship ${shipStopped ? 'stopped' : ''}`}
           style={{ left: `${shipPosition}%` }}
           aria-hidden="true"
         >
-          <svg viewBox="0 0 200 70" className="parallax-journey-ship-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 200 72" className="parallax-journey-ship-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="ship-hull" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#1e3a5f" />
-                <stop offset="100%" stopColor="#0a2a4e" />
+                <stop offset="0%" stopColor="#0d0d0d" />
+                <stop offset="100%" stopColor="#1a1a1a" />
               </linearGradient>
             </defs>
-            <path d="M8 50 L8 42 L25 38 L170 38 L192 42 L192 50 L8 50 Z" fill="url(#ship-hull)" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
-            <path d="M25 38 L25 22 L45 22 L45 38 Z" fill="var(--color-primary)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-            <path d="M50 38 L50 18 L75 18 L75 38 Z" fill="var(--color-primary)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-            <path d="M80 38 L80 18 L105 18 L105 38 Z" fill="var(--color-primary)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-            <path d="M110 38 L110 18 L135 18 L135 38 Z" fill="var(--color-primary)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-            <path d="M140 38 L140 18 L165 18 L165 38 Z" fill="var(--color-primary)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-            <path d="M30 50 L170 50 L170 54 L30 54 Z" fill="#0d2137" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-            <rect x="175" y="35" width="18" height="22" rx="2" fill="var(--color-primary)" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
-            <text x="100" y="48" textAnchor="middle" fill="var(--color-accent)" fontWeight="800" fontSize="14" fontFamily="var(--font-heading), sans-serif">XGL</text>
+            {/* Корпус тёмный */}
+            <path d="M6 52 L6 44 L22 40 L168 40 L194 44 L194 52 L6 52 Z" fill="url(#ship-hull)" stroke="rgba(255,255,255,0.12)" strokeWidth="1.2" />
+            {/* Красно-оранжевая ватерлиния */}
+            <path d="M8 50 L22 48 L168 48 L192 50 L8 50 Z" fill="#c2410c" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8" />
+            {/* Контейнеры: синие и красные блоки */}
+            <path d="M24 40 L24 24 L42 24 L42 40 Z" fill="#1e3a8a" stroke="rgba(255,255,255,0.15)" strokeWidth="0.8" />
+            <path d="M46 40 L46 20 L64 20 L64 40 Z" fill="#b91c1c" stroke="rgba(255,255,255,0.15)" strokeWidth="0.8" />
+            <path d="M68 40 L68 20 L86 20 L86 40 Z" fill="#1e3a8a" stroke="rgba(255,255,255,0.15)" strokeWidth="0.8" />
+            <path d="M90 40 L90 20 L108 20 L108 40 Z" fill="#b91c1c" stroke="rgba(255,255,255,0.15)" strokeWidth="0.8" />
+            <path d="M112 40 L112 20 L130 20 L130 40 Z" fill="#1e3a8a" stroke="rgba(255,255,255,0.15)" strokeWidth="0.8" />
+            <path d="M134 40 L134 20 L152 20 L152 40 Z" fill="#b91c1c" stroke="rgba(255,255,255,0.15)" strokeWidth="0.8" />
+            {/* Подводная часть корпуса */}
+            <path d="M26 52 L168 52 L168 56 L26 56 Z" fill="#0a0a0a" stroke="rgba(255,255,255,0.08)" strokeWidth="0.8" />
+            {/* Надстройка (белая) у кормы */}
+            <rect x="158" y="28" width="32" height="24" rx="1" fill="#f8fafc" stroke="rgba(0,0,0,0.15)" strokeWidth="0.8" />
+            {/* Труба оранжево-красная */}
+            <rect x="178" y="18" width="10" height="14" rx="1" fill="var(--color-accent)" stroke="rgba(255,255,255,0.2)" strokeWidth="0.8" />
+            {/* Надпись XGL на борту (в носовой части) */}
+            <text x="52" y="46" textAnchor="middle" fill="var(--color-accent)" fontWeight="800" fontSize="12" fontFamily="var(--font-heading), sans-serif">XGL</text>
           </svg>
         </div>
         {showSecondShip && (
           <div className="parallax-journey-ship ship-2" style={{ left: `${Math.min(92, shipPosition + 12)}%` }} aria-hidden="true">
-            <svg viewBox="0 0 200 70" className="parallax-journey-ship-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 200 72" className="parallax-journey-ship-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="ship-hull-2" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#1e3a5f" />
-                  <stop offset="100%" stopColor="#0a2a4e" />
+                  <stop offset="0%" stopColor="#0d0d0d" />
+                  <stop offset="100%" stopColor="#1a1a1a" />
                 </linearGradient>
               </defs>
-              <path d="M8 50 L8 42 L25 38 L170 38 L192 42 L192 50 L8 50 Z" fill="url(#ship-hull-2)" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />
-              <path d="M25 38 L25 22 L45 22 L45 38 Z" fill="var(--color-primary)" opacity="0.9" />
-              <path d="M50 38 L50 18 L75 18 L75 38 Z" fill="var(--color-primary)" opacity="0.9" />
-              <path d="M80 38 L80 18 L105 18 L105 38 Z" fill="var(--color-primary)" opacity="0.9" />
-              <path d="M110 38 L110 18 L135 18 L135 38 Z" fill="var(--color-primary)" opacity="0.9" />
-              <path d="M140 38 L140 18 L165 18 L165 38 Z" fill="var(--color-primary)" opacity="0.9" />
-              <rect x="175" y="35" width="18" height="22" rx="2" fill="var(--color-primary)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
-              <text x="100" y="48" textAnchor="middle" fill="var(--color-accent)" fontWeight="800" fontSize="14" fontFamily="var(--font-heading), sans-serif" opacity="0.9">XGL</text>
+              <path d="M6 52 L6 44 L22 40 L168 40 L194 44 L194 52 L6 52 Z" fill="url(#ship-hull-2)" stroke="rgba(255,255,255,0.1)" strokeWidth="1.2" />
+              <path d="M8 50 L22 48 L168 48 L192 50 L8 50 Z" fill="#c2410c" opacity="0.95" />
+              <path d="M24 40 L24 24 L42 24 L42 40 Z" fill="#1e3a8a" opacity="0.9" />
+              <path d="M46 40 L46 20 L64 20 L64 40 Z" fill="#b91c1c" opacity="0.9" />
+              <path d="M68 40 L68 20 L86 20 L86 40 Z" fill="#1e3a8a" opacity="0.9" />
+              <path d="M90 40 L90 20 L108 20 L108 40 Z" fill="#b91c1c" opacity="0.9" />
+              <path d="M112 40 L112 20 L130 20 L130 40 Z" fill="#1e3a8a" opacity="0.9" />
+              <path d="M134 40 L134 20 L152 20 L152 40 Z" fill="#b91c1c" opacity="0.9" />
+              <rect x="158" y="28" width="32" height="24" rx="1" fill="#f8fafc" opacity="0.95" />
+              <rect x="178" y="18" width="10" height="14" rx="1" fill="var(--color-accent)" opacity="0.95" />
+              <text x="52" y="46" textAnchor="middle" fill="var(--color-accent)" fontWeight="800" fontSize="12" fontFamily="var(--font-heading), sans-serif" opacity="0.9">XGL</text>
             </svg>
           </div>
         )}

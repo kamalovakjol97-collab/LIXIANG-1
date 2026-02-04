@@ -8,6 +8,15 @@ const WhyXGLOG = () => {
   const cardRefs = useRef([])
 
   useEffect(() => {
+    if (window.location.hash === '#why' && sectionRef.current) {
+      const t = setTimeout(() => {
+        sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 100)
+      return () => clearTimeout(t)
+    }
+  }, [])
+
+  useEffect(() => {
     const cards = cardRefs.current.filter(Boolean)
     const obs = new IntersectionObserver(
       (entries) => {
@@ -89,7 +98,7 @@ const WhyXGLOG = () => {
   ]
 
   return (
-    <section className="why-sticky-section">
+    <section id="why" className="why-sticky-section" ref={sectionRef}>
       <div className="container">
         <div className="why-sticky-layout">
           <div className="why-sticky-left">
