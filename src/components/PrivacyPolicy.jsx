@@ -2,9 +2,11 @@ import './PrivacyPolicy.css'
 
 const PrivacyPolicy = () => {
   return (
-    <div className="privacy-policy" id="privacy">
-      <div className="container">
-        <h1>Политика конфиденциальности</h1>
+    <div className="privacy-policy-wrapper">
+      <div className="privacy-hero" aria-hidden="true" />
+      <div className="privacy-policy" id="privacy">
+        <div className="container">
+          <h1>Политика конфиденциальности</h1>
         <div className="privacy-content">
           <section>
             <h2>1. Общие положения</h2>
@@ -63,6 +65,7 @@ const PrivacyPolicy = () => {
           <section>
             <p className="privacy-date">Дата последнего обновления: 2024</p>
           </section>
+        </div>
         </div>
       </div>
     </div>

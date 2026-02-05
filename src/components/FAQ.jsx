@@ -87,11 +87,13 @@ const FAQ = () => {
   }
 
   return (
-    <section id="faq-section" className="faq">
-      <div className="container">
-        <h2 className="section-title">
-          {language === 'ru' ? 'Часто задаваемые вопросы' : '常见问题'}
-        </h2>
+    <div className="faq-page">
+      <div className="faq-hero" aria-hidden="true" />
+      <section id="faq-section" className="faq">
+        <div className="container">
+          <h2 className="section-title">
+            {language === 'ru' ? 'Часто задаваемые вопросы' : '常见问题'}
+          </h2>
         <div className="faq-list">
           {faqs.map((faq, index) => (
             <div 
@@ -111,8 +113,9 @@ const FAQ = () => {
             </div>
           ))}
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </div>
   )
 }
 

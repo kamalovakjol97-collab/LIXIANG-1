@@ -15,7 +15,13 @@
   text-align: center;
   overflow: hidden;
   background-color: var(--color-primary-dark);
+  background-image: url('/images/contacts-hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-bottom: 1px solid var(--color-border);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: high-quality;
 }
 
 .contacts-hero::before {
