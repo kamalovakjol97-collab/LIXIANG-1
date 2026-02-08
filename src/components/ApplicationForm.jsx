@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '../context/LanguageContext'
-import { supabase } from '../config/supabase'
 import './ApplicationForm.css'
+
+const API_URL = '/application.php'
 
 const ApplicationForm = () => {
   const { t, language } = useLanguage()
@@ -45,12 +46,18 @@ const ApplicationForm = () => {
     e.preventDefault()
     setIsSubmitting(true)
     try {
-      const { error } = await supabase
-        .from('applications')
-        .insert([formData])
-      if (error) throw error
-      setSubmitStatus('success')
-      setFormData({ cargoType: '', from: '', to: '', phone: '', companyName: '' })
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      const json = await res.json().catch(() => ({}))
+      if (res.ok && json.success) {
+        setSubmitStatus('success')
+        setFormData({ cargoType: '', from: '', to: '', phone: '', companyName: '' })
+      } else {
+        setSubmitStatus('error')
+      }
     } catch (error) {
       setSubmitStatus('error')
     } finally {

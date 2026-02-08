@@ -27,3 +27,6 @@ dist-ssr
 .env
 .env.local
 .env.production
+
+# Spaceweb API config (содержит пароль БД)
+api/db_config.php
